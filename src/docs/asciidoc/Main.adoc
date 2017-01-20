@@ -1,0 +1,112 @@
+= Groovy Learning
+:toclevels: 3
+:numbered:
+:sectnumlevels: 6
+:experimental:
+:chapter-label:
+
+== Einleitung
+
+// TODO
+
+== Wie geht's los?
+
+// TODO
+
+== Dein erstes Programm
+
+Was ist eigentlich ein Programm und eine Programmiersprache?
+
+Frei nach Wikipedia ist ein *Computerprogramm* oder kurz *Programm* ist eine den Regeln einer bestimmten *Programmiersprache*
+genügende Folge von *Anweisungen* um bestimmte *Aufgaben oder Probleme* mithilfe eines Computers zu bearbeiten oder zu lösen.
+
+Bist Du nun schlauer? Nein?
+
+Ich versuche es mal einfacher: Ein Programm sagt einem Computer was und wie er etwas tun soll.
+So wie ein Kochrezept dir sagt wie Du etwas zubereiten sollst. Damit du ein Kochrezept verstehen kannst musst Du gewisse Dinge können:
+
+- Die Sprache und Grammatik in der es geschrieben ist. (Syntax)
+- Was die Anweisungen des Rezepts bedeuten und wie Du sie umsetzten kannst. (Semantik) +
+ Also was bedeutet z.B. '1TL Salz hinzufügen' und wie wiege ich '500g Mehl' ab.
+
+Auch ein Computer muss das wissen und können, deshalb gibt es Programmiersprachen und so wie deine Eltern dir deine Muttersprache beibrachten
+und erklärten wie man eine Waage bedient, so mussten auch Menschen dem Computer die Programmiersprache beibringen. Denn Computer sind
+grundsätzlich doof - sie können nur zwei Zahlen zusammen zählen, doch das können sie unglaublich schnell. Alles andere muss ihm gezeigt werden.
+
+Doch das brauchst Du hier nicht zu tun - nur um einem Computer zu sagen was und wie er etwas für dich tun soll musst du lernen was er alles kann.
+Und genau deshalb musst Du die selbe Sprachen 'spechen' wie er - und das möchte ich Dir hier zeigen.
+
+Du solltest noch wissen dass ein Computer eigentlich eine ganz andere Sprache spricht, welche für Menschen aber so gut wie unverständlich ist.
+Man sagt hierzu *'nativer Code'*. Deshalb muss jede Programmiersprache in nativen Code übersetzt werden. Bei den meisten Programmiersprachen übernimmt
+das ein Programm mit dem Namen *'Kompiler'*.
+
+Die Programmiersprache die du hier lernen kannst heisst *+Groovy+* und mit Groovy geschriebene Programme können auf allen
+Computern ausgeführt werden, für die es eine Java-Laufzeitumgebung gibt.
+
+Was ist das nun schon wieder? Nun Java ist eine andere (zu Groovy sehr ähnliche) Programmiersprache die aber nicht direkt von Computern
+verstandenen nativen Code erzeugt, sondern eine Zwischensprache (Binärcode) benutzt, die zwar noch nicht nativ ist, aber viel einfacher
+in nativen Code übersetzt werden kann. Computer mit unterschiedlichen Betriebssystemen und Architekturen sprechen leider auch unterschiedlichen
+nativen Code.
+
+Nun gibt es zum Glück für viele verschiedene Systeme Java-Laufzeitumgebungen für Binärcode, die fast wie ein Simultanübersetzer funktionieren
+und den Binärcode beim ausführen ganz schnell kompilieren und so umwandeln, dass der Computern nun weiss was Sache ist.
+Das hat den Vorteil, dass ein Mensch ein Programm nur einmal kompiliert muss und trotzdem auf vielen verschiedenen Computerarten ausführbar ist.
+
+=== Konsolenausgabe
+
+Beim Lernen von Programmiersprachen gibt es seit 1974 die Tradition als erstes Programm den Text 'Hallo welt!' möglichst einfach auszugeben.
+Deshalb starten wir doch gleich mal damit:
+
+[source,groovy]
+.Hallo Welt!
+----
+print('Hallo Welt!') <1>
+----
+<1> `print` sagt dass etwas auf der Konsole ausgegeben werden soll. Was man ausgeben möchte schreibt man in Klammern dahinter.
+Da dies nun eine Kette an Zeichen sein soll muss auch dies der Computer wissen und deshalb werden Zeichenketten (engl. Strings genannt)
+in einfach oder doppelte Anführungszeichen gesetzt. Was der Unterschied ist lernst du später noch.
+
+Hier noch eine leicht andere Version in der nicht nur 'Hallo Welt!' sondern auch noch 'Und Tschüss!' ausgegeben werden soll.
+
+[source,groovy]
+.Hallo Welt! Und Tschüss!
+----
+println('Hallo Welt!') <1>
+print 'Und Tschüss!'
+----
+<1> `println` bedeutet *print line* und sagt dass nun eine ganze Zeile auf der Konsole ausgegeben werden soll und deshalb
+werden nachfolgende Ausgaben in eine neue Zeile geschrieben. Wenn du hier nur `print` statt `println` benutzt dann bekommst Du
+
+----
+Hallo Welt! Und Tschüss!
+----
+
+statt
+
+----
+Hallo Welt!
+Und Tschüss!
+----
+
+Probier es doch mal aus.
+
+[NOTE]
+====
+Aber warum stehen jetzt in der zweiten Zeile keine Klammern ???
+
+Nun Groovy versucht dem Entwickler das Leben so einfach wie möglich zu machen und erlaubt es in den meisten Fällen
+die Klammern wegzulassen. Aber leider nicht in allen. Wenn der Kompiler also seltsame Meldungen ausspuckt könnte es auch daran liegen.
+
+====
+
+=== Variablen
+
+=== Variablentypen
+
+=== Operatoren
+
+=== Ordnung im System
+
+== Kreis im Quadrat
+
+=== GroovyFX

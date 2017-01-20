@@ -1,0 +1,55 @@
+* {
+    -col-player1: #ffd500;
+    -col-player2: #ff0000;
+    -col-board: #0866b5;
+    -col-background: white;
+}
+
+.root {
+    -fx-background-color: -col-background;
+}
+
+#board {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+    -fx-background-color: -col-board;
+    -fx-padding: 40;
+    -fx-background-insets: 20;
+}
+
+.field {
+    -fx-fill: -col-background;
+}
+
+.player1 .field.hover {
+    -fx-fill: derive(-col-player1, 70%);
+}
+
+.player2 .field.hover {
+    -fx-fill: derive(-col-player2, 70%);
+}
+
+.root .field.player1 {
+    -fx-fill: -col-player1;
+    -fx-effect: innershadow(gaussian, derive(-col-player1, 50%), 10, 0.5, 0, 0);
+}
+
+.root .field.player2 {
+    -fx-fill: -col-player2;
+    -fx-effect: innershadow(gaussian, derive(-col-player2, 66%), 10, 0.5, 0, 0);
+}
+
+.field.winner.player1 {
+    -fx-effect: dropshadow(gaussian, derive(-col-player1, 50%), 20, 0.5, 0, 0);
+}
+
+.field.winner.player2 {
+    -fx-effect: dropshadow(gaussian, derive(-col-player2, 66%), 20, 0.5, 0, 0);
+}
+
+#winnerLabel {
+    -fx-font: italic bold 30pt 'cursive';
+    -fx-text-alignment: center;
+}
+
+
