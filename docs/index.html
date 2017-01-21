@@ -417,6 +417,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <style>
 /* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
 /*pre.CodeRay {background-color:#f7f7f8;}*/
@@ -520,10 +521,15 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_dein_erstes_programm">3. Dein erstes Programm</a>
 <ul class="sectlevel2">
 <li><a href="#_konsolenausgabe">3.1. Konsolenausgabe</a></li>
-<li><a href="#_variablen">3.2. Variablen</a></li>
-<li><a href="#_variablentypen">3.3. Variablentypen</a></li>
-<li><a href="#_operatoren">3.4. Operatoren</a></li>
-<li><a href="#_ordnung_im_system">3.5. Ordnung im System</a></li>
+<li><a href="#_variablen">3.2. Variablen</a>
+<ul class="sectlevel3">
+<li><a href="#_namensregeln">3.2.1. Namensregeln</a></li>
+<li><a href="#_konventionen">3.2.2. Konventionen</a></li>
+<li><a href="#_variablentypen">3.2.3. Variablentypen</a></li>
+</ul>
+</li>
+<li><a href="#_operatoren">3.3. Operatoren</a></li>
+<li><a href="#_ordnung_im_system">3.4. Ordnung im System</a></li>
 </ul>
 </li>
 <li><a href="#_kreis_im_quadrat">4. Kreis im Quadrat</a>
@@ -554,7 +560,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>Was ist eigentlich ein Programm und eine Programmiersprache?</p>
 </div>
 <div class="paragraph">
-<p>Frei nach Wikipedia ist ein <strong>Computerprogramm</strong> oder kurz <strong>Programm</strong> ist eine den Regeln einer bestimmten <strong>Programmiersprache</strong>
+<p>Frei nach Wikipedia ist ein <strong>Computerprogramm</strong> oder kurz <strong>Programm</strong> eine den Regeln einer bestimmten <strong>Programmiersprache</strong>
 genügende Folge von <strong>Anweisungen</strong> um bestimmte <strong>Aufgaben oder Probleme</strong> mithilfe eines Computers zu bearbeiten oder zu lösen.</p>
 </div>
 <div class="paragraph">
@@ -577,8 +583,8 @@ Also was bedeutet z.B. '1TL Salz hinzufügen' und wie wiege ich '500g Mehl' ab.<
 </div>
 <div class="paragraph">
 <p>Auch ein Computer muss das wissen und können, deshalb gibt es Programmiersprachen und so wie deine Eltern dir deine Muttersprache beibrachten
-und erklärten wie man eine Waage bedient, so mussten auch Menschen dem Computer die Programmiersprache beibringen. Denn Computer sind
-grundsätzlich doof - sie können nur zwei Zahlen zusammen zählen, doch das können sie unglaublich schnell. Alles andere muss ihm gezeigt werden.</p>
+und erklärten wie man eine Waage bedient, so mussten auch Menschen dem Computer die Programmiersprache beibringen. Denn Computer können
+kaum etwas - nur zwei Zahlen zusammen zählen - doch das können sie unglaublich schnell. Alles andere muss ihm beigebracht werden.</p>
 </div>
 <div class="paragraph">
 <p>Doch das brauchst Du hier nicht zu tun - nur um einem Computer zu sagen was und wie er etwas für dich tun soll musst du lernen was er alles kann.
@@ -602,7 +608,7 @@ nativen Code.</p>
 <div class="paragraph">
 <p>Nun gibt es zum Glück für viele verschiedene Systeme Java-Laufzeitumgebungen für Binärcode, die fast wie ein Simultanübersetzer funktionieren
 und den Binärcode beim ausführen ganz schnell kompilieren und so umwandeln, dass der Computern nun weiss was Sache ist.
-Das hat den Vorteil, dass ein Mensch ein Programm nur einmal kompiliert muss und trotzdem auf vielen verschiedenen Computerarten ausführbar ist.</p>
+Das hat den Vorteil, dass ein Mensch ein Programm nur einmal kompilieren muss und es trotzdem auf vielen verschiedenen Computerarten ausführbar ist.</p>
 </div>
 <div class="sect2">
 <h3 id="_konsolenausgabe">3.1. Konsolenausgabe</h3>
@@ -613,17 +619,18 @@ Deshalb starten wir doch gleich mal damit:</p>
 <div class="listingblock">
 <div class="title">Hallo Welt!</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">print(<span class="string"><span class="delimiter">'</span><span class="content">Hallo Welt!</span><span class="delimiter">'</span></span>) <b class="conum">(1)</b></code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy">print(<span class="string"><span class="delimiter">'</span><span class="content">Hallo Welt!</span><span class="delimiter">'</span></span>) <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p><code>print</code> sagt dass etwas auf der Konsole ausgegeben werden soll. Was man ausgeben möchte schreibt man in Klammern dahinter.
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>print</code> sagt dass etwas auf der Konsole ausgegeben werden soll. Was man ausgeben möchte schreibt man in Klammern dahinter.
 Da dies nun eine Kette an Zeichen sein soll muss auch dies der Computer wissen und deshalb werden Zeichenketten (engl. Strings genannt)
-in einfach oder doppelte Anführungszeichen gesetzt. Was der Unterschied ist lernst du später noch.</p>
-</li>
-</ol>
+in einfach oder doppelte Anführungszeichen gesetzt. Was der Unterschied ist lernst du später noch.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Hier noch eine leicht andere Version in der nicht nur 'Hallo Welt!' sondern auch noch 'Und Tschüss!' ausgegeben werden soll.</p>
@@ -631,17 +638,18 @@ in einfach oder doppelte Anführungszeichen gesetzt. Was der Unterschied ist ler
 <div class="listingblock">
 <div class="title">Hallo Welt! Und Tschüss!</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">println(<span class="string"><span class="delimiter">'</span><span class="content">Hallo Welt!</span><span class="delimiter">'</span></span>) <b class="conum">(1)</b>
+<pre class="CodeRay highlight"><code data-lang="groovy">println(<span class="string"><span class="delimiter">'</span><span class="content">Hallo Welt!</span><span class="delimiter">'</span></span>) <i class="conum" data-value="1"></i><b>(1)</b>
 print <span class="string"><span class="delimiter">'</span><span class="content">Und Tschüss!</span><span class="delimiter">'</span></span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p><code>println</code> bedeutet <strong>print line</strong> und sagt dass nun eine ganze Zeile auf der Konsole ausgegeben werden soll und deshalb
-werden nachfolgende Ausgaben in eine neue Zeile geschrieben. Wenn du hier nur <code>print</code> statt <code>println</code> benutzt dann bekommst Du</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>println</code> bedeutet <strong>print line</strong> und sagt dass nun eine ganze Zeile auf der Konsole ausgegeben werden soll und deshalb
+werden nachfolgende Ausgaben in eine neue Zeile geschrieben. Wenn du hier nur <code>print</code> statt <code>println</code> benutzt dann bekommst Du</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -660,11 +668,11 @@ Und Tschüss!</pre>
 <div class="paragraph">
 <p>Probier es doch mal aus.</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -678,24 +686,269 @@ die Klammern wegzulassen. Aber leider nicht in allen. Wenn der Kompiler also sel
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>123</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_variablen">3.2. Variablen</h3>
+<div class="paragraph">
+<p>Variablen sind Platzhalter für Werte. Ähnlich Schubladen in die Dinge gelegt werden können.
+Variablen benötigen einen <strong>Namen</strong> der gewissen Regeln folgt und einen <strong>Variablentyp</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_namensregeln">3.2.1. Namensregeln</h4>
+<div class="paragraph">
+<p>Bezeichner können aus folgenden Zeichen bestehen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Buchstaben (inklusive Umlaute)</p>
+</li>
+<li>
+<p>Ziffern</p>
+</li>
+<li>
+<p>Unterstrich</p>
+</li>
+<li>
+<p>Währungssymbole (z.B. €, $ &#8230;&#8203;)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Das erste Zeichen darf keine Ziffer sein.</p>
+</div>
+<div class="paragraph">
+<p>Zudem gibt es reservierte Worte wie z.B. <code>as</code>, <code>return</code> oder <code>in</code> die nicht benutzt werden dürfen.
+So kann eine Variable nicht <code>new</code> heissen - <code>newValue</code> hingegen ist wieder in Ordnung.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Grundsätzlich ist die Groß-/Kleinschreibung wichtig. Die Variable <code>meinTest</code> und <code>meintest</code> sind unterschiedlich!
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Leerzeichen sind keine gültigen Zeichen!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_konventionen">3.2.2. Konventionen</h4>
+<div class="paragraph">
+<p>Zusätzlich zu den verbindlichen Regeln haben sich Konventionen entwickelt an die man sich halten sollte - aber nicht zwingend muss:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Variablennamen beginnen mit einem Kleinbuchstaben: <code>variable</code></p>
+</li>
+<li>
+<p>Weitere Worte beginnen mit einem Grossbuchstaben (CamelCase): <code>meineVariable</code></p>
+</li>
+<li>
+<p>Es ist unüblich Variablen mit einem Währungszeichen oder Unterstrich zu beginnen</p>
+</li>
+<li>
+<p>Es ist empfehlenswert keine Umlaute, Währungszeichen oder Unterstriche in Variablennamen zu benutzen</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Um seinen Quellcode gut lesen zu können empfiehlt es sich sprechende Namen zu verwenden, also mit dem Namen beschreiben was
+in der Variable drin sein soll.</p>
+</div>
+<div class="paragraph">
+<p>Statt <code>i</code> oder <code>j</code> sollte eine Variable eher <code>zaehler</code> oder <code>counter</code> heissen.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_variablentypen">3.2.3. Variablentypen</h4>
+<div class="paragraph">
+<p>Grundsätzlich sind alle Werte in Groovy vom Typ <code>Object</code>. In eine Variable vom Typ <code>Object</code> kann also alles abgelegt werden.
+Deshalb gibt es Groovy das Schlüsselwort <code>def</code> was aussagt, dass in diese Variable alles abgelegt werden darf.</p>
+</div>
+<div class="paragraph">
+<p>Aber wenn eine Variable einen Typ hat, dann können auch nur Werte dieses Typs in ihr abgelegt werden.
+So können in eine Variable vom Typ <code>int</code> auch nur Ganzzahlen abgelegt werden.</p>
+</div>
+<div class="paragraph">
+<p>Wie führt man nun eine Variable ein?<br>
+Mit <code>&lt;typ&gt; &lt;name&gt;</code> wird eine Variable definiert.
+Mit dem Gleichheitszeichen kann nun ein Wert abgelegt werden.
+Dies kann auch in einer Zeile zusammen gefasst werden.
+Wenn eine Variable einmal existiert können ihr immer wieder Werte zugewiesen und diese auch wieder ausgelesen werden.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiele von Variablenbenutzung</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> name
+name = <span class="string"><span class="delimiter">'</span><span class="content">Hans Wurst</span><span class="delimiter">'</span></span>
+<span class="type">int</span> alter = <span class="integer">498</span>
+
+println alter
+println name
+
+alter = <span class="integer">15</span>
+println alter</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_welche_typen_gibt_es">3.2.3.1. Welche Typen gibt es?</h5>
+<div class="paragraph">
+<p>Von Haus aus bringt Groovy folgende Typen mit:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Standard-Typen</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Beschreibung</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wertebereich</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Beispiel</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wahrheitsswert</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true oder false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">byte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ganzzahlen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-128 bis 127</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(byte)-27</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">short</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ganzzahlen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-32768 bis -32767</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(short)20725</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ganzzahlen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-2147483648 bis 2147483647</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1038762<strong>i</strong> oder 17<strong>I</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ganzzahlen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-9223372036854775808 bis 9223372036854775807</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">92233720368547<strong>l</strong> oder -2497<strong>L</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BigDecimal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ganzzahlen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unbegrenzt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">922337203685472425072659<strong>g</strong> oder 1003<strong>G</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fließkommazahl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+/-3.40282347*10<sup>38</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.38764<strong>f</strong> oder 4.3<strong>F</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fließkommazahl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+/-1.79769313486231570*10<sup>308</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">23.5970<strong>d</strong> oder -432.313<strong>D</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">char</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeichen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alle Unicode-Zeichen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\u2348</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeichenkette</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeichenketten bestehend aus Unicode-Zeichen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'Hallo' oder "Hallo"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Liste an Werten</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[] oder [1, 2, 'Hallo']</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Range</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wertebereich</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1..3 (-1 bis 3 inklusive) oder -1..&lt;3 (-1 bis 3 exklusive)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Schlüssel-Wert-Zuordnung</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[:] oder [name: 'Hans', alter: 498]</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ihr habt vielleicht die Buchstaben am Ende der Beispiele gesehen. Die benötigt ihr nur wenn ihr explizit einen Wert des
+entsprechenen Typs haben wollt. Groovy versucht bei Werten die Typen möglichst intelligent zu erkennen. Wenn also eine Zahl
+z.B. nicht mehr in den Werte Bereich von <code>int</code> passt, macht er automatisch ein <code>long</code> daraus.<br>
+Zudem werden Werte beim Zuweisen zu einer Variable, wenn möglich, in den Typ der Variable umgewandelt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> strecke = <span class="integer">922337203685477580</span> <span class="comment">// dies ergibt ein long in 'strecke'</span>
+<span class="type">long</span> alter = <span class="integer">12</span> <span class="comment">// Dies ergibt ebenfalls ein long in 'alter'</span></code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operatoren">3.3. Operatoren</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_variablentypen">3.3. Variablentypen</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_operatoren">3.4. Operatoren</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_ordnung_im_system">3.5. Ordnung im System</h3>
+<h3 id="_ordnung_im_system">3.4. Ordnung im System</h3>
 
 </div>
 </div>
@@ -712,7 +965,7 @@ die Klammern wegzulassen. Aber leider nicht in allen. Wenn der Kompiler also sel
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-20 12:39:22 +01:00
+Last updated 2017-01-21 22:06:32 +01:00
 </div>
 </div>
 </body>
