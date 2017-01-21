@@ -17,7 +17,7 @@
 
 Was ist eigentlich ein Programm und eine Programmiersprache?
 
-Frei nach Wikipedia ist ein *Computerprogramm* oder kurz *Programm* ist eine den Regeln einer bestimmten *Programmiersprache*
+Frei nach Wikipedia ist ein *Computerprogramm* oder kurz *Programm* eine den Regeln einer bestimmten *Programmiersprache*
 genügende Folge von *Anweisungen* um bestimmte *Aufgaben oder Probleme* mithilfe eines Computers zu bearbeiten oder zu lösen.
 
 Bist Du nun schlauer? Nein?
@@ -30,8 +30,8 @@ So wie ein Kochrezept dir sagt wie Du etwas zubereiten sollst. Damit du ein Koch
  Also was bedeutet z.B. '1TL Salz hinzufügen' und wie wiege ich '500g Mehl' ab.
 
 Auch ein Computer muss das wissen und können, deshalb gibt es Programmiersprachen und so wie deine Eltern dir deine Muttersprache beibrachten
-und erklärten wie man eine Waage bedient, so mussten auch Menschen dem Computer die Programmiersprache beibringen. Denn Computer sind
-grundsätzlich doof - sie können nur zwei Zahlen zusammen zählen, doch das können sie unglaublich schnell. Alles andere muss ihm gezeigt werden.
+und erklärten wie man eine Waage bedient, so mussten auch Menschen dem Computer die Programmiersprache beibringen. Denn Computer können
+kaum etwas - nur zwei Zahlen zusammen zählen - doch das können sie unglaublich schnell. Alles andere muss ihm beigebracht werden.
 
 Doch das brauchst Du hier nicht zu tun - nur um einem Computer zu sagen was und wie er etwas für dich tun soll musst du lernen was er alles kann.
 Und genau deshalb musst Du die selbe Sprachen 'spechen' wie er - und das möchte ich Dir hier zeigen.
@@ -50,7 +50,7 @@ nativen Code.
 
 Nun gibt es zum Glück für viele verschiedene Systeme Java-Laufzeitumgebungen für Binärcode, die fast wie ein Simultanübersetzer funktionieren
 und den Binärcode beim ausführen ganz schnell kompilieren und so umwandeln, dass der Computern nun weiss was Sache ist.
-Das hat den Vorteil, dass ein Mensch ein Programm nur einmal kompiliert muss und trotzdem auf vielen verschiedenen Computerarten ausführbar ist.
+Das hat den Vorteil, dass ein Mensch ein Programm nur einmal kompilieren muss und es trotzdem auf vielen verschiedenen Computerarten ausführbar ist.
 
 === Konsolenausgabe
 
@@ -90,7 +90,7 @@ Und Tschüss!
 
 Probier es doch mal aus.
 
-[NOTE]
+[TIP]
 ====
 Aber warum stehen jetzt in der zweiten Zeile keine Klammern ???
 
@@ -101,7 +101,107 @@ die Klammern wegzulassen. Aber leider nicht in allen. Wenn der Kompiler also sel
 
 === Variablen
 
-=== Variablentypen
+Variablen sind Platzhalter für Werte. Ähnlich Schubladen in die Dinge gelegt werden können.
+Variablen benötigen einen *Namen* der gewissen Regeln folgt und einen *Variablentyp*.
+
+==== Namensregeln
+
+Bezeichner können aus folgenden Zeichen bestehen:
+
+- Buchstaben (inklusive Umlaute)
+- Ziffern
+- Unterstrich
+- Währungssymbole (z.B. €, $ ...)
+
+Das erste Zeichen darf keine Ziffer sein.
+
+Zudem gibt es reservierte Worte wie z.B. `as`, `return` oder `in` die nicht benutzt werden dürfen.
+So kann eine Variable nicht `new` heissen - `newValue` hingegen ist wieder in Ordnung.
+
+IMPORTANT: Grundsätzlich ist die Groß-/Kleinschreibung wichtig. Die Variable `meinTest` und `meintest` sind unterschiedlich!
+
+CAUTION: Leerzeichen sind keine gültigen Zeichen!
+
+==== Konventionen
+
+Zusätzlich zu den verbindlichen Regeln haben sich Konventionen entwickelt an die man sich halten sollte - aber nicht zwingend muss:
+
+- Variablennamen beginnen mit einem Kleinbuchstaben: `variable`
+- Weitere Worte beginnen mit einem Grossbuchstaben (CamelCase): `meineVariable`
+- Es ist unüblich Variablen mit einem Währungszeichen oder Unterstrich zu beginnen
+- Es ist empfehlenswert keine Umlaute, Währungszeichen oder Unterstriche in Variablennamen zu benutzen
+
+[TIP]
+====
+Um seinen Quellcode gut lesen zu können empfiehlt es sich sprechende Namen zu verwenden, also mit dem Namen beschreiben was
+in der Variable drin sein soll.
+
+Statt `i` oder `j` sollte eine Variable eher `zaehler` oder `counter` heissen.
+====
+
+==== Variablentypen
+
+Grundsätzlich sind alle Werte in Groovy vom Typ `Object`. In eine Variable vom Typ `Object` kann also alles abgelegt werden.
+Deshalb gibt es Groovy das Schlüsselwort `def` was aussagt, dass in diese Variable alles abgelegt werden darf.
+
+Aber wenn eine Variable einen Typ hat, dann können auch nur Werte dieses Typs in ihr abgelegt werden.
+So können in eine Variable vom Typ `int` auch nur Ganzzahlen abgelegt werden.
+
+Wie führt man nun eine Variable ein? +
+Mit `<typ> <name>` wird eine Variable definiert.
+Mit dem Gleichheitszeichen kann nun ein Wert abgelegt werden.
+Dies kann auch in einer Zeile zusammen gefasst werden.
+Wenn eine Variable einmal existiert können ihr immer wieder Werte zugewiesen und diese auch wieder ausgelesen werden.
+
+[source,groovy]
+.Beispiele von Variablenbenutzung
+----
+def name
+name = 'Hans Wurst'
+int alter = 498
+
+println alter
+println name
+
+alter = 15
+println alter
+----
+
+===== Welche Typen gibt es?
+
+Von Haus aus bringt Groovy folgende Typen mit:
+
+.Standard-Typen
+|===
+|Name       |Beschreibung                  |Wertebereich                                 |Beispiel
+|boolean    |Wahrheitsswert                |true oder false                              |true
+|byte       |Ganzzahlen                    |-128 bis 127                                 |(byte)-27
+|short      |Ganzzahlen                    |-32768 bis -32767                            |(short)20725
+|int        |Ganzzahlen                    |-2147483648 bis 2147483647                   |-1038762**i** oder 17**I**
+|long       |Ganzzahlen                    |-9223372036854775808 bis 9223372036854775807 |92233720368547**l** oder -2497**L**
+|BigDecimal |Ganzzahlen                    |Unbegrenzt                                   |922337203685472425072659**g** oder 1003**G**
+|float      |Fließkommazahl                |+/-3.40282347*10^38^                         |-1.38764**f** oder 4.3**F**
+|double     |Fließkommazahl                |+/-1.79769313486231570*10^308^               |23.5970**d** oder -432.313**D**
+|char       |Zeichen                       |Alle Unicode-Zeichen                         |\u2348
+|String     |Zeichenkette                  |Zeichenketten bestehend aus Unicode-Zeichen  |'Hallo' oder "Hallo"
+|List       |Liste an Werten               |-                                            |[] oder [1, 2, 'Hallo']
+|Range      |Wertebereich                  |-                                            |-1..3 (-1 bis 3 inklusive) oder -1..<3 (-1 bis 3 exklusive)
+|Map        |Schlüssel-Wert-Zuordnung      |-                                            |[:] oder [name: 'Hans', alter: 498]
+|===
+
+[NOTE]
+====
+Ihr habt vielleicht die Buchstaben am Ende der Beispiele gesehen. Die benötigt ihr nur wenn ihr explizit einen Wert des
+entsprechenen Typs haben wollt. Groovy versucht bei Werten die Typen möglichst intelligent zu erkennen. Wenn also eine Zahl
+z.B. nicht mehr in den Werte Bereich von `int` passt, macht er automatisch ein `long` daraus. +
+Zudem werden Werte beim Zuweisen zu einer Variable, wenn möglich, in den Typ der Variable umgewandelt.
+
+[source,groovy]
+----
+def strecke = 922337203685477580 // dies ergibt ein long in 'strecke'
+long alter = 12 // Dies ergibt ebenfalls ein long in 'alter'
+----
+====
 
 === Operatoren
 

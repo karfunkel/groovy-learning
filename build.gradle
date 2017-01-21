@@ -1,3 +1,5 @@
+import org.ajoberstar.grgit.*
+
 buildscript {
     repositories {
         jcenter()
@@ -10,6 +12,7 @@ buildscript {
         classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.11'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.13.0'
         classpath 'com.github.allati.asciidoctor.monotree:asciidoctor-extension-monotree:0.0.1'
+        classpath 'org.ajoberstar:gradle-git:1.6.0'
     }
 }
 
@@ -18,6 +21,7 @@ apply plugin: 'com.github.jruby-gradle.base'
 apply plugin: 'org.ysb33r.vfs'
 apply plugin: 'org.asciidoctor.convert'
 apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'org.ajoberstar.grgit'
 
 repositories {
     jcenter()
@@ -45,7 +49,7 @@ asciidoctor {
             'coderay-linenums-mode': 'table',
             'imagesdir': './images',
             toc: 'left',
-            icon: 'font',
+            icons: 'font',
             linkattrs: true,
             encoding: 'utf-8',
             now: new Date().format('dd.MM.yyyy'),
@@ -62,5 +66,28 @@ asciidoctor {
         from(sourceDir) {
             include 'images/**'
         }
+    }
+}
+
+task publish {
+    description 'Copies the html5 build to the docs directory and publishes it to github pages'
+    dependsOn asciidoctor
+    inputs.dir 'build/asciidoc/html5'
+    outputs.dir 'docs'
+    doLast {
+        copy {
+            from 'build/asciidoc/html5'
+            into 'docs'
+            exclude('**/.*')
+            rename { String fileName ->
+                if(fileName == 'Main.html')
+                    return 'index.html'
+                else return fileName
+            }
+        }
+        def grgit = Grgit.open(dir: projectDir)
+        grgit.add(patterns: ['docs'])
+        grgit.commit(message: "Published new version to docs")
+        grgit.push()
     }
 }
