@@ -529,7 +529,8 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </li>
 <li><a href="#_operatoren">3.3. Operatoren</a></li>
-<li><a href="#_ordnung_im_system">3.4. Ordnung im System</a></li>
+<li><a href="#GroovyTruth">3.4. Groovy Truth</a></li>
+<li><a href="#_ordnung_im_system">3.5. Ordnung im System</a></li>
 </ul>
 </li>
 <li><a href="#_kreis_im_quadrat">4. Kreis im Quadrat</a>
@@ -537,6 +538,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_groovyfx">4.1. GroovyFX</a></li>
 </ul>
 </li>
+<li><a href="#_felder">5. Felder</a></li>
 </ul>
 </div>
 </div>
@@ -767,6 +769,11 @@ Leerzeichen sind keine gültigen Zeichen!
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Im Gegensatz dazu werden Konstanten, also Variablen deren Wert sich nicht mehr verändert, anders notiert:
+- Konstantennamen werden komplett in Grossbuchstaben geschrieben: <code>KONSTANTE</code>
+- Worte werden mit einem Unterstrich getrennt: <code>MEINE_KONSTANTE</code></p>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -825,18 +832,20 @@ println alter</code></pre>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. Standard-Typen</caption>
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5715%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Beschreibung</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Wertebereich</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Beispiel</p></td>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+<th class="tableblock halign-left valign-top">Wertebereich</th>
+<th class="tableblock halign-left valign-top">Beispiel</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Wahrheitsswert</p></td>
@@ -859,31 +868,44 @@ println alter</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">int</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ganzzahlen</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-2147483648 bis 2147483647</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1038762<strong>i</strong> oder 17<strong>I</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1038762<strong>i</strong><br>
+                                                                                          17<strong>I</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ganzzahlen</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-9223372036854775808 bis 9223372036854775807</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">92233720368547<strong>l</strong> oder -2497<strong>L</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">92233720368547<strong>l</strong><br>
+                                                                                          -2497<strong>L</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BigDecimal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BigInteger</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ganzzahlen</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Unbegrenzt</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">922337203685472425072659<strong>g</strong> oder 1003<strong>G</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">922337203685472425072659<strong>g</strong><br>
+                                                                                          1003<strong>G</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fließkommazahl</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+/-3.40282347*10<sup>38</sup></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1.38764<strong>f</strong> oder 4.3<strong>F</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1.38764<strong>f</strong><br>
+                                                                                          4.3<strong>F</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">double</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fließkommazahl</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+/-1.79769313486231570*10<sup>308</sup></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">23.5970<strong>d</strong> oder -432.313<strong>D</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">23.5970<strong>d</strong><br>
+                                                                                          -432.313<strong>D</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BigDecimal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fließkommazahl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unbegrenzt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2<br>
+                                                                                          922337203685472425072659.123<strong>g</strong><br>
+                                                                                          1003.1<strong>G</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">char</p></td>
@@ -895,25 +917,30 @@ println alter</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zeichenkette</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zeichenketten bestehend aus Unicode-Zeichen</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'Hallo' oder "Hallo"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'Hallo'<br>
+                                                                                          "Hallo"<br>
+                                                                                          /Hallo/</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Liste an Werten</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[] oder [1, 2, 'Hallo']</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[]<br>
+                                                                                          [1, 2, 'Hallo']</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Range</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Wertebereich</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-1..3 (-1 bis 3 inklusive) oder -1..&lt;3 (-1 bis 3 exklusive)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-1..3 (-1 bis 3 inklusive)<br>
+                                                                                          -1..&lt;3 (-1 bis 3 exklusive)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Map</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Schlüssel-Wert-Zuordnung</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[:] oder [name: 'Hans', alter: 498]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[:]<br>
+                                                                                          [name: 'Hans', alter: 498]</p></td>
 </tr>
 </tbody>
 </table>
@@ -941,14 +968,354 @@ Zudem werden Werte beim Zuweisen zu einer Variable, wenn möglich, in den Typ de
 </table>
 </div>
 </div>
+<div class="sect4">
+<h5 id="_eigene_typen">3.2.3.2. Eigene Typen</h5>
+<div class="paragraph">
+<p>Man kann auch eigene Variablentypen erstellen - diese werden <strong>Klassen</strong> bzw. <strong>Objekte</strong> genannt.<br>
+Klassen, manchmal auch Objekttypen genannt, sind die Beschreibung, also das Rezept, wie so ein Typ aussieht, also was es für
+Eigenschaften und welche Funktionen es hat.<br>
+Instanzen, auch Objekte genannt, sind die tatsächlichen Werte die aus einer Klasse im Speicher des Computers erstellt werden.</p>
+</div>
+<div class="paragraph">
+<p>Man kan sich das am besten mit Gegenständen aus der Welt vorstellen:<br>
+Ein Apfel hat Eigenschaften (Farbe, Gewicht, Geschmack usw.) und Funktionen die ein Apfel 'tun' kann (Wachsen, Reifen, Faulen usw.).
+Die Funktionen können die Eigenschaften verändern, so verändert z.B. ein reifender Apfel seinen Geschmack und die Farbe, beim Wachsen sein Gewicht.<br>
+Klassen können auch Funktionen enthalten die andere Instanzen verändern oder benutzen.<br>
+So könnte ein Messer die Funktion haben einen Apfel zu zerschneiden - ud somit nicht seine Eigenschaften, sondern die des
+Apfels verändern. Wenn wir noch einen Schritt weiter gehen, kann die Funktion "schälen" einer Hand die Funktion "schneiden eines
+"Messer benutzen um einen Apfel zu schälen und somit seine Eigenschaften zu verändern.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Funktionen werden in einigen Programmiersprachen, so auch in Groovy, Methoden genannt.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Damit die Welt nicht zu einfach ist werden im Sprachgebrauch häufig Klassen und Objekte gleich verwendet, obwohl es zwei verschiedene Dinge sind.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Groovy liefert viele Klassen mit und über Bibliotheken (Programme die jemand anderes geschrieben hat damit man sie für eigene
+Programme verwenden kann) können noch viele mehr hinzugefügt werden.<br>
+Grundsätzlich ist alles in Groovy ein Objekt. Auch ein <code>int</code>, also eine Ganzzahl, hat einen Objekttyp im Hintergrund der <code>Integer</code> heisst.
+Er hat unter anderem als Eigenschaften die Werte MAX_VALUE und MIN_VALUE, welche den kleinst- und größtmöglichen Wert für
+<code>int</code> enthält und Funktionen wie <code>floatValue()</code> welche den Wert in einen Wert vom Typ <code>float</code> umwandelt.</p>
+</div>
+<div class="paragraph">
+<p>Es gibt auch Eigenschaften und Funktionen die sich alle Instanzen einer Klasse teilen. Diese werden <strong>statisch</strong> genannt und mit dem Schlüsselwort <code>static</code> markiert.<br>
+Diese können direkt auf dem Namen einer Klasse aufgerufen werden. MAX_VALUE und MIN_VALUE bei Integer sind z.B. solche statischen Eigenschaften, denn die minimalen
+und maximalen Werte sind für alle Instanzen von <code>Integer</code> gleich.<br>
+Ein Beispiel für eine statische Funktion ist z.b. <code>Integer.toHexString(45054)</code> die den Wert in eine hexadezimale Zahl umwandelt und das
+Ergebnis <code>affe</code> als String zurückliefert.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Das hexadezimale Zahlensystem hat als Basis 16, also die Ziffern 0-9 und a-f. Beim Programmieren ist zudem noch das
+Binäre Zahlensystem mit den Ziffern 0 und 1 und das Oktale Sysem mit den Ziffern 0-8 gebräuchlich.<br>
+Muss Dich hier aber nicht weiter stören.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_null_und_autoboxing">3.2.3.3. Null und Autoboxing</h5>
+<div class="paragraph">
+<p>Null (nicht das deutsche, sondern das englische Null) ist ein Wert, der die Abwesenheit eines Wertes repräsentiert. Also quasi ein nichts.
+Um bei unserem Bild mit der Schublade zu bleiben ist eine Variable mit dem Wert <code>null</code> eine leere Schublade.<br>
+Es kann allen Variablentypen zugewiesen werden die eine Klasse repräsentieren - also nach Konvention mit einem Grossbuchstaben beginnen.</p>
+</div>
+<div class="paragraph">
+<p>Jetzt sagte ich im vorigen Kapitel das alles Klassen sind, also auch <code>int</code>. Das war nicht falsch aber auch nicht ganz richtig, denn die
+sogenannten primitiven Datentypen <code>boolean</code>, <code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>char</code>, <code>float</code> und <code>double</code> besitzen einen Zwillingstyp der als Klasse
+definiert wurde. Diese lauten <code>Boolean</code>, <code>Byte</code>, <code>Short</code>, <code>Integer</code>, <code>Long</code>, <code>Character</code>, <code>Float</code> und <code>Double</code>.</p>
+</div>
+<div class="paragraph">
+<p>Der Groovykompiler wandelt im Hintergrund nach Bedarf zwischen den beiden Typmöglichkeiten hin und her, so dass alles nach einem Objekt aussieht.
+Das geht aber nur für Werte und nicht für Variablendefinitionen. Dies nennt man Autoboxing.</p>
+</div>
+<div class="paragraph">
+<p>Wenn eine Variable definiert wird und ihr <strong>kein</strong> initaler Wert zugewiesen wird so bekommt sie einen Standardwert (Defaultwert).
+Bei Zahlentypen ist dies <code>0</code>, bei <code>char</code> das Zeichen mit dem Wert <code>\0000</code> und bei <code>boolean</code> <code>false</code>. Alle anderen Typen bekommen den Wert <code>null</code>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_operatoren">3.3. Operatoren</h3>
+<div class="paragraph">
+<p>Mit Variablen allein kann man noch nicht viel tun. Und wenn man eine Programmiersprache mit einer natürlichen Sprache vergleicht,
+dann könnten Variablen in etwa Substantive sein. Für einen Satz benötigt man aber auch noch Verben, die beschreiben was getan werden soll.<br>
+Diese Aufgabe über nehmen Operatoren.</p>
+</div>
+<div class="paragraph">
+<p>Einem sind wir schon begegnet, dem Zuweisungsoperator <code>=</code> im obigen Beispiel: <code>long alter = 12</code>.<br>
+Mit long alter wird eine Variable mit dem Namen <code>alter</code> und dem Typ <code>long</code> definiert und mit dem Zuweisungsoperator <code>=</code> wird ihr ein
+Wert <code>12</code> zugewiesen.</p>
+</div>
+<div class="paragraph">
+<p>Die meisten Operatoren benötigen zwei Operanden (bei <code>a * 12</code> sind die Variable a und der Wert 12 die Operanden, <code>*</code> der Operator),
+es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
+</div>
+<div class="paragraph">
+<p>Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Nummerische Operatoren</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 66.6666%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+<th class="tableblock halign-left valign-top">Beispiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zuweisung eines Wertes zu einer Variablen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a = 123<br>
+                                                                                   a = b</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Addition zweier Werte oder Variablen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 + 34<br>
+                                                                                   a + 50</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Substraktion zweier Werte oder Variablen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 - 34<br>
+                                                                                   a - 50</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiplikation zweier Werte oder Variablen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 * 34<br>
+                                                                                   a * 50</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Division zweier Werte oder Variablen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 / 34<br>
+                                                                                   a / 50</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Berechnet den Rest einer Division zweier Werte oder Variablen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 % 2<br>
+                                                                                   a % 5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">negiert den Wert oder die Variable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-12<br>
+                                                                                   -a</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">**</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Berechnet die Potenz der Operanden. Also <code>a**2</code> berechnet a<sup>2</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2**5<br>
+                                                                                   a**2</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Vergleichsoperatoren (liefern <code>true</code> oder <code>false</code> zurück)</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 66.6666%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+<th class="tableblock halign-left valign-top">Beispiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">==</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prüft ob die Operanden den selben Wert besitzen.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a == 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">!=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prüft ob die Operanden <strong>NICHT</strong> den selben Wert besitzen. Das Gegenteil von <code>==</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a != b</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prüft ob der linke Operanden kleiner dem rechten Operanden ist.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a &lt; 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prüft ob der linke Operanden kleiner oder gleich dem rechten Operanden ist.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a &lt;= b</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prüft ob der linke Operanden größer dem rechten Operanden ist.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a &gt; 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prüft ob der linke Operanden größer oder gleich dem rechten Operanden ist.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a &gt;= b</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&amp;&amp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verknüpft zwei binäre Werte durch <strong>UND</strong>.<br>
+             Liefert also nur dann <code>true</code> zurück wenn beide Werte <code>true</code> sind.<br>
+             Dies wird häufig in Verbindung mit anderen Operationen genutzt. So bedeutet z.B. <code>a &gt;= 10 &amp;&amp; a &lt;= 20</code>
+             dass der Gesamtausdruck nur <code>true</code> liefert wenn a zwischen 10 und 20 liegt (inklusive 10 und 20)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a &gt;= 10 &amp;&amp; a &lt;= 20</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">||</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verknüpft zwei binäre Werte durch <strong>ODER</strong>.<br>
+             Liefert also nur dann <code>true</code> zurück wenn <strong>mindestens einer</strong> der Werte <code>true</code> ist.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a &lt; 10 || a &gt; 20</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verknüpft zwei binäre Werte durch <strong>EXKLUSIVES ODER</strong>, auch <strong>XOR</strong> genannt.<br>
+             Liefert also nur dann <code>true</code> zurück wenn <strong>genau einer</strong> der Werte <code>true</code> ist.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a &lt; 10 ^ b &lt; 10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">!</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Negation. Wenn der Wert <code>true</code> ist, liefert die Negation <code>false</code> zurück
+             und umgekehrt.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">!(a &gt; b)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prüft ob ein Element in Werten oder Variablen vom Typ List, Range, Array oder Map
+             enthalten ist.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a in [1, 2, 3, 5, 7, 11]</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Zugriffsoperatoren</caption>
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 50%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+<th class="tableblock halign-left valign-top">Beispiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zugriff auf Werte mit Hilfe eines Index (also einer Position).<br>
+             Indices beginnen immer mit 0.<br>
+             Es ist auch möglich mehrere Indices oder einen Bereich anzugeben.
+             Bei Maps kann als Index auch der Schlüssel angegeben werden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'Hallo'[1] &#8658; 'a'<br>
+                                                                                                  [1,2,3,4][2] &#8658; 3<br>
+                                                                                                  'Hallo'[1,4] &#8658; 'ao'<br>
+                                                                                                  [1,2,3,4][1,3] &#8658; [2, 4]<br>
+                                                                                                  'Hallo'[1..3] &#8658; 'all'<br>
+                                                                                                  [1,2,3,4][2..3] &#8658; [3, 4]<br>
+                                                                                                  [key: 'ab']['key'] &#8658; 'abc'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zugriff auf Werte mit Hilfe eines Namens.<br>
+             Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden.<br>
+             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (Methoden und Eigenschaften) zugegriffen werden.<br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[key: 'abc'].key &#8658; 'abc'
+                                                                                                  10.MAX_VALUE &#8658; 2147483647
+                                                                                                  [:].put('key', 'abc') &#8658; [key: 'abc']
+                                                                                                  Integer.toHexString(45054) &#8658; 'affe'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Null-Sichere Navigation. Wenn in einer Variable <code>null</code> steht oder eine Funnktion <code>null</code>
+             zurückliefert und man nun hierauf versucht auf ein Element zuzugreifen kann der Computer
+             nichts damit anfangen, denn auf <strong>Nichts</strong> kann man nun einmal nicht zugreifen. Deshalb
+             bekommt man eine Fehlermeldung (java.lang.NullPointerException).<br>
+             Um nun nicht alles vorher prüfen zu müssen gilt für den Null-Safe-Operator:<br>
+             Wenn der linke Operand <code>null</code> ist, ist das Ergebnis der gesamten Operation <code>null</code>.
+             Ansonsten gilt das selbe wie beim <code>.</code>-Operator.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[key: null]?.key &#8658; null
+                                                                                                  null?.put('key', 'abc')</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 5. Konditionaloperatoren</caption>
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 50%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+<th class="tableblock halign-left valign-top">Beispiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">? :</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dieser Operator hat drei Operanden, wobei der erste vom Typ <code>boolean</code> sein muss.<br>
+             Wenn dieser Operator <code>true</code> ist dann liefert die Operation den zweiten Operanden zurück,
+             ansonsten den dritten.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alter &lt; 18 ? 'Kind' : 'Erwachsener'</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">?:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Der Elvis Operator sieht ganz ähnlich wie der obige Operator aus und ist eine Kurzform
+             für eine häufig benutze Variante: <code>a ?: b</code> ist das selbe wie <code>a ? a : b</code>.<br>
+             Dies ist in Verbindung mit der boolschen Interpreation von Werten (siehe weiter
+             unten: <a href="#GroovyTruth">Groovy Truth</a>) sehr praktisch um Defaultwerte zu definieren.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">int a = b ?: 5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="GroovyTruth">3.4. Groovy Truth</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_ordnung_im_system">3.4. Ordnung im System</h3>
+<h3 id="_ordnung_im_system">3.5. Ordnung im System</h3>
 
 </div>
 </div>
@@ -962,10 +1329,39 @@ Zudem werden Werte beim Zuweisen zu einer Variable, wenn möglich, in den Typ de
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_felder">5. Felder</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Notiz:</p>
+</div>
+<div class="paragraph">
+<p>Von allen Typen können Felder erstellt werden. Felder (engl. Arrays) sind mehrere Variablen des selben Typs mit dem selben Namen.<br>
+Beim Deklarieren von Feldern muss angegeben werden wieviele Elemente das Feld haben soll. Danach kann über den Index, also die Position im Feld,
+auf die einzelnen Elemente zugegriffen werden.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">int</span><span class="type">[]</span> intArray = <span class="keyword">new</span> <span class="type">int</span>[<span class="integer">4</span>]
+intArray[<span class="integer">2</span>] = <span class="integer">2</span>
+intArray[<span class="integer">3</span>] = <span class="integer">3</span>
+println intArray[<span class="integer">3</span>]          <span class="comment">// gibt 3 aus</span>
+println intArray             <span class="comment">// gibt [0, 2, 3, 0] aus</span>
+
+<span class="type">int</span> intArray2 = [<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>, <span class="integer">4</span>]
+println intArray2            <span class="comment">// gibt [1, 2, 3, 4] aus</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn die Größe eines Felds einmal festgelegt ist kann sie nicht mehr verändert werden.
+deshalb werden in Groovy häufiger Listen verwendet.</p>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-21 22:06:32 +01:00
+Last updated 2017-01-25 19:35:44 +01:00
 </div>
 </div>
 </body>
