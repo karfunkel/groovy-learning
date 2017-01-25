@@ -131,6 +131,10 @@ Zusätzlich zu den verbindlichen Regeln haben sich Konventionen entwickelt an di
 - Es ist unüblich Variablen mit einem Währungszeichen oder Unterstrich zu beginnen
 - Es ist empfehlenswert keine Umlaute, Währungszeichen oder Unterstriche in Variablennamen zu benutzen
 
+Im Gegensatz dazu werden Konstanten, also Variablen deren Wert sich nicht mehr verändert, anders notiert:
+- Konstantennamen werden komplett in Grossbuchstaben geschrieben: `KONSTANTE`
+- Worte werden mit einem Unterstrich getrennt: `MEINE_KONSTANTE`
+
 [TIP]
 ====
 Um seinen Quellcode gut lesen zu können empfiehlt es sich sprechende Namen zu verwenden, also mit dem Namen beschreiben was
@@ -171,22 +175,37 @@ println alter
 
 Von Haus aus bringt Groovy folgende Typen mit:
 
+[cols="1,2,2,2"]
 .Standard-Typen
 |===
 |Name       |Beschreibung                  |Wertebereich                                 |Beispiel
+
 |boolean    |Wahrheitsswert                |true oder false                              |true
 |byte       |Ganzzahlen                    |-128 bis 127                                 |(byte)-27
 |short      |Ganzzahlen                    |-32768 bis -32767                            |(short)20725
-|int        |Ganzzahlen                    |-2147483648 bis 2147483647                   |-1038762**i** oder 17**I**
-|long       |Ganzzahlen                    |-9223372036854775808 bis 9223372036854775807 |92233720368547**l** oder -2497**L**
-|BigDecimal |Ganzzahlen                    |Unbegrenzt                                   |922337203685472425072659**g** oder 1003**G**
-|float      |Fließkommazahl                |+/-3.40282347*10^38^                         |-1.38764**f** oder 4.3**F**
-|double     |Fließkommazahl                |+/-1.79769313486231570*10^308^               |23.5970**d** oder -432.313**D**
+|int        |Ganzzahlen                    |-2147483648 bis 2147483647                   |-1038762**i** +
+                                                                                          17**I**
+|long       |Ganzzahlen                    |-9223372036854775808 bis 9223372036854775807 |92233720368547**l** +
+                                                                                          -2497**L**
+|BigInteger |Ganzzahlen                    |Unbegrenzt                                   |922337203685472425072659**g** +
+                                                                                          1003**G**
+|float      |Fließkommazahl                |+/-3.40282347*10^38^                         |-1.38764**f** +
+                                                                                          4.3**F**
+|double     |Fließkommazahl                |+/-1.79769313486231570*10^308^               |23.5970**d** +
+                                                                                          -432.313**D**
+|BigDecimal |Fließkommazahl                |Unbegrenzt                                   |1.2 +
+                                                                                          922337203685472425072659.123**g** +
+                                                                                          1003.1**G**
 |char       |Zeichen                       |Alle Unicode-Zeichen                         |\u2348
-|String     |Zeichenkette                  |Zeichenketten bestehend aus Unicode-Zeichen  |'Hallo' oder "Hallo"
-|List       |Liste an Werten               |-                                            |[] oder [1, 2, 'Hallo']
-|Range      |Wertebereich                  |-                                            |-1..3 (-1 bis 3 inklusive) oder -1..<3 (-1 bis 3 exklusive)
-|Map        |Schlüssel-Wert-Zuordnung      |-                                            |[:] oder [name: 'Hans', alter: 498]
+|String     |Zeichenkette                  |Zeichenketten bestehend aus Unicode-Zeichen  |'Hallo' +
+                                                                                          "Hallo" +
+                                                                                          /Hallo/
+|List       |Liste an Werten               |-                                            |[] +
+                                                                                          [1, 2, 'Hallo']
+|Range      |Wertebereich                  |-                                            |-1..3 (-1 bis 3 inklusive) +
+                                                                                          -1..<3 (-1 bis 3 exklusive)
+|Map        |Schlüssel-Wert-Zuordnung      |-                                            |[:] +
+                                                                                          [name: 'Hans', alter: 498]
 |===
 
 [NOTE]
@@ -203,10 +222,199 @@ long alter = 12 // Dies ergibt ebenfalls ein long in 'alter'
 ----
 ====
 
+===== Eigene Typen
+
+Man kann auch eigene Variablentypen erstellen - diese werden **Klassen** bzw. **Objekte** genannt. +
+Klassen, manchmal auch Objekttypen genannt, sind die Beschreibung, also das Rezept, wie so ein Typ aussieht, also was es für
+Eigenschaften und welche Funktionen es hat. +
+Instanzen, auch Objekte genannt, sind die tatsächlichen Werte die aus einer Klasse im Speicher des Computers erstellt werden.
+
+Man kan sich das am besten mit Gegenständen aus der Welt vorstellen: +
+Ein Apfel hat Eigenschaften (Farbe, Gewicht, Geschmack usw.) und Funktionen die ein Apfel 'tun' kann (Wachsen, Reifen, Faulen usw.).
+Die Funktionen können die Eigenschaften verändern, so verändert z.B. ein reifender Apfel seinen Geschmack und die Farbe, beim Wachsen sein Gewicht. +
+Klassen können auch Funktionen enthalten die andere Instanzen verändern oder benutzen. +
+So könnte ein Messer die Funktion haben einen Apfel zu zerschneiden - ud somit nicht seine Eigenschaften, sondern die des
+Apfels verändern. Wenn wir noch einen Schritt weiter gehen, kann die Funktion "schälen" einer Hand die Funktion "schneiden eines
+"Messer benutzen um einen Apfel zu schälen und somit seine Eigenschaften zu verändern.
+
+NOTE: Funktionen werden in einigen Programmiersprachen, so auch in Groovy, Methoden genannt.
+
+NOTE: Damit die Welt nicht zu einfach ist werden im Sprachgebrauch häufig Klassen und Objekte gleich verwendet, obwohl es zwei verschiedene Dinge sind.
+
+Groovy liefert viele Klassen mit und über Bibliotheken (Programme die jemand anderes geschrieben hat damit man sie für eigene
+Programme verwenden kann) können noch viele mehr hinzugefügt werden. +
+Grundsätzlich ist alles in Groovy ein Objekt. Auch ein `int`, also eine Ganzzahl, hat einen Objekttyp im Hintergrund der `Integer` heisst.
+Er hat unter anderem als Eigenschaften die Werte MAX_VALUE und MIN_VALUE, welche den kleinst- und größtmöglichen Wert für
+`int` enthält und Funktionen wie `floatValue()` welche den Wert in einen Wert vom Typ `float` umwandelt.
+
+Es gibt auch Eigenschaften und Funktionen die sich alle Instanzen einer Klasse teilen. Diese werden **statisch** genannt und mit dem Schlüsselwort `static` markiert. +
+Diese können direkt auf dem Namen einer Klasse aufgerufen werden. MAX_VALUE und MIN_VALUE bei Integer sind z.B. solche statischen Eigenschaften, denn die minimalen
+und maximalen Werte sind für alle Instanzen von `Integer` gleich. +
+Ein Beispiel für eine statische Funktion ist z.b. `Integer.toHexString(45054)` die den Wert in eine hexadezimale Zahl umwandelt und das
+Ergebnis `affe` als String zurückliefert.
+
+NOTE: Das hexadezimale Zahlensystem hat als Basis 16, also die Ziffern 0-9 und a-f. Beim Programmieren ist zudem noch das
+Binäre Zahlensystem mit den Ziffern 0 und 1 und das Oktale Sysem mit den Ziffern 0-8 gebräuchlich. +
+Muss Dich hier aber nicht weiter stören.
+
+===== Null und Autoboxing
+
+Null (nicht das deutsche, sondern das englische Null) ist ein Wert, der die Abwesenheit eines Wertes repräsentiert. Also quasi ein nichts.
+Um bei unserem Bild mit der Schublade zu bleiben ist eine Variable mit dem Wert `null` eine leere Schublade. +
+Es kann allen Variablentypen zugewiesen werden die eine Klasse repräsentieren - also nach Konvention mit einem Grossbuchstaben beginnen.
+
+Jetzt sagte ich im vorigen Kapitel das alles Klassen sind, also auch `int`. Das war nicht falsch aber auch nicht ganz richtig, denn die
+sogenannten primitiven Datentypen `boolean`, `byte`, `short`, `int`, `long`, `char`, `float` und `double` besitzen einen Zwillingstyp der als Klasse
+definiert wurde. Diese lauten `Boolean`, `Byte`, `Short`, `Integer`, `Long`, `Character`, `Float` und `Double`.
+
+Der Groovykompiler wandelt im Hintergrund nach Bedarf zwischen den beiden Typmöglichkeiten hin und her, so dass alles nach einem Objekt aussieht.
+Das geht aber nur für Werte und nicht für Variablendefinitionen. Dies nennt man Autoboxing.
+
+Wenn eine Variable definiert wird und ihr **kein** initaler Wert zugewiesen wird so bekommt sie einen Standardwert (Defaultwert).
+Bei Zahlentypen ist dies `0`, bei `char` das Zeichen mit dem Wert `\0000` und bei `boolean` `false`. Alle anderen Typen bekommen den Wert `null`.
+
 === Operatoren
+
+Mit Variablen allein kann man noch nicht viel tun. Und wenn man eine Programmiersprache mit einer natürlichen Sprache vergleicht,
+dann könnten Variablen in etwa Substantive sein. Für einen Satz benötigt man aber auch noch Verben, die beschreiben was getan werden soll. +
+Diese Aufgabe über nehmen Operatoren.
+
+Einem sind wir schon begegnet, dem Zuweisungsoperator `=` im obigen Beispiel: `long alter = 12`. +
+Mit long alter wird eine Variable mit dem Namen `alter` und dem Typ `long` definiert und mit dem Zuweisungsoperator `=` wird ihr ein
+Wert `12` zugewiesen.
+
+Die meisten Operatoren benötigen zwei Operanden (bei `a * 12` sind die Variable a und der Wert 12 die Operanden, `*` der Operator),
+es gibt aber auch Operatoren mit einem oder drei Operanden.
+
+Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
+
+[cols="1,6,2"]
+.Nummerische Operatoren
+|===
+| Operator | Beschreibung                                                        | Beispiele
+
+| =        | Zuweisung eines Wertes zu einer Variablen                           | a = 123 +
+                                                                                   a = b
+| +        | Addition zweier Werte oder Variablen                                | 12 + 34 +
+                                                                                   a + 50
+| -        | Substraktion zweier Werte oder Variablen                            | 12 - 34 +
+                                                                                   a - 50
+| *        | Multiplikation zweier Werte oder Variablen                          | 12 * 34 +
+                                                                                   a * 50
+| /        | Division zweier Werte oder Variablen                                | 12 / 34 +
+                                                                                   a / 50
+| %        | Berechnet den Rest einer Division zweier Werte oder Variablen       | 12 % 2 +
+                                                                                   a % 5
+| -        | negiert den Wert oder die Variable                                  | -12 +
+                                                                                   -a
+| **       | Berechnet die Potenz der Operanden. Also `a**2` berechnet a^2^      | 2*\*5 +
+                                                                                   a**2
+|===
+
+[cols="1,6,2"]
+.Vergleichsoperatoren (liefern `true` oder `false` zurück)
+|===
+| Operator | Beschreibung                                                                       | Beispiele
+
+| ==       | Prüft ob die Operanden den selben Wert besitzen.                                   | a == 12
+| !=       | Prüft ob die Operanden **NICHT** den selben Wert besitzen. Das Gegenteil von `==`. | a != b
+| <        | Prüft ob der linke Operanden kleiner dem rechten Operanden ist.                    | a < 12
+| \<=      | Prüft ob der linke Operanden kleiner oder gleich dem rechten Operanden ist.        | a \<= b
+| >        | Prüft ob der linke Operanden größer dem rechten Operanden ist.                     | a > 12
+| >=       | Prüft ob der linke Operanden größer oder gleich dem rechten Operanden ist.         | a >= b
+| &&       | Verknüpft zwei binäre Werte durch **UND**. +
+             Liefert also nur dann `true` zurück wenn beide Werte `true` sind. +
+             Dies wird häufig in Verbindung mit anderen Operationen genutzt. So bedeutet z.B. `a >= 10 && a \<= 20`
+             dass der Gesamtausdruck nur `true` liefert wenn a zwischen 10 und 20 liegt (inklusive 10 und 20)
+                                                                                                | a >= 10 && a \<= 20
+| \|\|     | Verknüpft zwei binäre Werte durch **ODER**. +
+             Liefert also nur dann `true` zurück wenn **mindestens einer** der Werte `true` ist.| a < 10 \|\| a > 20
+| ^        | Verknüpft zwei binäre Werte durch **EXKLUSIVES ODER**, auch **XOR** genannt. +
+             Liefert also nur dann `true` zurück wenn **genau einer** der Werte `true` ist.     | a < 10 ^ b < 10
+| !        | Negation. Wenn der Wert `true` ist, liefert die Negation `false` zurück
+             und umgekehrt.                                                                     | !(a > b)
+| in       | Prüft ob ein Element in Werten oder Variablen vom Typ List, Range, Array oder Map
+             enthalten ist.                                                                     | a in [1, 2, 3, 5, 7, 11]
+|===
+
+[cols="1,4,3"]
+.Zugriffsoperatoren
+|===
+| Operator | Beschreibung                                                                       | Beispiele
+
+| []       | Zugriff auf Werte mit Hilfe eines Index (also einer Position). +
+             Indices beginnen immer mit 0. +
+             Es ist auch möglich mehrere Indices oder einen Bereich anzugeben.
+             Bei Maps kann als Index auch der Schlüssel angegeben werden                        | 'Hallo'[1] => 'a' +
+                                                                                                  [1,2,3,4][2] => 3 +
+                                                                                                  'Hallo'[1,4] => 'ao' +
+                                                                                                  [1,2,3,4][1,3] => [2, 4] +
+                                                                                                  'Hallo'[1..3] => 'all' +
+                                                                                                  [1,2,3,4][2..3] => [3, 4] +
+                                                                                                  [key: 'ab']['key'] => 'abc'
+| .        | Zugriff auf Werte mit Hilfe eines Namens. +
+             Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden. +
+             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (Methoden und Eigenschaften) zugegriffen werden. +
+                                                                                                | [key: 'abc'].key => 'abc'
+                                                                                                  10.MAX_VALUE => 2147483647
+                                                                                                  [:].put('key', 'abc') => [key: 'abc']
+                                                                                                  Integer.toHexString(45054) => 'affe'
+| ?.       | Null-Sichere Navigation. Wenn in einer Variable `null` steht oder eine Funnktion `null`
+             zurückliefert und man nun hierauf versucht auf ein Element zuzugreifen kann der Computer
+             nichts damit anfangen, denn auf **Nichts** kann man nun einmal nicht zugreifen. Deshalb
+             bekommt man eine Fehlermeldung (java.lang.NullPointerException). +
+             Um nun nicht alles vorher prüfen zu müssen gilt für den Null-Safe-Operator: +
+             Wenn der linke Operand `null` ist, ist das Ergebnis der gesamten Operation `null`.
+             Ansonsten gilt das selbe wie beim `.`-Operator.                                  | [key: null]?.key => null
+                                                                                                  null?.put('key', 'abc')
+|===
+
+[cols="1,4,3"]
+.Konditionaloperatoren
+|===
+| Operator | Beschreibung                                                                       | Beispiele
+
+| ? :      | Dieser Operator hat drei Operanden, wobei der erste vom Typ `boolean` sein muss. +
+             Wenn dieser Operator `true` ist dann liefert die Operation den zweiten Operanden zurück,
+             ansonsten den dritten.                                                             | alter < 18 ? 'Kind' : 'Erwachsener'
+| ?:       | Der Elvis Operator sieht ganz ähnlich wie der obige Operator aus und ist eine Kurzform
+             für eine häufig benutze Variante: `a ?: b` ist das selbe wie `a ? a : b`. +
+             Dies ist in Verbindung mit der boolschen Interpreation von Werten (siehe weiter
+             unten: <<GroovyTruth, Groovy Truth>>) sehr praktisch um Defaultwerte zu definieren.             | int a = b ?: 5
+|===
+
+[[GroovyTruth]]
+=== Groovy Truth
+
+
 
 === Ordnung im System
 
 == Kreis im Quadrat
 
 === GroovyFX
+
+== Felder
+
+// Stub
+
+Notiz: 
+
+Von allen Typen können Felder erstellt werden. Felder (engl. Arrays) sind mehrere Variablen des selben Typs mit dem selben Namen. +
+Beim Deklarieren von Feldern muss angegeben werden wieviele Elemente das Feld haben soll. Danach kann über den Index, also die Position im Feld,
+auf die einzelnen Elemente zugegriffen werden.
+
+[source, groovy]
+----
+int[] intArray = new int[4]
+intArray[2] = 2
+intArray[3] = 3
+println intArray[3]          // gibt 3 aus
+println intArray             // gibt [0, 2, 3, 0] aus
+
+int intArray2 = [1, 2, 3, 4]
+println intArray2            // gibt [1, 2, 3, 4] aus
+----
+
+Wenn die Größe eines Felds einmal festgelegt ist kann sie nicht mehr verändert werden.
+deshalb werden in Groovy häufiger Listen verwendet.
