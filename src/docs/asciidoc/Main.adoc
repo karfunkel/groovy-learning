@@ -111,7 +111,7 @@ Bezeichner können aus folgenden Zeichen bestehen:
 - Buchstaben (inklusive Umlaute)
 - Ziffern
 - Unterstrich
-- Währungssymbole (z.B. €, $ ...)
+- Währungssymbole (z.B. €, $ usw.)
 
 Das erste Zeichen darf keine Ziffer sein.
 
@@ -157,7 +157,7 @@ Mit dem Gleichheitszeichen kann nun ein Wert abgelegt werden.
 Dies kann auch in einer Zeile zusammen gefasst werden.
 Wenn eine Variable einmal existiert können ihr immer wieder Werte zugewiesen und diese auch wieder ausgelesen werden.
 
-[source,groovy]
+[source, groovy]
 .Beispiele von Variablenbenutzung
 ----
 def name
@@ -273,13 +273,284 @@ Das geht aber nur für Werte und nicht für Variablendefinitionen. Dies nennt ma
 Wenn eine Variable definiert wird und ihr **kein** initaler Wert zugewiesen wird so bekommt sie einen Standardwert (Defaultwert).
 Bei Zahlentypen ist dies `0`, bei `char` das Zeichen mit dem Wert `\0000` und bei `boolean` `false`. Alle anderen Typen bekommen den Wert `null`.
 
-=== Operatoren
+=== Kommentare
+
+Manchmal möchte man Kommentare in den Quellcode schreiben um ihn zu erklären, Gedankengänge fest zu halten oder zu dokumentieren.
+Diese Kommentare sollen vom Kompiler ignoriert werden.
+
+Mit `//` beginnt man einen Kommentar, der bis zum Ende der Zeile reicht. Also alles nach `//` wird ignoriert.
+
+[source, groovy]
+----
+printn "Test" // Dies ist ein Kommentar
+----
+
+Wenn man einen Kommentar über mehrere Zeilen schreiben will beginnt man mit `/*` und endet mit `*/`.
+
+[source, groovy]
+----
+/* Diese ist ein
+mehrzeiliger
+Kommentar */
+----
+
+=== Anweisungen
 
 Mit Variablen allein kann man noch nicht viel tun. Und wenn man eine Programmiersprache mit einer natürlichen Sprache vergleicht,
-dann könnten Variablen in etwa Substantive sein. Für einen Satz benötigt man aber auch noch Verben, die beschreiben was getan werden soll. +
-Diese Aufgabe über nehmen Operatoren.
+dann könnten Variablen die Substantive sein. +
+Für einen Satz benötigt man aber auch noch Verben, die beschreiben was getan werden soll. Diese Aufgabe übernehmen <<Operatoren>> und Anweisungen.
 
-Einem sind wir schon begegnet, dem Zuweisungsoperator `=` im obigen Beispiel: `long alter = 12`. +
+==== Verzweigungen
+
+Genau wie unser Leben verläuft ein Programm auch nicht immer geradlinig und es gibt Entscheidungen zu treffen. +
+Dafür gibt es in Groovy Anweisungen, die Bedingungen auswerten und abhängig davon entscheiden ob das Programm "links oder rechts 'rum gehen" soll.
+
+Wenn Du Hunger hast und was zu Essen kaufen willst, dann schaust Du zuerst ein deinen Geldbeutel:
+
+- Hast Du €3,50 kannst Du Dir einen Döner kaufen
+- Ansonsten musst Du hungern.
+
+Um solch eine Entscheidung in einem Programm abbilden zu können gibt es den Verzweigungsanweisung `if else`.
+
+[source, groovy]
+.Beispiel if - else
+----
+if (geld >= 3.50) { <1>
+    println "Einen Döner bitte"
+} else { <2>
+    println "Bin auf Diät"
+}
+----
+
+<1>  `if` benötigt immer eine Bedingung in runden Klammern und einen Block an Anweisungen wie der Programmablauf weiter
+gehen soll falls die Bedingung zutrifft.
+
+<2> Optional kann mit dem Schlüsselwort `else` ein weiterer Block an Anweisungen hinzugefügt werden, der definiert wie das
+Programm weiterläuft wenn die Bedingung nicht zutrifft.
+
+Wenn in den Anweisungsblöcken für `if` oder `else` nur eine einzelne Anweisung steht wie im obigen Beispiel, dann kann man die
+geschweiften Klammern weglassen:
+
+[source, groovy]
+.Beispiel if - else mit nur einer Anweisung
+----
+if (geld >= 3.50)
+    println "Einen Döner bitte"
+else
+    println "Bin auf Diät"
+----
+
+Ein häufiger Fall ist, dass im `else`-Zweig wiederum eine `if`-Anweisung steht, also z.B.
+
+- Hast Du €5,00 oder mehr kannst Du Dir ein Dönermenü kaufen.
+- Hast Du €3,50 kannst Du Dir einen Döner kaufen
+- Ansonsten musst Du hungern.
+
+[source, groovy]
+.Beispiel geschachtelte if - else Anweisungen
+----
+if (geld >= 5.00) {
+    println "Ein Dönermenü bitte"
+} else {
+    if (geld >= 3.50) {
+        println "Einen Döner bitte"
+    } else {
+        println "Bin auf Diät"
+    }
+}
+----
+
+Da die `if`-Anweisung hier eine einzelne Anweisung ist, kann man auch hier die Klammern weg lassen und das ganze etwas lesbarer schreiben:
+
+[source, groovy]
+.Beispiel if - else if - else 
+----
+if (geld >= 5.00) {
+    println "Ein Dönermenü bitte"
+} else if (geld >= 3.50) {
+    println "Einen Döner bitte"
+} else {
+    println "Bin auf Diät"
+}
+----
+
+Und die inneren Klammern kann man in diesem Fall auch weg lassen, da jeder Block ja nur eine Anweisung entält:
+
+[source, groovy]
+.Beispiel if - else if - else
+----
+if (geld >= 5.00)
+    println "Ein Dönermenü bitte"
+else if (geld >= 3.50)
+    println "Einen Döner bitte"
+else
+    println "Bin auf Diät"
+----
+
+// Es fehlt bewußt das switch Statement
+// Hinweis auf a?b:c ???
+
+==== Schleifen
+
+Uns Menschen ist es in der Regel lästig das Selbe mehrmals zu tun und ein Programm wird auch nicht unbedingt lesbarer wenn die
+gleichen Anweisungen öfters hintereinander auftauchen. Spätestens wenn erst zur Laufzeit klar ist wie oft etwas wiederholt werden
+soll, benötigt man eine Anweisung die etwas wiederholt. +
+Da dies häufig benutzt wird gibt es hierfür mehrere Möglichkeiten:
+
+===== while
+
+Die `while`-Schleife wiederholt etwas solang eine Bedingung erfüllt ist:
+
+[source,groovy]
+.Beispiel while-Schleife
+----
+def zaehler = 0 <1>
+while(zaehler < 5) { <2>
+    println zaehler
+    zaehler = zaehler + 1
+}
+----
+
+<1> Die Bedingung, *solange wiederholt* werden soll, steht in Klammern hinter dem Schlüsselwort `while`.
+<2> Die Anweisungen, welche wiederholt werden sollen, stehen in einem Anweisungsblock. +
+Auch hier gilt wie bei der `if`-Anweisung: Wenn es nur eine Anweisung gibt, können die geschweiften Klammern weg gelassen werden.
+
+===== for
+
+Die `for`-Schleife ist eine Variante der `while`-Schleife und fasst die Bestandteile in einer Zeile zusammen:
+
+[source,groovy]
+.Beispiel for-Schleife
+----
+for(def zaehler = 0; zaehler < 5; zaehler = zaehler + 1) { <1>
+    println zaehler <2>
+}
+----
+
+<1> Nach dem Schlüsselwort `for` werden in Klammern drei Teile, durch einen Strichpunkt getrennt, angegeben: +
+Initialisierung: Diese Anweisung wird vor der Schleife einmalig ausgeführt. +
+Bedingung: Die Schleife wird wiederholt solange diese Bedingung erfüllt ist. +
+Fortsetzung: Diese Anweisung wird *nach* jeder Ausführung eines Schleifendurchgangs ausgeführt.
+
+<2> Die Anweisungen, welche wiederholt werden sollen, stehen in einem Anweisungsblock. +
+Auch hier gilt wie bei der `if`-Anweisung: Wenn es nur eine Anweisung gibt, können die geschweiften Klammern weg gelassen werden.
+
+===== times
+
+Da es so oft vorkommt dass man etwas z.B. fünf mal tun möchte gibt es noch eine weitere Möglichkeit:
+
+[source,groovy]
+.Beispiel times
+----
+5.times { def zaehler -> <1>
+    println zaehler <2>
+}
+----
+
+<1> In Groovy besitzen Zahlen die Methode `times`, welche als Parameter eine <<Closure>> bekommt.
+
+<2> Was eine <<Closure>> ist sehen wir später, aber grundsätzlich entspricht sie einem Anweisungsblock. Zusätzlich kann
+auch eine <<Closure>> Parameter bekommen, was in diesem Fall genau ein Parameter ist, der angibt in der wievielten Wiederholung
+man sich befindet. Diesen benennt man innerhalb der Klammer und beendet die Liste der Parameter mit einem Pfeil `\->`. +
+Wenn man diesen nicht benennt bekommt er automatisch den Namen `it`. + Die geschweiften Klammern sind hier immer notwendig.
+
+[source,groovy]
+.Beispiel times ohne benannten Parameter.
+----
+5.times { println it }
+----
+
+===== for each
+
+Wenn man Anweisungen für jedes Element einer Sammlung wie z.B. einer Liste oder Range ausführen möchte (dies wird auch Iteration
+über eine Liste genannt), kann man dies auch mit einer `while` oder `for`-Schleife tun:
+
+[source,groovy]
+.Beispiel for each mit for
+----
+def list = [1,2,3,4,5] <1>
+for(def index = 0; index < list.size(); index = index + 1) { <2>
+    def element = list[index] <3>
+    println element
+}
+----
+
+<1> Erzeugung einer Liste der Zahlen eins bis fünf mit dem Namen *list*
+<2> Wir wiederholen so lange wie mein aktueller Index in der Liste kleiner als die Größe der Liste ist
+<3> Mit dem getAt-Operator wird aus der Liste das Element am aktuellen Index gelesen
+
+Doch gibt es hierzu eine Variante, die leichter ist:
+
+[source,groovy]
+.Beispiel for each mit for
+----
+def list = [1,2,3,4,5]
+for(def element: list) { <1>
+    println element
+}
+----
+
+<1> Zuerst wird eine Variable definiert welche das aktuelle Element enthalten soll. Zudem musst, getrennt durch einen Doppelpunkt,
+die Liste angegeben werden über die iteriert werden soll.
+
+===== each
+
+Auch hierfür gibt es eine Möglichkeit mit <<Closure>>s:
+
+[source,groovy]
+.Beispiel for each mit Closure
+----
+def list = [1,2,3,4,5]
+list.each { def element -> <1>
+    println element
+}
+----
+
+<1> Jede Sammlung besitzt eine Methode `each` welche die übergebene <<Closure>> für jedes Element ausführt.
+
+===== break und continue
+
+Für die `for` und `while` Schleifen, __ aber *nicht* für `times` und `each` __, kann man in den Ablauf der Wiederholung eingreifen.
+
+====== break
+
+`break` bricht den gesamten Ablauf der Schleife ab und springt an die Stellen *nach* der Schleife.
+
+[source,groovy]
+.Beispiel break
+----
+def zaehler = 0
+while(true) { <1>
+    if(zaehler >= 5)
+        break <2>
+    println zaehler
+    zaehler = zaehler + 1
+}
+----
+
+<1> Dies ist eine Endlosschleife, da `true` ja immer wahr ist.
+<2> Wenn der `zaehler` fünf oder mehr erreicht, springt `break` sofort aus dem Anweisungsblock und beendet die Schleife.
+
+====== continue
+
+`continue` bricht nur den aktuellen Anweisungsblock ab und springt an den *Anfang* des nächsten Schleifendurchgangs.
+
+[source,groovy]
+.Beispiel continue
+----
+for(def zaehler = 0; zaehler < 5; zaehler = zaehler + 1) {
+    if(zaehler % 2) <1>
+        continue <2>
+    println zaehler
+}
+----
+
+<1> Wenn die Division von `zaehler` durch 2 keinen Rest ergibt, also `zaehler` eine gerade Zahl ist.
+<2> Überspringe den Rest des Anweisungsblocks und beginne die nächste Iteration der Schleife.
+
+=== Operatoren
+
+Wir sind Operatoren schon begegnet, dem Zuweisungsoperator `=` im Beispiel: `long alter = 12`. +
 Mit long alter wird eine Variable mit dem Namen `alter` und dem Typ `long` definiert und mit dem Zuweisungsoperator `=` wird ihr ein
 Wert `12` zugewiesen.
 
@@ -311,6 +582,13 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
                                                                                    a**2
 |===
 
+// TODO: Übung
+
+[EXERCISE]
+====
+icon:pencil[] Übung
+====
+
 [cols="1,6,2"]
 .Vergleichsoperatoren (liefern `true` oder `false` zurück)
 |===
@@ -336,6 +614,50 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
 | in       | Prüft ob ein Element in Werten oder Variablen vom Typ List, Range, Array oder Map
              enthalten ist.                                                                     | a in [1, 2, 3, 5, 7, 11]
 |===
+
+// TODO: Übung
+
+[EXERCISE]
+====
+icon:pencil[] Übung
+====
+
+
+[cols="1,6,2"]
+.Kombinierte Operatoren
+|===
+| Operator | Beschreibung                                                                                               | Beispiele
+
+| +=       | Addiert den rechten Operator zum linken Operator und weist der Variable links den neuen Wert zu.           | a += 12
+| -=       | Subtrahiert den rechten Operator vom linken Operator und weist der Variable links den neuen Wert zu.       | a -= 12
+| *=       | Multipiziert den rechten Operator mit dem linken Operator und weist der Variable links den neuen Wert zu.  | a *= 12
+| /=       | Dividiert den linken Operator mit dem rechten Operator und weist der Variable links den neuen Wert zu.     | a /= 12
+| %=       | Berechnet den Rest der Division des linken Operators mit dem rechten Operator und weist der Variable links
+             den neuen Wert zu.                                                                                         | a %= 12
+| **=      | Berechnet die Potenz des linken Operator mit dem rechten Operator und weist der Variable links den neuen Wert zu.
+                                                                                                                        | a **= 12
+| ++       | ++ hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
+             Operanden um eins erhöht und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
+             die Operation zurückliefert: +
+             Wenn ++ links vom Operator steht wird zuerst der Wert erhöht und dann der erhöhte Wert zurückgeliefert.+
+             Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.                    | a++
+                                                                                                                          ++a
+| --       | -- hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
+             Operanden um eins verringert und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
+             die Operation zurückliefert: +
+             Wenn -- links vom Operator steht wird zuerst der Wert verringert und dann der verringerte Wert zurückgeliefert.+
+             Wenn -- rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann verringert.                | a--
+                                                                                                                          --a
+|===
+
+
+// TODO: Übung
+
+[EXERCISE]
+====
+icon:pencil[] Übung
+====
+
 
 [cols="1,4,3"]
 .Zugriffsoperatoren
@@ -365,9 +687,17 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
              bekommt man eine Fehlermeldung (java.lang.NullPointerException). +
              Um nun nicht alles vorher prüfen zu müssen gilt für den Null-Safe-Operator: +
              Wenn der linke Operand `null` ist, ist das Ergebnis der gesamten Operation `null`.
-             Ansonsten gilt das selbe wie beim `.`-Operator.                                  | [key: null]?.key => null
+             Ansonsten gilt das selbe wie beim `.`-Operator.                                    | [key: null]?.key => null
                                                                                                   null?.put('key', 'abc')
 |===
+
+// TODO: Übung
+
+[EXERCISE]
+====
+icon:pencil[] Übung
+====
+
 
 [cols="1,4,3"]
 .Konditionaloperatoren
@@ -380,15 +710,89 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
 | ?:       | Der Elvis Operator sieht ganz ähnlich wie der obige Operator aus und ist eine Kurzform
              für eine häufig benutze Variante: `a ?: b` ist das selbe wie `a ? a : b`. +
              Dies ist in Verbindung mit der boolschen Interpreation von Werten (siehe weiter
-             unten: <<GroovyTruth, Groovy Truth>>) sehr praktisch um Defaultwerte zu definieren.             | int a = b ?: 5
+             unten: <<GroovyTruth, Groovy Truth>>) sehr praktisch um Defaultwerte zu definieren.| int a = b ?: 5
+|===
+
+// TODO: Übung
+
+[EXERCISE]
+====
+icon:pencil[] Übung
+====
+
+
+[cols="1,4,3"]
+.Sonstige Operatoren
+|===
+| Operator | Beschreibung                                                                       | Beispiele
+
+| ()       | Aufrufoperator. Dieser Operator ruft auf einem Objekt die Methode `call` auf (sofern sie es gibt).
+             Hiermit werden Funktionen ausgeführt. Wenn z.B. ein Objekt `obj` die Funktion `print`
+             besitzt wird mit `obj.doIt()` diese Funktion gestartet. Funktionen können Parameter (auch Argumente genannt)
+             übergeben werden. Diese werden zwischend die Klammern geschrieben: `obj.doIt("Hallo vom Objekt")`
+                                                                                                | obj.doIt()
+                                                                                                  obj.doIt("Blah Blah")
+                                                                                                  println("Hallo Welt!")
+| ()       | Klammern. Wie in der Mathematik (Punkt vor Strichrechnung) werden Klammern genutzt
+             um die Auswertungsreihenfolge (<<Präzedenz>>) von Operatoren zu verändern.
+                                                                                                | (a + 1) * 12
+| new      | Instanziierungsoperator. Um aus einer Klasse eine Instanz zu erstellen wird das Schlüsselwort
+             `new` und der Aufrufoperator verwendet. Es wird hierbei ein Speicherplatz reserviert und eine spezielle
+             Initialisierungsmethode (Konstruktor) ausgeführt.
+                                                                                                | new MyObject()
+                                                                                                  new String('Test')
+|===
+
+// TODO: Übung
+
+[EXERCISE]
+====
+icon:pencil[] Übung
+====
+
+
+==== Präzedenz
+
+Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist - es ein anderes Ergebnis gibt wenn zuerst
+Plus und Minus oder Mal und Geteilt gerechnet wird. Diese Reihenfolge der Auswertung von Operatoren nennt man *Präzedenz*.
+Du musst dir dies jetzt nicht merken aber es ist hilfreich diese Reihenfolge zu kennen und gegebenenfalls nachzusehen. +
+Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschrieben wurden - also nicht wundern.
+
+Hier die Präzedenz in Groovy: +
+<op> steht für einen Operanden, wenn nicht klar ist welche Version des Operators gemeint ist
+
+[cols="1,4"]
+.Präzedenz
+|===
+| Priorität | Operator
+
+|  1 | new, (), {}, [], ., .&, .@, ?., *., *:, *<op>, ~, !, (type), <op>++, <op>--
+|  2 | **
+|  3 | ++<op>, --<op>, +<op>, -<op>
+|  4 | *, /, %
+|  5 | +, -
+|  6 | <<, >>, >>>, .., ..<
+|  7 | <, \<=, >, >=, in, instanceof, as
+|  8 | ==, !=, \<\=>
+|  9 | &
+| 10 | ^
+| 11 | \|
+| 12 | &&
+| 13 | \|\|
+| 14 | <op>?<op>:<op>, <op>?:<op>
+| 15 | =, **=, *=, /=, %=, +=, -=, <\<=, >>=, >>>=, &=, ^=, \|=
 |===
 
 [[GroovyTruth]]
 === Groovy Truth
 
+=== Methoden
 
+=== Closures
 
 === Ordnung im System
+
+// packages und imports
 
 == Kreis im Quadrat
 
