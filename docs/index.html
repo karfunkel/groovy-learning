@@ -528,9 +528,22 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_variablentypen">3.2.3. Variablentypen</a></li>
 </ul>
 </li>
-<li><a href="#_operatoren">3.3. Operatoren</a></li>
-<li><a href="#GroovyTruth">3.4. Groovy Truth</a></li>
-<li><a href="#_ordnung_im_system">3.5. Ordnung im System</a></li>
+<li><a href="#_kommentare">3.3. Kommentare</a></li>
+<li><a href="#_anweisungen">3.4. Anweisungen</a>
+<ul class="sectlevel3">
+<li><a href="#_verzweigungen">3.4.1. Verzweigungen</a></li>
+<li><a href="#_schleifen">3.4.2. Schleifen</a></li>
+</ul>
+</li>
+<li><a href="#_operatoren">3.5. Operatoren</a>
+<ul class="sectlevel3">
+<li><a href="#_präzedenz">3.5.1. Präzedenz</a></li>
+</ul>
+</li>
+<li><a href="#GroovyTruth">3.6. Groovy Truth</a></li>
+<li><a href="#_methoden">3.7. Methoden</a></li>
+<li><a href="#_closures">3.8. Closures</a></li>
+<li><a href="#_ordnung_im_system">3.9. Ordnung im System</a></li>
 </ul>
 </li>
 <li><a href="#_kreis_im_quadrat">4. Kreis im Quadrat</a>
@@ -712,7 +725,7 @@ Variablen benötigen einen <strong>Namen</strong> der gewissen Regeln folgt und 
 <p>Unterstrich</p>
 </li>
 <li>
-<p>Währungssymbole (z.B. €, $ &#8230;&#8203;)</p>
+<p>Währungssymbole (z.B. €, $ usw.)</p>
 </li>
 </ul>
 </div>
@@ -1062,14 +1075,405 @@ Bei Zahlentypen ist dies <code>0</code>, bei <code>char</code> das Zeichen mit d
 </div>
 </div>
 <div class="sect2">
-<h3 id="_operatoren">3.3. Operatoren</h3>
+<h3 id="_kommentare">3.3. Kommentare</h3>
 <div class="paragraph">
-<p>Mit Variablen allein kann man noch nicht viel tun. Und wenn man eine Programmiersprache mit einer natürlichen Sprache vergleicht,
-dann könnten Variablen in etwa Substantive sein. Für einen Satz benötigt man aber auch noch Verben, die beschreiben was getan werden soll.<br>
-Diese Aufgabe über nehmen Operatoren.</p>
+<p>Manchmal möchte man Kommentare in den Quellcode schreiben um ihn zu erklären, Gedankengänge fest zu halten oder zu dokumentieren.
+Diese Kommentare sollen vom Kompiler ignoriert werden.</p>
 </div>
 <div class="paragraph">
-<p>Einem sind wir schon begegnet, dem Zuweisungsoperator <code>=</code> im obigen Beispiel: <code>long alter = 12</code>.<br>
+<p>Mit <code>//</code> beginnt man einen Kommentar, der bis zum Ende der Zeile reicht. Also alles nach <code>//</code> wird ignoriert.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">printn <span class="string"><span class="delimiter">&quot;</span><span class="content">Test</span><span class="delimiter">&quot;</span></span> <span class="comment">// Dies ist ein Kommentar</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn man einen Kommentar über mehrere Zeilen schreiben will beginnt man mit <code>/<strong></code> und endet mit <code></strong>/</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">/* Diese ist ein
+mehrzeiliger
+Kommentar */</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_anweisungen">3.4. Anweisungen</h3>
+<div class="paragraph">
+<p>Mit Variablen allein kann man noch nicht viel tun. Und wenn man eine Programmiersprache mit einer natürlichen Sprache vergleicht,
+dann könnten Variablen die Substantive sein.<br>
+Für einen Satz benötigt man aber auch noch Verben, die beschreiben was getan werden soll. Diese Aufgabe übernehmen <a href="#_operatoren">Operatoren</a> und Anweisungen.</p>
+</div>
+<div class="sect3">
+<h4 id="_verzweigungen">3.4.1. Verzweigungen</h4>
+<div class="paragraph">
+<p>Genau wie unser Leben verläuft ein Programm auch nicht immer geradlinig und es gibt Entscheidungen zu treffen.<br>
+Dafür gibt es in Groovy Anweisungen, die Bedingungen auswerten und abhängig davon entscheiden ob das Programm "links oder rechts 'rum gehen" soll.</p>
+</div>
+<div class="paragraph">
+<p>Wenn Du Hunger hast und was zu Essen kaufen willst, dann schaust Du zuerst ein deinen Geldbeutel:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hast Du €3,50 kannst Du Dir einen Döner kaufen</p>
+</li>
+<li>
+<p>Ansonsten musst Du hungern.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Um solch eine Entscheidung in einem Programm abbilden zu können gibt es den Verzweigungsanweisung <code>if else</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel if - else</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">if</span> (geld &gt;= <span class="float">3.50</span>) { <i class="conum" data-value="1"></i><b>(1)</b>
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Einen Döner bitte</span><span class="delimiter">&quot;</span></span>
+} <span class="keyword">else</span> { <i class="conum" data-value="2"></i><b>(2)</b>
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Bin auf Diät</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>if</code> benötigt immer eine Bedingung in runden Klammern und einen Block an Anweisungen wie der Programmablauf weiter
+gehen soll falls die Bedingung zutrifft.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Optional kann mit dem Schlüsselwort <code>else</code> ein weiterer Block an Anweisungen hinzugefügt werden, der definiert wie das
+Programm weiterläuft wenn die Bedingung nicht zutrifft.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Wenn in den Anweisungsblöcken für <code>if</code> oder <code>else</code> nur eine einzelne Anweisung steht wie im obigen Beispiel, dann kann man die
+geschweiften Klammern weglassen:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel if - else mit nur einer Anweisung</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">if</span> (geld &gt;= <span class="float">3.50</span>)
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Einen Döner bitte</span><span class="delimiter">&quot;</span></span>
+<span class="keyword">else</span>
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Bin auf Diät</span><span class="delimiter">&quot;</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ein häufiger Fall ist, dass im <code>else</code>-Zweig wiederum eine <code>if</code>-Anweisung steht, also z.B.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hast Du €5,00 oder mehr kannst Du Dir ein Dönermenü kaufen.</p>
+</li>
+<li>
+<p>Hast Du €3,50 kannst Du Dir einen Döner kaufen</p>
+</li>
+<li>
+<p>Ansonsten musst Du hungern.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel geschachtelte if - else Anweisungen</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">if</span> (geld &gt;= <span class="float">5.00</span>) {
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Ein Dönermenü bitte</span><span class="delimiter">&quot;</span></span>
+} <span class="keyword">else</span> {
+    <span class="keyword">if</span> (geld &gt;= <span class="float">3.50</span>) {
+        println <span class="string"><span class="delimiter">&quot;</span><span class="content">Einen Döner bitte</span><span class="delimiter">&quot;</span></span>
+    } <span class="keyword">else</span> {
+        println <span class="string"><span class="delimiter">&quot;</span><span class="content">Bin auf Diät</span><span class="delimiter">&quot;</span></span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Da die <code>if</code>-Anweisung hier eine einzelne Anweisung ist, kann man auch hier die Klammern weg lassen und das ganze etwas lesbarer schreiben:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel if - else if - else</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">if</span> (geld &gt;= <span class="float">5.00</span>) {
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Ein Dönermenü bitte</span><span class="delimiter">&quot;</span></span>
+} <span class="keyword">else</span> <span class="keyword">if</span> (geld &gt;= <span class="float">3.50</span>) {
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Einen Döner bitte</span><span class="delimiter">&quot;</span></span>
+} <span class="keyword">else</span> {
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Bin auf Diät</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Und die inneren Klammern kann man in diesem Fall auch weg lassen, da jeder Block ja nur eine Anweisung entält:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel if - else if - else</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">if</span> (geld &gt;= <span class="float">5.00</span>)
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Ein Dönermenü bitte</span><span class="delimiter">&quot;</span></span>
+<span class="keyword">else</span> <span class="keyword">if</span> (geld &gt;= <span class="float">3.50</span>)
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Einen Döner bitte</span><span class="delimiter">&quot;</span></span>
+<span class="keyword">else</span>
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Bin auf Diät</span><span class="delimiter">&quot;</span></span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_schleifen">3.4.2. Schleifen</h4>
+<div class="paragraph">
+<p>Uns Menschen ist es in der Regel lästig das Selbe mehrmals zu tun und ein Programm wird auch nicht unbedingt lesbarer wenn die
+gleichen Anweisungen öfters hintereinander auftauchen. Spätestens wenn erst zur Laufzeit klar ist wie oft etwas wiederholt werden
+soll, benötigt man eine Anweisung die etwas wiederholt.<br>
+Da dies häufig benutzt wird gibt es hierfür mehrere Möglichkeiten:</p>
+</div>
+<div class="sect4">
+<h5 id="_while">3.4.2.1. while</h5>
+<div class="paragraph">
+<p>Die <code>while</code>-Schleife wiederholt etwas solang eine Bedingung erfüllt ist:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel while-Schleife</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> zaehler = <span class="integer">0</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="keyword">while</span>(zaehler &lt; <span class="integer">5</span>) { <i class="conum" data-value="2"></i><b>(2)</b>
+    println zaehler
+    zaehler = zaehler + <span class="integer">1</span>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Die Bedingung, <strong>solange wiederholt</strong> werden soll, steht in Klammern hinter dem Schlüsselwort <code>while</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die Anweisungen, welche wiederholt werden sollen, stehen in einem Anweisungsblock.<br>
+Auch hier gilt wie bei der <code>if</code>-Anweisung: Wenn es nur eine Anweisung gibt, können die geschweiften Klammern weg gelassen werden.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_for">3.4.2.2. for</h5>
+<div class="paragraph">
+<p>Die <code>for</code>-Schleife ist eine Variante der <code>while</code>-Schleife und fasst die Bestandteile in einer Zeile zusammen:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel for-Schleife</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">for</span>(<span class="keyword">def</span> zaehler = <span class="integer">0</span>; zaehler &lt; <span class="integer">5</span>; zaehler = zaehler + <span class="integer">1</span>) { <i class="conum" data-value="1"></i><b>(1)</b>
+    println zaehler <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Nach dem Schlüsselwort <code>for</code> werden in Klammern drei Teile, durch einen Strichpunkt getrennt, angegeben:<br>
+Initialisierung: Diese Anweisung wird vor der Schleife einmalig ausgeführt.<br>
+Bedingung: Die Schleife wird wiederholt solange diese Bedingung erfüllt ist.<br>
+Fortsetzung: Diese Anweisung wird <strong>nach</strong> jeder Ausführung eines Schleifendurchgangs ausgeführt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die Anweisungen, welche wiederholt werden sollen, stehen in einem Anweisungsblock.<br>
+Auch hier gilt wie bei der <code>if</code>-Anweisung: Wenn es nur eine Anweisung gibt, können die geschweiften Klammern weg gelassen werden.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_times">3.4.2.3. times</h5>
+<div class="paragraph">
+<p>Da es so oft vorkommt dass man etwas z.B. fünf mal tun möchte gibt es noch eine weitere Möglichkeit:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel times</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="integer">5</span>.times { <span class="keyword">def</span> zaehler -&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    println zaehler <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In Groovy besitzen Zahlen die Methode <code>times</code>, welche als Parameter eine <a href="#Closure">[Closure]</a> bekommt.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Was eine <a href="#Closure">[Closure]</a> ist sehen wir später, aber grundsätzlich entspricht sie einem Anweisungsblock. Zusätzlich kann
+auch eine <a href="#Closure">[Closure]</a> Parameter bekommen, was in diesem Fall genau ein Parameter ist, der angibt in der wievielten Wiederholung
+man sich befindet. Diesen benennt man innerhalb der Klammer und beendet die Liste der Parameter mit einem Pfeil <code>-&gt;</code>.<br>
+Wenn man diesen nicht benennt bekommt er automatisch den Namen <code>it</code>. + Die geschweiften Klammern sind hier immer notwendig.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel times ohne benannten Parameter.</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="integer">5</span>.times { println <span class="local-variable">it</span> }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_for_each">3.4.2.4. for each</h5>
+<div class="paragraph">
+<p>Wenn man Anweisungen für jedes Element einer Sammlung wie z.B. einer Liste oder Range ausführen möchte (dies wird auch Iteration
+über eine Liste genannt), kann man dies auch mit einer <code>while</code> oder <code>for</code>-Schleife tun:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel for each mit for</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> list = [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">4</span>,<span class="integer">5</span>] <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="keyword">for</span>(<span class="keyword">def</span> index = <span class="integer">0</span>; index &lt; list.size(); index = index + <span class="integer">1</span>) { <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="keyword">def</span> element = list[index] <i class="conum" data-value="3"></i><b>(3)</b>
+    println element
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Erzeugung einer Liste der Zahlen eins bis fünf mit dem Namen <strong>list</strong></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wir wiederholen so lange wie mein aktueller Index in der Liste kleiner als die Größe der Liste ist</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Mit dem getAt-Operator wird aus der Liste das Element am aktuellen Index gelesen</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Doch gibt es hierzu eine Variante, die leichter ist:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel for each mit for</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> list = [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">4</span>,<span class="integer">5</span>]
+<span class="keyword">for</span>(<span class="keyword">def</span> <span class="key">element</span>: list) { <i class="conum" data-value="1"></i><b>(1)</b>
+    println element
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Zuerst wird eine Variable definiert welche das aktuelle Element enthalten soll. Zudem musst, getrennt durch einen Doppelpunkt,
+die Liste angegeben werden über die iteriert werden soll.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_each">3.4.2.5. each</h5>
+<div class="paragraph">
+<p>Auch hierfür gibt es eine Möglichkeit mit <a href="#Closure">[Closure]</a>s:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel for each mit Closure</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> list = [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">4</span>,<span class="integer">5</span>]
+list.each { <span class="keyword">def</span> element -&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    println element
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Jede Sammlung besitzt eine Methode <code>each</code> welche die übergebene <a href="#Closure">[Closure]</a> für jedes Element ausführt.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_break_und_continue">3.4.2.6. break und continue</h5>
+<div class="paragraph">
+<p>Für die <code>for</code> und <code>while</code> Schleifen, <em> aber <strong>nicht</strong> für <code>times</code> und <code>each</code> </em>, kann man in den Ablauf der Wiederholung eingreifen.</p>
+</div>
+<div class="sect5">
+<h6 id="_break">3.4.2.6.1. break</h6>
+<div class="paragraph">
+<p><code>break</code> bricht den gesamten Ablauf der Schleife ab und springt an die Stellen <strong>nach</strong> der Schleife.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel break</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> zaehler = <span class="integer">0</span>
+<span class="keyword">while</span>(<span class="predefined-constant">true</span>) { <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="keyword">if</span>(zaehler &gt;= <span class="integer">5</span>)
+        <span class="keyword">break</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    println zaehler
+    zaehler = zaehler + <span class="integer">1</span>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Dies ist eine Endlosschleife, da <code>true</code> ja immer wahr ist.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wenn der <code>zaehler</code> fünf oder mehr erreicht, springt <code>break</code> sofort aus dem Anweisungsblock und beendet die Schleife.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_continue">3.4.2.6.2. continue</h6>
+<div class="paragraph">
+<p><code>continue</code> bricht nur den aktuellen Anweisungsblock ab und springt an den <strong>Anfang</strong> des nächsten Schleifendurchgangs.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel continue</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">for</span>(<span class="keyword">def</span> zaehler = <span class="integer">0</span>; zaehler &lt; <span class="integer">5</span>; zaehler = zaehler + <span class="integer">1</span>) {
+    <span class="keyword">if</span>(zaehler % <span class="integer">2</span>) <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="keyword">continue</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    println zaehler
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Wenn die Division von <code>zaehler</code> durch 2 keinen Rest ergibt, also <code>zaehler</code> eine gerade Zahl ist.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Überspringe den Rest des Anweisungsblocks und beginne die nächste Iteration der Schleife.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operatoren">3.5. Operatoren</h3>
+<div class="paragraph">
+<p>Wir sind Operatoren schon begegnet, dem Zuweisungsoperator <code>=</code> im Beispiel: <code>long alter = 12</code>.<br>
 Mit long alter wird eine Variable mit dem Namen <code>alter</code> und dem Typ <code>long</code> definiert und mit dem Zuweisungsoperator <code>=</code> wird ihr ein
 Wert <code>12</code> zugewiesen.</p>
 </div>
@@ -1145,6 +1549,13 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+</div>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 3. Vergleichsoperatoren (liefern <code>true</code> oder <code>false</code> zurück)</caption>
 <colgroup>
@@ -1224,8 +1635,90 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+</div>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 4. Zugriffsoperatoren</caption>
+<caption class="title">Table 4. Kombinierte Operatoren</caption>
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 66.6666%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+<th class="tableblock halign-left valign-top">Beispiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Addiert den rechten Operator zum linken Operator und weist der Variable links den neuen Wert zu.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a += 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subtrahiert den rechten Operator vom linken Operator und weist der Variable links den neuen Wert zu.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a -= 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multipiziert den rechten Operator mit dem linken Operator und weist der Variable links den neuen Wert zu.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a *= 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dividiert den linken Operator mit dem rechten Operator und weist der Variable links den neuen Wert zu.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a /= 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">%=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Berechnet den Rest der Division des linken Operators mit dem rechten Operator und weist der Variable links
+             den neuen Wert zu.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a %= 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">**=</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Berechnet die Potenz des linken Operator mit dem rechten Operator und weist der Variable links den neuen Wert zu.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a **= 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">++</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
+             Operanden um eins erhöht und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
+             die Operation zurückliefert: +
+             Wenn  links vom Operator steht wird zuerst der Wert erhöht und dann der erhöhte Wert zurückgeliefert.+
+             Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a
+                                                                                                                          a</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8201;&#8212;&#8201;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8201;&#8212;&#8201;hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
+             Operanden um eins verringert und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
+             die Operation zurückliefert:<br>
+             Wenn&#8201;&#8212;&#8201;links vom Operator steht wird zuerst der Wert verringert und dann der verringerte Wert zurückgeliefert.+
+             Wenn&#8201;&#8212;&#8201;rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann verringert.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a--
+                                                                                                                          --a</p></td>
+</tr>
+</tbody>
+</table>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 5. Zugriffsoperatoren</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 50%;">
@@ -1277,8 +1770,15 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+</div>
+</div>
+</div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 5. Konditionaloperatoren</caption>
+<caption class="title">Table 6. Konditionaloperatoren</caption>
 <colgroup>
 <col style="width: 12.5%;">
 <col style="width: 50%;">
@@ -1309,13 +1809,164 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 7. Sonstige Operatoren</caption>
+<colgroup>
+<col style="width: 12.5%;">
+<col style="width: 50%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+<th class="tableblock halign-left valign-top">Beispiele</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aufrufoperator. Dieser Operator ruft auf einem Objekt die Methode <code>call</code> auf (sofern sie es gibt).
+             Hiermit werden Funktionen ausgeführt. Wenn z.B. ein Objekt <code>obj</code> die Funktion <code>print</code>
+             besitzt wird mit <code>obj.doIt()</code> diese Funktion gestartet. Funktionen können Parameter (auch Argumente genannt)
+             übergeben werden. Diese werden zwischend die Klammern geschrieben: <code>obj.doIt("Hallo vom Objekt")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">obj.doIt()
+                                                                                                  obj.doIt("Blah Blah")
+                                                                                                  println("Hallo Welt!")</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">()</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Klammern. Wie in der Mathematik (Punkt vor Strichrechnung) werden Klammern genutzt
+             um die Auswertungsreihenfolge (<a href="#_präzedenz">Präzedenz</a>) von Operatoren zu verändern.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(a + 1) * 12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Instanziierungsoperator. Um aus einer Klasse eine Instanz zu erstellen wird das Schlüsselwort
+             <code>new</code> und der Aufrufoperator verwendet. Es wird hierbei ein Speicherplatz reserviert und eine spezielle
+             Initialisierungsmethode (Konstruktor) ausgeführt.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new MyObject()
+                                                                                                  new String('Test')</p></td>
+</tr>
+</tbody>
+</table>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_präzedenz">3.5.1. Präzedenz</h4>
+<div class="paragraph">
+<p>Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist - es ein anderes Ergebnis gibt wenn zuerst
+Plus und Minus oder Mal und Geteilt gerechnet wird. Diese Reihenfolge der Auswertung von Operatoren nennt man <strong>Präzedenz</strong>.
+Du musst dir dies jetzt nicht merken aber es ist hilfreich diese Reihenfolge zu kennen und gegebenenfalls nachzusehen.<br>
+Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschrieben wurden - also nicht wundern.</p>
+</div>
+<div class="paragraph">
+<p>Hier die Präzedenz in Groovy:<br>
+&lt;op&gt; steht für einen Operanden, wenn nicht klar ist welche Version des Operators gemeint ist</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 8. Präzedenz</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Priorität</th>
+<th class="tableblock halign-left valign-top">Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new, (), {}, [], ., .&amp;, .@, ?., *., *:, *&lt;op&gt;, ~, !, (type), &lt;op&gt;++, &lt;op&gt;--</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">**</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">++&lt;op&gt;, --&lt;op&gt;, +&lt;op&gt;, -&lt;op&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">*, /, %</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+, -</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;&lt;, &gt;&gt;, &gt;&gt;&gt;, .., ..&lt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;, &lt;=, &gt;, &gt;=, in, instanceof, as</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">==, !=, &lt;=&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&amp;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">|</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&amp;&amp;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">||</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;op&gt;?&lt;op&gt;:&lt;op&gt;, &lt;op&gt;?:&lt;op&gt;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">=, **=, *=, /=, %=, +=, -=, &lt;&lt;=, &gt;&gt;=, &gt;&gt;&gt;=, &amp;=, ^=, |=</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="sect2">
-<h3 id="GroovyTruth">3.4. Groovy Truth</h3>
+<h3 id="GroovyTruth">3.6. Groovy Truth</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_ordnung_im_system">3.5. Ordnung im System</h3>
+<h3 id="_methoden">3.7. Methoden</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_closures">3.8. Closures</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_ordnung_im_system">3.9. Ordnung im System</h3>
 
 </div>
 </div>
@@ -1361,7 +2012,7 @@ deshalb werden in Groovy häufiger Listen verwendet.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-25 19:35:44 +01:00
+Last updated 2017-02-16 17:58:26 +01:00
 </div>
 </div>
 </body>
