@@ -90,7 +90,7 @@ Und Tschüss!
 
 Probier es doch mal aus.
 
-[TIP]
+[NOTE]
 ====
 Aber warum stehen jetzt in der zweiten Zeile keine Klammern ???
 
@@ -135,7 +135,7 @@ Im Gegensatz dazu werden Konstanten, also Variablen deren Wert sich nicht mehr v
 - Konstantennamen werden komplett in Grossbuchstaben geschrieben: `KONSTANTE`
 - Worte werden mit einem Unterstrich getrennt: `MEINE_KONSTANTE`
 
-[TIP]
+[NOTE]
 ====
 Um seinen Quellcode gut lesen zu können empfiehlt es sich sprechende Namen zu verwenden, also mit dem Namen beschreiben was
 in der Variable drin sein soll.
@@ -567,7 +567,8 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
 | =        | Zuweisung eines Wertes zu einer Variablen                           | a = 123 +
                                                                                    a = b
 | +        | Addition zweier Werte oder Variablen                                | 12 + 34 +
-                                                                                   a + 50
+                                                                                   a + 50 +
+                                                                                   'Hans ' + 'Dampf'
 | -        | Substraktion zweier Werte oder Variablen                            | 12 - 34 +
                                                                                    a - 50
 | *        | Multiplikation zweier Werte oder Variablen                          | 12 * 34 +
@@ -584,9 +585,42 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
 
 // TODO: Übung
 
-[EXERCISE]
+[NOTE]
 ====
-icon:pencil[] Übung
+Mit `showInputDialog` (siehe unten) wird ein Dialogfenster angezeigt, welches ein Anzeigefeld (Label), ein Eingabefeld, einen
+__OK__- und einen __Abbrechen__-Knopf besitzt. Nachdem der Benutzer etwas eingegeben hat und _OK_ anklickt, wird der
+eingegeben Text als String zurückgeliefert. Wenn er Abbrechen klickt dagegen `null`. +
+Hierüber können einfache Abfragen realisiert werden:
+[source, groovy]
+.Beispiel showInputDialog
+----
+def name = javax.swing.JOptionPane.showInputDialog('Wie lautet Dein Name?')
+----
+====
+
+[TIP]
+====
+*Übung*
+
+Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.
+Gebe den Vornamen und den Nachnamen, getrennt durch ein Leerzeichen, aus (`println`).
+====
+
+[TIP]
+====
+*Übung*
+
+Schreibe ein Programm, bei dem der Benutzer in zwei Dialogen zwei Zahlen angibt.
+Gebe die Summe, das Produkt und den Rest der Division der zwei Zahlen aus. +
+Das Ergebnis soll so aussehen: +
+----
+// Eingabe: 4 und 3
+
+Summe: 7
+Produkt: 12
+Rest: 1
+----
+
 ====
 
 [cols="1,6,2"]
@@ -615,13 +649,23 @@ icon:pencil[] Übung
              enthalten ist.                                                                     | a in [1, 2, 3, 5, 7, 11]
 |===
 
-// TODO: Übung
-
-[EXERCISE]
+[TIP]
 ====
-icon:pencil[] Übung
+*Übung*
+
+Erweite das erste Programm so, dass 'Unbekannt' ausgegeben wird, falls der Benutzer die Eingabe abbricht.
 ====
 
+[TIP]
+====
+*Übung*
+
+Schreibe ein Programm, bei dem der Benutzer ein Datum eingibt. +
+Gib aus ob das Datum vor diesem oder nach diesem Jahr liegt. +
+Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten Jahreshälfte liegt.
+
+Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Date`-Objekt gewandelt werden.
+====
 
 [cols="1,6,2"]
 .Kombinierte Operatoren
@@ -642,7 +686,7 @@ icon:pencil[] Übung
              Wenn ++ links vom Operator steht wird zuerst der Wert erhöht und dann der erhöhte Wert zurückgeliefert.+
              Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.                    | a++
                                                                                                                           ++a
-| --       | -- hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
+| \--       | \-- hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
              Operanden um eins verringert und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
              die Operation zurückliefert: +
              Wenn -- links vom Operator steht wird zuerst der Wert verringert und dann der verringerte Wert zurückgeliefert.+
@@ -653,9 +697,14 @@ icon:pencil[] Übung
 
 // TODO: Übung
 
-[EXERCISE]
+[TIP]
 ====
-icon:pencil[] Übung
+*Übung*
+
+Schreibe ein Programm, bei dem der Benutzer eine Reihe an Zahlen, durch Kommas getrennt, eingibt. +
+Berechne die Summe, den Maximal- und Minimalwert der Zahlen und gebe sie aus.
+
+Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine Liste aus Ganzzahlen umgewandelt werden.
 ====
 
 
@@ -666,8 +715,10 @@ icon:pencil[] Übung
 
 | []       | Zugriff auf Werte mit Hilfe eines Index (also einer Position). +
              Indices beginnen immer mit 0. +
-             Es ist auch möglich mehrere Indices oder einen Bereich anzugeben.
-             Bei Maps kann als Index auch der Schlüssel angegeben werden                        | 'Hallo'[1] => 'a' +
+             Es ist auch möglich mehrere Indices oder einen Bereich anzugeben. +
+             Negative Zahlen sind Indices von Hinten gezählt => -1 ist das letzte, -2 das
+             vorletzte Element. +
+             Bei Maps kann als Index auch der Schlüssel angegeben werden. | 'Hallo'[1] => 'a' +
                                                                                                   [1,2,3,4][2] => 3 +
                                                                                                   'Hallo'[1,4] => 'ao' +
                                                                                                   [1,2,3,4][1,3] => [2, 4] +
@@ -691,11 +742,12 @@ icon:pencil[] Übung
                                                                                                   null?.put('key', 'abc')
 |===
 
+// TODO: .* Operator
 // TODO: Übung
 
-[EXERCISE]
+[TIP]
 ====
-icon:pencil[] Übung
+*Übung*
 ====
 
 
@@ -715,9 +767,9 @@ icon:pencil[] Übung
 
 // TODO: Übung
 
-[EXERCISE]
+[TIP]
 ====
-icon:pencil[] Übung
+*Übung*
 ====
 
 
@@ -745,9 +797,9 @@ icon:pencil[] Übung
 
 // TODO: Übung
 
-[EXERCISE]
+[TIP]
 ====
-icon:pencil[] Übung
+*Übung*
 ====
 
 
