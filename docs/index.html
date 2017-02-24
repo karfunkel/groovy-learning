@@ -683,11 +683,11 @@ Und Tschüss!</pre>
 <div class="paragraph">
 <p>Probier es doch mal aus.</p>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -787,11 +787,11 @@ Leerzeichen sind keine gültigen Zeichen!
 - Konstantennamen werden komplett in Grossbuchstaben geschrieben: <code>KONSTANTE</code>
 - Worte werden mit einem Unterstrich getrennt: <code>MEINE_KONSTANTE</code></p>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1509,7 +1509,8 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">+</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Addition zweier Werte oder Variablen</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">12 + 34<br>
-                                                                                   a + 50</p></td>
+                                                                                   a + 50<br>
+                                                                                   'Hans ' + 'Dampf'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
@@ -1549,12 +1550,74 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+<p>Mit <code>showInputDialog</code> (siehe unten) wird ein Dialogfenster angezeigt, welches ein Anzeigefeld (Label), ein Eingabefeld, einen
+<em>OK</em>- und einen <em>Abbrechen</em>-Knopf besitzt. Nachdem der Benutzer etwas eingegeben hat und <em>OK</em> anklickt, wird der
+eingegeben Text als String zurückgeliefert. Wenn er Abbrechen klickt dagegen <code>null</code>.<br>
+Hierüber können einfache Abfragen realisiert werden:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel showInputDialog</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> name = javax.swing.JOptionPane.showInputDialog(<span class="string"><span class="delimiter">'</span><span class="content">Wie lautet Dein Name?</span><span class="delimiter">'</span></span>)</code></pre>
 </div>
 </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+<div class="paragraph">
+<p>Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.
+Gebe den Vornamen und den Nachnamen, getrennt durch ein Leerzeichen, aus (<code>println</code>).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+<div class="paragraph">
+<p>Schreibe ein Programm, bei dem der Benutzer in zwei Dialogen zwei Zahlen angibt.
+Gebe die Summe, das Produkt und den Rest der Division der zwei Zahlen aus.<br>
+Das Ergebnis soll so aussehen:<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>// Eingabe: 4 und 3
+
+Summe: 7
+Produkt: 12
+Rest: 1</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 3. Vergleichsoperatoren (liefern <code>true</code> oder <code>false</code> zurück)</caption>
@@ -1635,12 +1698,44 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+<p><strong>Übung</strong></p>
 </div>
+<div class="paragraph">
+<p>Erweite das erste Programm so, dass 'Unbekannt' ausgegeben wird, falls der Benutzer die Eingabe abbricht.</p>
 </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+<div class="paragraph">
+<p>Schreibe ein Programm, bei dem der Benutzer ein Datum eingibt.<br>
+Gib aus ob das Datum vor diesem oder nach diesem Jahr liegt.<br>
+Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten Jahreshälfte liegt.</p>
+</div>
+<div class="paragraph">
+<p>Eine Zeichenkette (String) kann mit <code>Date.parse("dd.MM.yyyy", datum)</code> in ein <code>Date</code>-Objekt gewandelt werden.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 4. Kombinierte Operatoren</caption>
@@ -1699,8 +1794,8 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
                                                                                                                           a</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8201;&#8212;&#8201;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8201;&#8212;&#8201;hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
+<td class="tableblock halign-left valign-top"><p class="tableblock">--</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-- hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
              Operanden um eins verringert und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
              die Operation zurückliefert:<br>
              Wenn&#8201;&#8212;&#8201;links vom Operator steht wird zuerst der Wert verringert und dann der verringerte Wert zurückgeliefert.+
@@ -1710,12 +1805,26 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+<p><strong>Übung</strong></p>
 </div>
+<div class="paragraph">
+<p>Schreibe ein Programm, bei dem der Benutzer eine Reihe an Zahlen, durch Kommas getrennt, eingibt.<br>
+Berechne die Summe, den Maximal- und Minimalwert der Zahlen und gebe sie aus.</p>
 </div>
+<div class="paragraph">
+<p>Eine Zeichenkette (String) kann mit <code>input.split(',')*.toInteger()</code> in eine Liste aus Ganzzahlen umgewandelt werden.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 5. Zugriffsoperatoren</caption>
@@ -1736,8 +1845,10 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[]</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zugriff auf Werte mit Hilfe eines Index (also einer Position).<br>
              Indices beginnen immer mit 0.<br>
-             Es ist auch möglich mehrere Indices oder einen Bereich anzugeben.
-             Bei Maps kann als Index auch der Schlüssel angegeben werden</p></td>
+             Es ist auch möglich mehrere Indices oder einen Bereich anzugeben.<br>
+             Negative Zahlen sind Indices von Hinten gezählt &#8658; -1 ist das letzte, -2 das
+             vorletzte Element.<br>
+             Bei Maps kann als Index auch der Schlüssel angegeben werden.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'Hallo'[1] &#8658; 'a'<br>
                                                                                                   [1,2,3,4][2] &#8658; 3<br>
                                                                                                   'Hallo'[1,4] &#8658; 'ao'<br>
@@ -1770,12 +1881,19 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+<p><strong>Übung</strong></p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 6. Konditionaloperatoren</caption>
@@ -1809,12 +1927,19 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+<p><strong>Übung</strong></p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 7. Sonstige Operatoren</caption>
@@ -1857,12 +1982,19 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p><span class="icon"><i class="fa fa-pencil"></i></span> Übung</p>
+<p><strong>Übung</strong></p>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_präzedenz">3.5.1. Präzedenz</h4>
@@ -2012,7 +2144,7 @@ deshalb werden in Groovy häufiger Listen verwendet.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-02-16 17:58:26 +01:00
+Last updated 2017-02-24 18:17:34 +01:00
 </div>
 </div>
 </body>
