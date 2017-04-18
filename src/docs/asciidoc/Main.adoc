@@ -330,7 +330,7 @@ Für einen Satz benötigt man aber auch noch Verben, die beschreiben was getan w
 Genau wie unser Leben verläuft ein Programm auch nicht immer geradlinig und es gibt Entscheidungen zu treffen. +
 Dafür gibt es in Groovy Anweisungen, die Bedingungen auswerten und abhängig davon entscheiden ob das Programm "links oder rechts 'rum gehen" soll.
 
-Wenn Du Hunger hast und was zu Essen kaufen willst, dann schaust Du zuerst ein deinen Geldbeutel:
+Wenn Du Hunger hast und was zu Essen kaufen willst, dann schaust Du zuerst in deinen Geldbeutel:
 
 - Hast Du €3,50 kannst Du Dir einen Döner kaufen
 - Ansonsten musst Du hungern.
@@ -571,7 +571,7 @@ for(def zaehler = 0; zaehler < 5; zaehler = zaehler + 1) {
 ----
 
 <1> Wenn die Division von `zaehler` durch 2 keinen Rest ergibt, also `zaehler` eine gerade Zahl ist.
-<2> Überspringe den Rest des Anweisungsblocks und beginne die nächste Iteration der Schleife.
+<2> Überspringe den Rest des Anweisungsblocks und beginne die nächste Iteration der Schleife.						/*Iteration schwer verständlich*/
 
 === Operatoren
 
@@ -604,7 +604,7 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
                                                                                    a / 50
 | %        | Berechnet den Rest einer Division zweier Werte oder Variablen       | 12 % 2 +
                                                                                    a % 5
-| -        | negiert den Wert oder die Variable                                  | -12 +
+| -        | negiert den Wert oder die Variable                                  | -12 +							/*negieren schwer verständlich*/
                                                                                    -a
 | **       | Berechnet die Potenz der Operanden. Also `a**2` berechnet a^2^      | 2*\*5 +
                                                                                    a**2
@@ -630,7 +630,7 @@ def name = javax.swing.JOptionPane.showInputDialog('Wie lautet Dein Name?')
 ====
 *Übung*
 
-Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.
+Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.			/*ein kleiner denkanstoß wäre nicht schlecht*/
 Gebe den Vornamen und den Nachnamen, getrennt durch ein Leerzeichen, aus (`println`).
 ====
 
@@ -683,7 +683,7 @@ Rest: 1
 ====
 *Übung*
 
-Erweite das erste Programm so, dass 'Unbekannt' ausgegeben wird, falls der Benutzer die Eingabe abbricht.
+Erweitere das erste Programm so, dass 'Unbekannt' ausgegeben wird, falls der Benutzer die Eingabe abbricht.
 ====
 
 [TIP]
@@ -694,7 +694,7 @@ Schreibe ein Programm, bei dem der Benutzer ein Datum eingibt. +
 Gib aus ob das Datum vor diesem oder nach diesem Jahr liegt. +
 Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten Jahreshälfte liegt.
 
-Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Date`-Objekt gewandelt werden.
+Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Date`-Objekt gewandelt werden.			/*evtl. Beispiel*/
 ====
 
 ==== Kombinierte Operatoren
@@ -716,7 +716,7 @@ Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Da
              Operanden um eins erhöht und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
              die Operation zurückliefert: +
              Wenn ++ links vom Operator steht wird zuerst der Wert erhöht und dann der erhöhte Wert zurückgeliefert.+
-             Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.                    | a++
+             Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.                    | a++				/*pluszeichen nicht zu sehen*/
                                                                                                                           ++a
 | \--       | \-- hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
              Operanden um eins verringert und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
@@ -765,7 +765,7 @@ Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine List
                                                                                                   [key: 'ab']['key'] => 'abc'
 | .        | Zugriff auf Werte mit Hilfe eines Namens. +
              Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden. +
-             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<<Methoden>> und Eigenschaften) zugegriffen werden. +
+             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<<Methoden>> und Eigenschaften) zugegriffen werden. +			/*Was sind keys, generell etwas unverständlich*/
                                                                                                 | [key: 'abc'].key => 'abc'
                                                                                                   10.MAX_VALUE => 2147483647
                                                                                                   [:].put('key', 'abc') => [key: 'abc']
@@ -787,7 +787,7 @@ Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine List
 Schreibe ein Programm, bei dem der Benutzer einen Satz eingibt. +
 Berechne die Anzahl der Worte und die Anzahl der Buchstaben je Wort und gebe dies aus. +
 Zudem ermittle mit welchen Anfangsbuchstaben die Worte beginnen und gebe die Anfangsbuchstaben, zusammen mit ihrer Häufigkeit aus. +
-Hierbei soll es unerheblich sein ob der Buchstabe gross oder klein geschrieben sien soll.
+Hierbei soll es unerheblich sein ob der Buchstabe gross oder klein geschrieben sein soll.
 
 Die Methode `split()` zerlegt eine Zeichenkette in eine Liste von Werten getrennt durch Leerzeichen. +
 Die Länge einer Zeichenkette kann durch `size()` ermittelt werden. +
@@ -814,10 +814,10 @@ Eine Zeichenkette kann mit `toUpperCase()` in Grossbuchstaben gewandelt werden. 
              Initialisierungsmethode (Konstruktor) ausgeführt.
                                                                                                 | new MyObject()
                                                                                                   new String('Test')
-| *.       | Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird über diese iteriert
+| *.       | Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird über diese iteriert								/*was bedeutet iteriert*/
              und für jedes Element wird auf die Eigenschaft des rechten Operanden zugegriffen und
              das Ergebnis in eine neue Liste geschrieben, die dann zurückgegeben wird. +
-             Wenn also `[1, 'Test', 1.2]\*.class` ausgeführt wird wird für jedes Element der Liste
+             Wenn also `[1, 'Test', 1.2]\*.class` ausgeführt wird, wird für jedes Element der Liste
              die Eigenschaft `class` gelesen und in eine neue Liste geschrieben:
              `[class java.lang.Integer, class java.lang.String, class java.math.BigDecimal]` +
              Dies funktioniert auch für <<Methoden>>aufrufe, so gibt `['1', '2']*.toInteger()` eine
@@ -829,7 +829,7 @@ Eine Zeichenkette kann mit `toUpperCase()` in Grossbuchstaben gewandelt werden. 
 
 ==== Präzedenz
 
-Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist - es ein anderes Ergebnis gibt wenn zuerst
+Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist - es ein anderes Ergebnis gibt wenn zuerst			/*evtl grammatik überarbeiten (-es ein...)*/
 Plus und Minus oder Mal und Geteilt gerechnet wird. Diese Reihenfolge der Auswertung von Operatoren nennt man *Präzedenz*.
 Du musst dir dies jetzt nicht merken aber es ist hilfreich diese Reihenfolge zu kennen und gegebenenfalls nachzusehen. +
 Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschrieben wurden - also nicht wundern.
@@ -859,10 +859,10 @@ Hier die Präzedenz in Groovy: +
 | 15 | =, **=, *=, /=, %=, +=, -=, <\<=, >>=, >>>=, &=, ^=, \|=
 |===
 
-[[GroovyTruth]]
+[[GroovyTruth]]																												/*ich würde das Thema weiter nach oben setzen*/
 === Groovy Truth
 
-Bedingungen können zur zwei Ergebnisse haben: wahr (`true`) oder falsch (`false`). +
+Bedingungen können zur zwei Ergebnisse haben: wahr (`true`) oder falsch (`false`). +										/*Grammatik, Satzbau nicht verständlich*/
 Variablen vom Typ `boolean` stellen extakt diese zwei Werte dar. Andere Variablen stellen andere und vor allem mehr
 Werte dar. Um zu prüfen ob z.B. in einer Integervariable `a` ein anderer Wert als 0 steht, gibt man in einer Verzweigungsanweisung
 `if(a != 0)` an. Da eine Prüfung auf 0 häufig benötigt wird kann man in Groovy auch nur `if(a)` verwenden. +
