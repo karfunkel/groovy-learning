@@ -237,7 +237,7 @@ So könnte ein Messer die Funktion haben einen Apfel zu zerschneiden - ud somit 
 Apfels verändern. Wenn wir noch einen Schritt weiter gehen, kann die Funktion "schälen" einer Hand die Funktion "schneiden eines
 "Messer benutzen um einen Apfel zu schälen und somit seine Eigenschaften zu verändern.
 
-NOTE: Funktionen werden in einigen Programmiersprachen, so auch in Groovy, Methoden genannt.
+NOTE: Funktionen werden in einigen Programmiersprachen, so auch in Groovy, <<Methoden>> genannt.
 
 NOTE: Damit die Welt nicht zu einfach ist werden im Sprachgebrauch häufig Klassen und Objekte gleich verwendet, obwohl es zwei verschiedene Dinge sind.
 
@@ -272,6 +272,31 @@ Das geht aber nur für Werte und nicht für Variablendefinitionen. Dies nennt ma
 
 Wenn eine Variable definiert wird und ihr **kein** initaler Wert zugewiesen wird so bekommt sie einen Standardwert (Defaultwert).
 Bei Zahlentypen ist dies `0`, bei `char` das Zeichen mit dem Wert `\0000` und bei `boolean` `false`. Alle anderen Typen bekommen den Wert `null`.
+
+==== Felder
+
+Von allen Typen können Felder erstellt werden. Ein Feld (engl. Array) ist eine Variable bei dem mehrere Variablen des selben Typs unter dem selben Namen
+zusammengefasst sind. +
+Beim Deklarieren von Feldern muss angegeben werden wieviele Elemente das Feld haben soll. Danach kann über den Index, also die Position im Feld,
+auf die einzelnen Elemente zugegriffen werden. +
+Felder sind also so ähnlich wie Listen und können fast identisch verwendet werden. Der große Unterschied zwischen ihnen ist, dass Felder in ihrer Größe
+festgelegt sind, Listen aber mit jedem Element wachsen, welches hinzugefügt wird.
+
+[source, groovy]
+----
+int[] intArray = new int[4]
+intArray[2] = 2
+intArray[3] = 3
+println intArray[3]          // gibt 3 aus
+println intArray             // gibt [0, 2, 3, 0] aus
+
+int intArray2 = [1, 2, 3, 4]
+println intArray2            // gibt [1, 2, 3, 4] aus
+----
+
+NOTE: Wenn die Größe eines Felds einmal festgelegt ist kann sie nicht mehr verändert werden.
+deshalb werden in Groovy häufiger Listen verwendet.
+
 
 === Kommentare
 
@@ -559,6 +584,8 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.
 
 Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
 
+==== Nummerische Operatoren
+
 [cols="1,6,2"]
 .Nummerische Operatoren
 |===
@@ -581,9 +608,10 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
                                                                                    -a
 | **       | Berechnet die Potenz der Operanden. Also `a**2` berechnet a^2^      | 2*\*5 +
                                                                                    a**2
+| ()       | Klammern. Wie in der Mathematik (Punkt vor Strichrechnung) werden
+             Klammern genutzt um die Auswertungsreihenfolge (<<Präzedenz>>) von
+             Operatoren zu verändern.                                            | (5 + 1) * 12
 |===
-
-// TODO: Übung
 
 [NOTE]
 ====
@@ -622,6 +650,8 @@ Rest: 1
 ----
 
 ====
+
+==== Vergleichsoperatoren
 
 [cols="1,6,2"]
 .Vergleichsoperatoren (liefern `true` oder `false` zurück)
@@ -667,6 +697,8 @@ Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten 
 Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Date`-Objekt gewandelt werden.
 ====
 
+==== Kombinierte Operatoren
+
 [cols="1,6,2"]
 .Kombinierte Operatoren
 |===
@@ -695,30 +727,36 @@ Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Da
 |===
 
 
-// TODO: Übung
-
 [TIP]
 ====
 *Übung*
 
 Schreibe ein Programm, bei dem der Benutzer eine Reihe an Zahlen, durch Kommas getrennt, eingibt. +
-Berechne die Summe, den Maximal- und Minimalwert der Zahlen und gebe sie aus.
+Berechne die Summe, den Durchschnitt, den Maximal- und Minimalwert der Zahlen und gebe sie aus.
 
 Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine Liste aus Ganzzahlen umgewandelt werden.
 ====
 
+==== Zugriffsoperatoren
 
 [cols="1,4,3"]
 .Zugriffsoperatoren
 |===
 | Operator | Beschreibung                                                                       | Beispiele
 
+| ()       | Aufrufoperator. Hiermit werden Funktionen ausgeführt. +
+             Wenn z.B. ein Objekt `obj` die Funktion `doIt` besitzt, wird mit `obj.doIt()` diese
+             Funktion gestartet. An Funktionen können Parameter (auch Argumente genannt)
+             übergeben werden. Diese werden zwischend die Klammern geschrieben:
+             `obj.doIt("Hallo vom Objekt")`                                                     | obj.doIt()
+                                                                                                  obj.doIt("Blah Blah")
+                                                                                                  println("Hallo Welt!")
 | []       | Zugriff auf Werte mit Hilfe eines Index (also einer Position). +
              Indices beginnen immer mit 0. +
              Es ist auch möglich mehrere Indices oder einen Bereich anzugeben. +
              Negative Zahlen sind Indices von Hinten gezählt => -1 ist das letzte, -2 das
              vorletzte Element. +
-             Bei Maps kann als Index auch der Schlüssel angegeben werden. | 'Hallo'[1] => 'a' +
+             Bei Maps kann als Index auch der Schlüssel angegeben werden.                       | 'Hallo'[1] => 'a' +
                                                                                                   [1,2,3,4][2] => 3 +
                                                                                                   'Hallo'[1,4] => 'ao' +
                                                                                                   [1,2,3,4][1,3] => [2, 4] +
@@ -727,32 +765,39 @@ Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine List
                                                                                                   [key: 'ab']['key'] => 'abc'
 | .        | Zugriff auf Werte mit Hilfe eines Namens. +
              Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden. +
-             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (Methoden und Eigenschaften) zugegriffen werden. +
+             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<<Methoden>> und Eigenschaften) zugegriffen werden. +
                                                                                                 | [key: 'abc'].key => 'abc'
                                                                                                   10.MAX_VALUE => 2147483647
                                                                                                   [:].put('key', 'abc') => [key: 'abc']
                                                                                                   Integer.toHexString(45054) => 'affe'
-| ?.       | Null-Sichere Navigation. Wenn in einer Variable `null` steht oder eine Funnktion `null`
+| ?.       | Null-Sichere Navigation. Wenn in einer Variable `null` steht oder eine Funktion `null`
              zurückliefert und man nun hierauf versucht auf ein Element zuzugreifen kann der Computer
              nichts damit anfangen, denn auf **Nichts** kann man nun einmal nicht zugreifen. Deshalb
              bekommt man eine Fehlermeldung (java.lang.NullPointerException). +
              Um nun nicht alles vorher prüfen zu müssen gilt für den Null-Safe-Operator: +
              Wenn der linke Operand `null` ist, ist das Ergebnis der gesamten Operation `null`.
-             Ansonsten gilt das selbe wie beim `.`-Operator.                                    | [key: null]?.key => null
+             Ansonsten gilt das selbe wie beim `.`-Operator.                                    | [key: null]?.key => null +
                                                                                                   null?.put('key', 'abc')
 |===
-
-// TODO: .* Operator
-// TODO: Übung
 
 [TIP]
 ====
 *Übung*
+
+Schreibe ein Programm, bei dem der Benutzer einen Satz eingibt. +
+Berechne die Anzahl der Worte und die Anzahl der Buchstaben je Wort und gebe dies aus. +
+Zudem ermittle mit welchen Anfangsbuchstaben die Worte beginnen und gebe die Anfangsbuchstaben, zusammen mit ihrer Häufigkeit aus. +
+Hierbei soll es unerheblich sein ob der Buchstabe gross oder klein geschrieben sien soll.
+
+Die Methode `split()` zerlegt eine Zeichenkette in eine Liste von Werten getrennt durch Leerzeichen. +
+Die Länge einer Zeichenkette kann durch `size()` ermittelt werden. +
+Eine Zeichenkette kann mit `toUpperCase()` in Grossbuchstaben gewandelt werden. Mit toLowerCase()` entsprechend in Kleinbuchstaben.
 ====
 
+==== Sonstige Operatoren
 
 [cols="1,4,3"]
-.Konditionaloperatoren
+.Sonstige Operatoren
 |===
 | Operator | Beschreibung                                                                       | Beispiele
 
@@ -763,45 +808,24 @@ Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine List
              für eine häufig benutze Variante: `a ?: b` ist das selbe wie `a ? a : b`. +
              Dies ist in Verbindung mit der boolschen Interpreation von Werten (siehe weiter
              unten: <<GroovyTruth, Groovy Truth>>) sehr praktisch um Defaultwerte zu definieren.| int a = b ?: 5
-|===
 
-// TODO: Übung
-
-[TIP]
-====
-*Übung*
-====
-
-
-[cols="1,4,3"]
-.Sonstige Operatoren
-|===
-| Operator | Beschreibung                                                                       | Beispiele
-
-| ()       | Aufrufoperator. Dieser Operator ruft auf einem Objekt die Methode `call` auf (sofern sie es gibt).
-             Hiermit werden Funktionen ausgeführt. Wenn z.B. ein Objekt `obj` die Funktion `print`
-             besitzt wird mit `obj.doIt()` diese Funktion gestartet. Funktionen können Parameter (auch Argumente genannt)
-             übergeben werden. Diese werden zwischend die Klammern geschrieben: `obj.doIt("Hallo vom Objekt")`
-                                                                                                | obj.doIt()
-                                                                                                  obj.doIt("Blah Blah")
-                                                                                                  println("Hallo Welt!")
-| ()       | Klammern. Wie in der Mathematik (Punkt vor Strichrechnung) werden Klammern genutzt
-             um die Auswertungsreihenfolge (<<Präzedenz>>) von Operatoren zu verändern.
-                                                                                                | (a + 1) * 12
 | new      | Instanziierungsoperator. Um aus einer Klasse eine Instanz zu erstellen wird das Schlüsselwort
              `new` und der Aufrufoperator verwendet. Es wird hierbei ein Speicherplatz reserviert und eine spezielle
              Initialisierungsmethode (Konstruktor) ausgeführt.
                                                                                                 | new MyObject()
                                                                                                   new String('Test')
+| *.       | Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird über diese iteriert
+             und für jedes Element wird auf die Eigenschaft des rechten Operanden zugegriffen und
+             das Ergebnis in eine neue Liste geschrieben, die dann zurückgegeben wird. +
+             Wenn also `[1, 'Test', 1.2]\*.class` ausgeführt wird wird für jedes Element der Liste
+             die Eigenschaft `class` gelesen und in eine neue Liste geschrieben:
+             `[class java.lang.Integer, class java.lang.String, class java.math.BigDecimal]` +
+             Dies funktioniert auch für <<Methoden>>aufrufe, so gibt `['1', '2']*.toInteger()` eine
+             Liste zurück, die auf jedem Element `toInteger()` aufruft und somit `[1,2]`
+             zurückliefert.
+                                                                                                | [1, 'Test', 1.2]\*.class +
+                                                                                                  ['1', '2']*.toInteger()
 |===
-
-// TODO: Übung
-
-[TIP]
-====
-*Übung*
-====
-
 
 ==== Präzedenz
 
@@ -838,6 +862,22 @@ Hier die Präzedenz in Groovy: +
 [[GroovyTruth]]
 === Groovy Truth
 
+Bedingungen können zur zwei Ergebnisse haben: wahr (`true`) oder falsch (`false`). +
+Variablen vom Typ `boolean` stellen extakt diese zwei Werte dar. Andere Variablen stellen andere und vor allem mehr
+Werte dar. Um zu prüfen ob z.B. in einer Integervariable `a` ein anderer Wert als 0 steht, gibt man in einer Verzweigungsanweisung
+`if(a != 0)` an. Da eine Prüfung auf 0 häufig benötigt wird kann man in Groovy auch nur `if(a)` verwenden. +
+Hier hängt es vom Variablentyp von `a` ab wie ein Bedingungsergebnis berechnet wird. +
+
+Für alle Typen gilt, dass der Wert `null` als falsch (`false`) gewertet wird.
+
+Für alle Zahlen gilt, dass der Wert `0` als falsch (`false`) gewertet wird.
+
+Für Zeichenketten (Strings) gilt, dass eine leere Zeichenkette als falsch (`false`) gewertet wird.
+
+Für alle Sammlungen (`List`, `Array` usw.) gilt, dass eine leere Sammlung als falsch (`false`) gewertet wird.
+
+Wenn eine Klasse eine Methode `asBoolean()` besitzt, wird diese aufgerufen und dessen Ergebnis (`true` oder `false`) wird genutzt.
+
 === Methoden
 
 === Closures
@@ -850,27 +890,9 @@ Hier die Präzedenz in Groovy: +
 
 === GroovyFX
 
-== Felder
+// TODO: Übung
 
-// Stub
-
-Notiz: 
-
-Von allen Typen können Felder erstellt werden. Felder (engl. Arrays) sind mehrere Variablen des selben Typs mit dem selben Namen. +
-Beim Deklarieren von Feldern muss angegeben werden wieviele Elemente das Feld haben soll. Danach kann über den Index, also die Position im Feld,
-auf die einzelnen Elemente zugegriffen werden.
-
-[source, groovy]
-----
-int[] intArray = new int[4]
-intArray[2] = 2
-intArray[3] = 3
-println intArray[3]          // gibt 3 aus
-println intArray             // gibt [0, 2, 3, 0] aus
-
-int intArray2 = [1, 2, 3, 4]
-println intArray2            // gibt [1, 2, 3, 4] aus
-----
-
-Wenn die Größe eines Felds einmal festgelegt ist kann sie nicht mehr verändert werden.
-deshalb werden in Groovy häufiger Listen verwendet.
+[TIP]
+====
+*Übung*
+====
