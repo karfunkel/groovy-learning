@@ -546,10 +546,9 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_präzedenz">3.5.6. Präzedenz</a></li>
 </ul>
 </li>
-<li><a href="#GroovyTruth">3.6. Groovy Truth</a></li>
-<li><a href="#_methoden">3.7. Methoden</a></li>
-<li><a href="#_closures">3.8. Closures</a></li>
-<li><a href="#_ordnung_im_system">3.9. Ordnung im System</a></li>
+<li><a href="#_methoden">3.6. Methoden</a></li>
+<li><a href="#_closures">3.7. Closures</a></li>
+<li><a href="#_ordnung_im_system">3.8. Ordnung im System</a></li>
 </ul>
 </li>
 <li><a href="#_kreis_im_quadrat">4. Kreis im Quadrat</a>
@@ -1154,7 +1153,7 @@ Für einen Satz benötigt man aber auch noch Verben, die beschreiben was getan w
 Dafür gibt es in Groovy Anweisungen, die Bedingungen auswerten und abhängig davon entscheiden ob das Programm "links oder rechts 'rum gehen" soll.</p>
 </div>
 <div class="paragraph">
-<p>Wenn Du Hunger hast und was zu Essen kaufen willst, dann schaust Du zuerst ein deinen Geldbeutel:</p>
+<p>Wenn Du Hunger hast und was zu Essen kaufen willst, dann schaust Du zuerst in deinen Geldbeutel:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1503,7 +1502,7 @@ list.each { <span class="keyword">def</span> element -&gt; <i class="conum" data
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Überspringe den Rest des Anweisungsblocks und beginne die nächste Iteration der Schleife.</td>
+<td>Überspringe den Rest des Anweisungsblocks und beginne die nächste Iteration der Schleife.						/<strong>Iteration schwer verständlich</strong>/</td>
 </tr>
 </table>
 </div>
@@ -1582,7 +1581,7 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">negiert den Wert oder die Variable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-12<br>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-12 +							/<strong>negieren schwer verständlich</strong>/
                                                                                    -a</p></td>
 </tr>
 <tr>
@@ -1634,7 +1633,7 @@ Hierüber können einfache Abfragen realisiert werden:</p>
 <p><strong>Übung</strong></p>
 </div>
 <div class="paragraph">
-<p>Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.
+<p>Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.			/<strong>ein kleiner denkanstoß wäre nicht schlecht</strong>/
 Gebe den Vornamen und den Nachnamen, getrennt durch ein Leerzeichen, aus (<code>println</code>).</p>
 </div>
 </td>
@@ -1762,7 +1761,7 @@ Rest: 1</pre>
 <p><strong>Übung</strong></p>
 </div>
 <div class="paragraph">
-<p>Erweite das erste Programm so, dass 'Unbekannt' ausgegeben wird, falls der Benutzer die Eingabe abbricht.</p>
+<p>Erweitere das erste Programm so, dass 'Unbekannt' ausgegeben wird, falls der Benutzer die Eingabe abbricht.</p>
 </div>
 </td>
 </tr>
@@ -1784,7 +1783,7 @@ Gib aus ob das Datum vor diesem oder nach diesem Jahr liegt.<br>
 Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten Jahreshälfte liegt.</p>
 </div>
 <div class="paragraph">
-<p>Eine Zeichenkette (String) kann mit <code>Date.parse("dd.MM.yyyy", datum)</code> in ein <code>Date</code>-Objekt gewandelt werden.</p>
+<p>Eine Zeichenkette (String) kann mit <code>Date.parse("dd.MM.yyyy", datum)</code> in ein <code>Date</code>-Objekt gewandelt werden.			/<strong>evtl. Beispiel</strong>/</p>
 </div>
 </td>
 </tr>
@@ -1846,7 +1845,7 @@ Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten 
              die Operation zurückliefert: +
              Wenn  links vom Operator steht wird zuerst der Wert erhöht und dann der erhöhte Wert zurückgeliefert.+
              Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a
+<td class="tableblock halign-left valign-top"><p class="tableblock">a				/*pluszeichen nicht zu sehen*/
                                                                                                                           a</p></td>
 </tr>
 <tr>
@@ -1931,7 +1930,7 @@ Berechne die Summe, den Durchschnitt, den Maximal- und Minimalwert der Zahlen un
 <td class="tableblock halign-left valign-top"><p class="tableblock">.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zugriff auf Werte mit Hilfe eines Namens.<br>
              Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden.<br>
-             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<a href="#_methoden">Methoden</a> und Eigenschaften) zugegriffen werden.<br></p></td>
+             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<a href="#_methoden">Methoden</a> und Eigenschaften) zugegriffen werden. +			/<strong>Was sind keys, generell etwas unverständlich</strong>/</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[key: 'abc'].key &#8658; 'abc'
                                                                                                   10.MAX_VALUE &#8658; 2147483647
                                                                                                   [:].put('key', 'abc') &#8658; [key: 'abc']
@@ -1965,7 +1964,7 @@ Berechne die Summe, den Durchschnitt, den Maximal- und Minimalwert der Zahlen un
 <p>Schreibe ein Programm, bei dem der Benutzer einen Satz eingibt.<br>
 Berechne die Anzahl der Worte und die Anzahl der Buchstaben je Wort und gebe dies aus.<br>
 Zudem ermittle mit welchen Anfangsbuchstaben die Worte beginnen und gebe die Anfangsbuchstaben, zusammen mit ihrer Häufigkeit aus.<br>
-Hierbei soll es unerheblich sein ob der Buchstabe gross oder klein geschrieben sien soll.</p>
+Hierbei soll es unerheblich sein ob der Buchstabe gross oder klein geschrieben sein soll.</p>
 </div>
 <div class="paragraph">
 <p>Die Methode <code>split()</code> zerlegt eine Zeichenkette in eine Liste von Werten getrennt durch Leerzeichen.<br>
@@ -2019,10 +2018,10 @@ Eine Zeichenkette kann mit <code>toUpperCase()</code> in Grossbuchstaben gewande
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird über diese iteriert
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird über diese iteriert								/<strong>was bedeutet iteriert</strong>/
              und für jedes Element wird auf die Eigenschaft des rechten Operanden zugegriffen und
              das Ergebnis in eine neue Liste geschrieben, die dann zurückgegeben wird.<br>
-             Wenn also <code>[1, 'Test', 1.2]*.class</code> ausgeführt wird wird für jedes Element der Liste
+             Wenn also <code>[1, 'Test', 1.2]*.class</code> ausgeführt wird, wird für jedes Element der Liste
              die Eigenschaft <code>class</code> gelesen und in eine neue Liste geschrieben:
              <code>[class java.lang.Integer, class java.lang.String, class java.math.BigDecimal]</code><br>
              Dies funktioniert auch für <a href="#_methoden">Methoden</a>aufrufe, so gibt <code>['1', '2']*.toInteger()</code> eine
@@ -2037,7 +2036,7 @@ Eine Zeichenkette kann mit <code>toUpperCase()</code> in Grossbuchstaben gewande
 <div class="sect3">
 <h4 id="_präzedenz">3.5.6. Präzedenz</h4>
 <div class="paragraph">
-<p>Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist - es ein anderes Ergebnis gibt wenn zuerst
+<p>Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist - es ein anderes Ergebnis gibt wenn zuerst			/<strong>evtl grammatik überarbeiten (-es ein&#8230;&#8203;)</strong>/
 Plus und Minus oder Mal und Geteilt gerechnet wird. Diese Reihenfolge der Auswertung von Operatoren nennt man <strong>Präzedenz</strong>.
 Du musst dir dies jetzt nicht merken aber es ist hilfreich diese Reihenfolge zu kennen und gegebenenfalls nachzusehen.<br>
 Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschrieben wurden - also nicht wundern.</p>
@@ -2121,12 +2120,12 @@ Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschriebe
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="GroovyTruth">3.6. Groovy Truth</h3>
 <div class="paragraph">
-<p>Bedingungen können zur zwei Ergebnisse haben: wahr (<code>true</code>) oder falsch (<code>false</code>).<br>
+<p><a id="GroovyTruth"></a>																												/<strong>ich würde das Thema weiter nach oben setzen</strong>/
+=== Groovy Truth</p>
+</div>
+<div class="paragraph">
+<p>Bedingungen können zur zwei Ergebnisse haben: wahr (<code>true</code>) oder falsch (<code>false</code>). +										/<strong>Grammatik, Satzbau nicht verständlich</strong>/
 Variablen vom Typ <code>boolean</code> stellen extakt diese zwei Werte dar. Andere Variablen stellen andere und vor allem mehr
 Werte dar. Um zu prüfen ob z.B. in einer Integervariable <code>a</code> ein anderer Wert als 0 steht, gibt man in einer Verzweigungsanweisung
 <code>if(a != 0)</code> an. Da eine Prüfung auf 0 häufig benötigt wird kann man in Groovy auch nur <code>if(a)</code> verwenden.<br>
@@ -2148,16 +2147,17 @@ Hier hängt es vom Variablentyp von <code>a</code> ab wie ein Bedingungsergebnis
 <p>Wenn eine Klasse eine Methode <code>asBoolean()</code> besitzt, wird diese aufgerufen und dessen Ergebnis (<code>true</code> oder <code>false</code>) wird genutzt.</p>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_methoden">3.7. Methoden</h3>
+<h3 id="_methoden">3.6. Methoden</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_closures">3.8. Closures</h3>
+<h3 id="_closures">3.7. Closures</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_ordnung_im_system">3.9. Ordnung im System</h3>
+<h3 id="_ordnung_im_system">3.8. Ordnung im System</h3>
 
 </div>
 </div>
@@ -2187,7 +2187,7 @@ Hier hängt es vom Variablentyp von <code>a</code> ab wie ein Bedingungsergebnis
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-12 15:30:00 +02:00
+Last updated 2017-04-18 14:14:39 +02:00
 </div>
 </div>
 </body>
