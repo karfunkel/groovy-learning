@@ -694,7 +694,7 @@ Schreibe ein Programm, bei dem der Benutzer ein Datum eingibt. +
 Gib aus ob das Datum vor diesem oder nach diesem Jahr liegt. +
 Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten Jahreshälfte liegt.
 
-Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Date`-Objekt gewandelt werden.			/*evtl. Beispiel*/
+Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Date`-Objekt gewandelt werden.			/*evtl. Beispiel bzw. Erklärung was ein Date-Objekt ist*/
 ====
 
 ==== Kombinierte Operatoren
@@ -734,7 +734,7 @@ Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Da
 Schreibe ein Programm, bei dem der Benutzer eine Reihe an Zahlen, durch Kommas getrennt, eingibt. +
 Berechne die Summe, den Durchschnitt, den Maximal- und Minimalwert der Zahlen und gebe sie aus.
 
-Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine Liste aus Ganzzahlen umgewandelt werden.
+Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine Liste aus Ganzzahlen umgewandelt werden.					/*.toInteger muss früher angegeben und besser erklärt werden auch .split*/
 ====
 
 ==== Zugriffsoperatoren
