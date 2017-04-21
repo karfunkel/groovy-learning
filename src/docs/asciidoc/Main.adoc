@@ -197,9 +197,16 @@ Von Haus aus bringt Groovy folgende Typen mit:
                                                                                           922337203685472425072659.123**g** +
                                                                                           1003.1**G**
 |char       |Zeichen                       |Alle Unicode-Zeichen                         |\u2348
-|String     |Zeichenkette                  |Zeichenketten bestehend aus Unicode-Zeichen  |'Hallo' +
+|String     |Zeichenkette                  |Zeichenketten bestehend aus Unicode-Zeichen. +
+                                            Wenn eine Zeichenkette mit Doppelten Anführungszeichen `"` oder Schrägstrichen `/`
+                                            begrenzt wird, können Werte von Varablen mit `${variablenName}` eingebettet werden.
+                                            Der Einfachheit halber können die Klammern weggelassen werden, wenn nur Werte direkt
+                                            oder deren Eigenschaften eingebettet werden sollen.
+                                                                                         |'Hallo' +
                                                                                           "Hallo" +
-                                                                                          /Hallo/
+                                                                                          /Hallo/ +
+                                                                                          "Hallo $name" +
+                                                                                          /Hallo ${name.toUpperCase()}/
 |List       |Liste an Werten               |-                                            |[] +
                                                                                           [1, 2, 'Hallo']
 |Range      |Wertebereich                  |-                                            |-1..3 (-1 bis 3 inklusive) +
@@ -210,7 +217,23 @@ Von Haus aus bringt Groovy folgende Typen mit:
 
 [NOTE]
 ====
-Ihr habt vielleicht die Buchstaben am Ende der Beispiele gesehen. Die benötigt ihr nur wenn ihr explizit einen Wert des
+Eine Map kann man sich wie eine Tabelle mit zwei Spalten vorstellen. In der ersten Spalte stehen Schlüssel, in der zweiten Werte. +
+Die Schlüssel sind so etwas wie Namen, die den Wert eindeutig identifizieren. +
+Machen wir ein Beispiel:
+
+|===
+| Schlüssel | Wert
+
+| Vorname   | Hans
+| Nachname  | Dampf
+|===
+
+Wenn man nun über den Schlüssel `vorname` zugreift bekommt man den Wert `Hans` zurück.
+====
+
+[NOTE]
+====
+Ihr habt vielleicht die Buchstaben am Ende der Beispiele für Zahlen gesehen. Die benötigt ihr nur wenn ihr explizit einen Wert des
 entsprechenen Typs haben wollt. Groovy versucht bei Werten die Typen möglichst intelligent zu erkennen. Wenn also eine Zahl
 z.B. nicht mehr in den Werte Bereich von `int` passt, macht er automatisch ein `long` daraus. +
 Zudem werden Werte beim Zuweisen zu einer Variable, wenn möglich, in den Typ der Variable umgewandelt.
@@ -412,6 +435,24 @@ else
     println "Bin auf Diät"
 ----
 
+[[GroovyTruth]]
+===== Groovy Truth
+
+Eine Bedingungen kann nur entweder wahr (`true`) oder falsch (`false`) sein. +
+Variablen vom Typ `boolean` stellen extakt diese zwei Werte dar. Andere Variablen stellen andere und vor allem mehr
+Werte dar. Um zu prüfen ob z.B. in einer Integervariable `a` ein anderer Wert als 0 steht, gibt man in einer Verzweigungsanweisung
+`if(a != 0)` an. Da eine Prüfung auf 0 häufig benötigt wird kann man in Groovy auch nur `if(a)` verwenden. +
+Hier hängt es vom Variablentyp von `a` ab wie ein Bedingungsergebnis berechnet wird. +
+
+Für alle Typen gilt, dass der Wert `null` als falsch (`false`) gewertet wird.
+
+Für alle Zahlen gilt, dass der Wert `0` als falsch (`false`) gewertet wird.
+
+Für Zeichenketten (Strings) gilt, dass eine leere Zeichenkette als falsch (`false`) gewertet wird.
+
+Für alle Sammlungen (`List`, `Array` usw.) gilt, dass eine leere Sammlung als falsch (`false`) gewertet wird.
+
+Wenn eine Klasse eine Methode `asBoolean()` besitzt, wird diese aufgerufen und dessen Ergebnis (`true` oder `false`) wird genutzt.
 // Es fehlt bewußt das switch Statement
 // Hinweis auf a?b:c ???
 
@@ -571,7 +612,7 @@ for(def zaehler = 0; zaehler < 5; zaehler = zaehler + 1) {
 ----
 
 <1> Wenn die Division von `zaehler` durch 2 keinen Rest ergibt, also `zaehler` eine gerade Zahl ist.
-<2> Überspringe den Rest des Anweisungsblocks und beginne die nächste Iteration der Schleife.						/*Iteration schwer verständlich*/
+<2> Überspringe den Rest des Anweisungsblocks und beginne die nächste Wiederholung, auch Iteration genannt, der Schleife.
 
 === Operatoren
 
@@ -604,7 +645,7 @@ Hier möchte ich Dir die wichtigsten Operatoren zeigen und erklären:
                                                                                    a / 50
 | %        | Berechnet den Rest einer Division zweier Werte oder Variablen       | 12 % 2 +
                                                                                    a % 5
-| -        | negiert den Wert oder die Variable                                  | -12 +							/*negieren schwer verständlich*/
+| -        | negiert den Wert oder die Variable (dreht das Vorzeihen um)         | -12 +
                                                                                    -a
 | **       | Berechnet die Potenz der Operanden. Also `a**2` berechnet a^2^      | 2*\*5 +
                                                                                    a**2
@@ -630,7 +671,8 @@ def name = javax.swing.JOptionPane.showInputDialog('Wie lautet Dein Name?')
 ====
 *Übung*
 
-Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.			/*ein kleiner denkanstoß wäre nicht schlecht*/
+Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.
+_Du musst also die showInputDialog-Anweisung zweimal ausführen und in unterschiedlichen Variablen speichern._
 Gebe den Vornamen und den Nachnamen, getrennt durch ein Leerzeichen, aus (`println`).
 ====
 
@@ -694,7 +736,10 @@ Schreibe ein Programm, bei dem der Benutzer ein Datum eingibt. +
 Gib aus ob das Datum vor diesem oder nach diesem Jahr liegt. +
 Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten Jahreshälfte liegt.
 
-Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Date`-Objekt gewandelt werden.			/*evtl. Beispiel bzw. Erklärung was ein Date-Objekt ist*/
+Es gibt einen Datentyp (eine Klasse) `Date` welcher ein Datum repräsentiert. +
+http://docs.oracle.com/javase/8/docs/api/java/util/Date.html[Hier] und http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/Date.html[hier] findet ihr was man damit alles machen kann.
+
+Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Date`-Objekt gewandelt werden.
 ====
 
 ==== Kombinierte Operatoren
@@ -716,13 +761,13 @@ Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Da
              Operanden um eins erhöht und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
              die Operation zurückliefert: +
              Wenn ++ links vom Operator steht wird zuerst der Wert erhöht und dann der erhöhte Wert zurückgeliefert.+
-             Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.                    | a++				/*pluszeichen nicht zu sehen*/
-                                                                                                                          ++a
+             Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.                    | a&plus;&plus; +
+                                                                                                                          &plus;&plus;a
 | \--       | \-- hat nur einen Operanden, der entweder links oder rechts davon stehen kann. In beiden Fällen wird der Wert des
              Operanden um eins verringert und der Variable des Operanden zugewiesen. Der Unterschied liegt darin welchen Wert
              die Operation zurückliefert: +
              Wenn -- links vom Operator steht wird zuerst der Wert verringert und dann der verringerte Wert zurückgeliefert.+
-             Wenn -- rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann verringert.                | a--
+             Wenn -- rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann verringert.                | a-- +
                                                                                                                           --a
 |===
 
@@ -734,7 +779,11 @@ Eine Zeichenkette (String) kann mit `Date.parse("dd.MM.yyyy", datum)` in ein `Da
 Schreibe ein Programm, bei dem der Benutzer eine Reihe an Zahlen, durch Kommas getrennt, eingibt. +
 Berechne die Summe, den Durchschnitt, den Maximal- und Minimalwert der Zahlen und gebe sie aus.
 
-Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine Liste aus Ganzzahlen umgewandelt werden.					/*.toInteger muss früher angegeben und besser erklärt werden auch .split*/
+Eine Zeichenkette (`input`) hat eine Methode `split` mit der diese anhand des gegeben Trenners
+in mehrere Teile zerlegt wird und als `List` zurückgegeben wird. +
+Die Methode `toInteger()` wandelt einen String in eine Ganzzahl um. +
+Somit kann mit `input.split(',')*.toInteger()` eine String in eine Liste aus Ganzzahlen umgewandelt werden. +
+Was der *. Operator macht findet ihr unter <<Sonstige Operatoren>>.
 ====
 
 ==== Zugriffsoperatoren
@@ -765,10 +814,10 @@ Eine Zeichenkette (String) kann mit `input.split(',')*.toInteger()` in eine List
                                                                                                   [key: 'ab']['key'] => 'abc'
 | .        | Zugriff auf Werte mit Hilfe eines Namens. +
              Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden. +
-             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<<Methoden>> und Eigenschaften) zugegriffen werden. +			/*Was sind keys, generell etwas unverständlich*/
-                                                                                                | [key: 'abc'].key => 'abc'
+             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<<Methoden>> und Eigenschaften) zugegriffen werden. +
+                                                                                                | [name: 'abc'].name => 'abc'
                                                                                                   10.MAX_VALUE => 2147483647
-                                                                                                  [:].put('key', 'abc') => [key: 'abc']
+                                                                                                  [:].put('name', 'abc') => [name: 'abc']
                                                                                                   Integer.toHexString(45054) => 'affe'
 | ?.       | Null-Sichere Navigation. Wenn in einer Variable `null` steht oder eine Funktion `null`
              zurückliefert und man nun hierauf versucht auf ein Element zuzugreifen kann der Computer
@@ -814,8 +863,8 @@ Eine Zeichenkette kann mit `toUpperCase()` in Grossbuchstaben gewandelt werden. 
              Initialisierungsmethode (Konstruktor) ausgeführt.
                                                                                                 | new MyObject()
                                                                                                   new String('Test')
-| *.       | Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird über diese iteriert								/*was bedeutet iteriert*/
-             und für jedes Element wird auf die Eigenschaft des rechten Operanden zugegriffen und
+| *.       | Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird auf die Eigenschaft
+             des rechten Operanden für jedes Element zugegriffen und
              das Ergebnis in eine neue Liste geschrieben, die dann zurückgegeben wird. +
              Wenn also `[1, 'Test', 1.2]\*.class` ausgeführt wird, wird für jedes Element der Liste
              die Eigenschaft `class` gelesen und in eine neue Liste geschrieben:
@@ -829,7 +878,7 @@ Eine Zeichenkette kann mit `toUpperCase()` in Grossbuchstaben gewandelt werden. 
 
 ==== Präzedenz
 
-Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist - es ein anderes Ergebnis gibt wenn zuerst			/*evtl grammatik überarbeiten (-es ein...)*/
+Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist. So dass es z.B. ein anderes Ergebnis gibt wenn zuerst
 Plus und Minus oder Mal und Geteilt gerechnet wird. Diese Reihenfolge der Auswertung von Operatoren nennt man *Präzedenz*.
 Du musst dir dies jetzt nicht merken aber es ist hilfreich diese Reihenfolge zu kennen und gegebenenfalls nachzusehen. +
 Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschrieben wurden - also nicht wundern.
@@ -858,25 +907,6 @@ Hier die Präzedenz in Groovy: +
 | 14 | <op>?<op>:<op>, <op>?:<op>
 | 15 | =, **=, *=, /=, %=, +=, -=, <\<=, >>=, >>>=, &=, ^=, \|=
 |===
-
-[[GroovyTruth]]																												/*ich würde das Thema weiter nach oben setzen*/
-=== Groovy Truth
-
-Bedingungen können zur zwei Ergebnisse haben: wahr (`true`) oder falsch (`false`). +										/*Grammatik, Satzbau nicht verständlich*/
-Variablen vom Typ `boolean` stellen extakt diese zwei Werte dar. Andere Variablen stellen andere und vor allem mehr
-Werte dar. Um zu prüfen ob z.B. in einer Integervariable `a` ein anderer Wert als 0 steht, gibt man in einer Verzweigungsanweisung
-`if(a != 0)` an. Da eine Prüfung auf 0 häufig benötigt wird kann man in Groovy auch nur `if(a)` verwenden. +
-Hier hängt es vom Variablentyp von `a` ab wie ein Bedingungsergebnis berechnet wird. +
-
-Für alle Typen gilt, dass der Wert `null` als falsch (`false`) gewertet wird.
-
-Für alle Zahlen gilt, dass der Wert `0` als falsch (`false`) gewertet wird.
-
-Für Zeichenketten (Strings) gilt, dass eine leere Zeichenkette als falsch (`false`) gewertet wird.
-
-Für alle Sammlungen (`List`, `Array` usw.) gilt, dass eine leere Sammlung als falsch (`false`) gewertet wird.
-
-Wenn eine Klasse eine Methode `asBoolean()` besitzt, wird diese aufgerufen und dessen Ergebnis (`true` oder `false`) wird genutzt.
 
 === Methoden
 
