@@ -933,10 +933,16 @@ println alter</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zeichenkette</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Zeichenketten bestehend aus Unicode-Zeichen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeichenketten bestehend aus Unicode-Zeichen.<br>
+                                            Wenn eine Zeichenkette mit Doppelten Anführungszeichen <code>"</code> oder Schrägstrichen <code>/</code>
+                                            begrenzt wird, können Werte von Varablen mit <code>${variablenName}</code> eingebettet werden.
+                                            Der Einfachheit halber können die Klammern weggelassen werden, wenn nur Werte direkt
+                                            oder deren Eigenschaften eingebettet werden sollen.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">'Hallo'<br>
                                                                                           "Hallo"<br>
-                                                                                          /Hallo/</p></td>
+                                                                                          /Hallo/<br>
+                                                                                          "Hallo $name"<br>
+                                                                                          /Hallo ${name.toUpperCase()}/</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">List</p></td>
@@ -969,7 +975,48 @@ println alter</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Ihr habt vielleicht die Buchstaben am Ende der Beispiele gesehen. Die benötigt ihr nur wenn ihr explizit einen Wert des
+<p>Eine Map kann man sich wie eine Tabelle mit zwei Spalten vorstellen. In der ersten Spalte stehen Schlüssel, in der zweiten Werte.<br>
+Die Schlüssel sind so etwas wie Namen, die den Wert eindeutig identifizieren.<br>
+Machen wir ein Beispiel:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Schlüssel</th>
+<th class="tableblock halign-left valign-top">Wert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vorname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hans</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nachname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dampf</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Wenn man nun über den Schlüssel <code>vorname</code> zugreift bekommt man den Wert <code>Hans</code> zurück.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Ihr habt vielleicht die Buchstaben am Ende der Beispiele für Zahlen gesehen. Die benötigt ihr nur wenn ihr explizit einen Wert des
 entsprechenen Typs haben wollt. Groovy versucht bei Werten die Typen möglichst intelligent zu erkennen. Wenn also eine Zahl
 z.B. nicht mehr in den Werte Bereich von <code>int</code> passt, macht er automatisch ein <code>long</code> daraus.<br>
 Zudem werden Werte beim Zuweisen zu einer Variable, wenn möglich, in den Typ der Variable umgewandelt.</p>
@@ -1264,6 +1311,31 @@ geschweiften Klammern weglassen:</p>
     println <span class="string"><span class="delimiter">&quot;</span><span class="content">Bin auf Diät</span><span class="delimiter">&quot;</span></span></code></pre>
 </div>
 </div>
+<div class="sect4">
+<h5 id="GroovyTruth">3.4.1.1. Groovy Truth</h5>
+<div class="paragraph">
+<p>Eine Bedingungen kann nur entweder wahr (<code>true</code>) oder falsch (<code>false</code>) sein.<br>
+Variablen vom Typ <code>boolean</code> stellen extakt diese zwei Werte dar. Andere Variablen stellen andere und vor allem mehr
+Werte dar. Um zu prüfen ob z.B. in einer Integervariable <code>a</code> ein anderer Wert als 0 steht, gibt man in einer Verzweigungsanweisung
+<code>if(a != 0)</code> an. Da eine Prüfung auf 0 häufig benötigt wird kann man in Groovy auch nur <code>if(a)</code> verwenden.<br>
+Hier hängt es vom Variablentyp von <code>a</code> ab wie ein Bedingungsergebnis berechnet wird.<br></p>
+</div>
+<div class="paragraph">
+<p>Für alle Typen gilt, dass der Wert <code>null</code> als falsch (<code>false</code>) gewertet wird.</p>
+</div>
+<div class="paragraph">
+<p>Für alle Zahlen gilt, dass der Wert <code>0</code> als falsch (<code>false</code>) gewertet wird.</p>
+</div>
+<div class="paragraph">
+<p>Für Zeichenketten (Strings) gilt, dass eine leere Zeichenkette als falsch (<code>false</code>) gewertet wird.</p>
+</div>
+<div class="paragraph">
+<p>Für alle Sammlungen (<code>List</code>, <code>Array</code> usw.) gilt, dass eine leere Sammlung als falsch (<code>false</code>) gewertet wird.</p>
+</div>
+<div class="paragraph">
+<p>Wenn eine Klasse eine Methode <code>asBoolean()</code> besitzt, wird diese aufgerufen und dessen Ergebnis (<code>true</code> oder <code>false</code>) wird genutzt.</p>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_schleifen">3.4.2. Schleifen</h4>
@@ -1502,7 +1574,7 @@ list.each { <span class="keyword">def</span> element -&gt; <i class="conum" data
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Überspringe den Rest des Anweisungsblocks und beginne die nächste Iteration der Schleife.						/<strong>Iteration schwer verständlich</strong>/</td>
+<td>Überspringe den Rest des Anweisungsblocks und beginne die nächste Wiederholung, auch Iteration genannt, der Schleife.</td>
 </tr>
 </table>
 </div>
@@ -1580,8 +1652,8 @@ es gibt aber auch Operatoren mit einem oder drei Operanden.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">negiert den Wert oder die Variable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-12 +							/<strong>negieren schwer verständlich</strong>/
+<td class="tableblock halign-left valign-top"><p class="tableblock">negiert den Wert oder die Variable (dreht das Vorzeihen um)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">-12<br>
                                                                                    -a</p></td>
 </tr>
 <tr>
@@ -1633,7 +1705,8 @@ Hierüber können einfache Abfragen realisiert werden:</p>
 <p><strong>Übung</strong></p>
 </div>
 <div class="paragraph">
-<p>Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.			/<strong>ein kleiner denkanstoß wäre nicht schlecht</strong>/
+<p>Schreibe ein Programm, bei dem der Benutzer im ersten Dialog seinen Vornamen und in einem zweiten seinen Nachnamen angibt.
+<em>Du musst also die showInputDialog-Anweisung zweimal ausführen und in unterschiedlichen Variablen speichern.</em>
 Gebe den Vornamen und den Nachnamen, getrennt durch ein Leerzeichen, aus (<code>println</code>).</p>
 </div>
 </td>
@@ -1783,7 +1856,11 @@ Gib aus ob das Datum vor diesem oder nach diesem Jahr liegt.<br>
 Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten Jahreshälfte liegt.</p>
 </div>
 <div class="paragraph">
-<p>Eine Zeichenkette (String) kann mit <code>Date.parse("dd.MM.yyyy", datum)</code> in ein <code>Date</code>-Objekt gewandelt werden.			/<strong>evtl. Beispiel bzw. Erklärung was ein Date-Objekt ist</strong>/</p>
+<p>Es gibt einen Datentyp (eine Klasse) <code>Date</code> welcher ein Datum repräsentiert.<br>
+<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Date.html">Hier</a> und <a href="http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/Date.html">hier</a> findet ihr was man damit alles machen kann.</p>
+</div>
+<div class="paragraph">
+<p>Eine Zeichenkette (String) kann mit <code>Date.parse("dd.MM.yyyy", datum)</code> in ein <code>Date</code>-Objekt gewandelt werden.</p>
 </div>
 </td>
 </tr>
@@ -1845,8 +1922,8 @@ Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten 
              die Operation zurückliefert: +
              Wenn  links vom Operator steht wird zuerst der Wert erhöht und dann der erhöhte Wert zurückgeliefert.+
              Wenn ++ rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann erhöht.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a				/*pluszeichen nicht zu sehen*/
-                                                                                                                          a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a&plus;&plus;<br>
+                                                                                                                          &plus;&plus;a</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">--</p></td>
@@ -1855,7 +1932,7 @@ Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten 
              die Operation zurückliefert:<br>
              Wenn&#8201;&#8212;&#8201;links vom Operator steht wird zuerst der Wert verringert und dann der verringerte Wert zurückgeliefert.+
              Wenn&#8201;&#8212;&#8201;rechts vom Operator steht wird zuerst der Wert zurückgeliefert und dann verringert.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a--
+<td class="tableblock halign-left valign-top"><p class="tableblock">a--<br>
                                                                                                                           --a</p></td>
 </tr>
 </tbody>
@@ -1875,7 +1952,11 @@ Wenn es in diesem Jahr liegt, dann gib aus ob es in der ersten oder der zweiten 
 Berechne die Summe, den Durchschnitt, den Maximal- und Minimalwert der Zahlen und gebe sie aus.</p>
 </div>
 <div class="paragraph">
-<p>Eine Zeichenkette (String) kann mit <code>input.split(',')<strong>.toInteger()</code> in eine Liste aus Ganzzahlen umgewandelt werden.					/</strong>.toInteger muss früher angegeben und besser erklärt werden auch .split*/</p>
+<p>Eine Zeichenkette (<code>input</code>) hat eine Methode <code>split</code> mit der diese anhand des gegeben Trenners
+in mehrere Teile zerlegt wird und als <code>List</code> zurückgegeben wird.<br>
+Die Methode <code>toInteger()</code> wandelt einen String in eine Ganzzahl um.<br>
+Somit kann mit <code>input.split(',')*.toInteger()</code> eine String in eine Liste aus Ganzzahlen umgewandelt werden.<br>
+Was der *. Operator macht findet ihr unter <a href="#_sonstige_operatoren">Sonstige Operatoren</a>.</p>
 </div>
 </td>
 </tr>
@@ -1930,10 +2011,10 @@ Berechne die Summe, den Durchschnitt, den Maximal- und Minimalwert der Zahlen un
 <td class="tableblock halign-left valign-top"><p class="tableblock">.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zugriff auf Werte mit Hilfe eines Namens.<br>
              Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden.<br>
-             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<a href="#_methoden">Methoden</a> und Eigenschaften) zugegriffen werden. +			/<strong>Was sind keys, generell etwas unverständlich</strong>/</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[key: 'abc'].key &#8658; 'abc'
+             Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<a href="#_methoden">Methoden</a> und Eigenschaften) zugegriffen werden.<br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[name: 'abc'].name &#8658; 'abc'
                                                                                                   10.MAX_VALUE &#8658; 2147483647
-                                                                                                  [:].put('key', 'abc') &#8658; [key: 'abc']
+                                                                                                  [:].put('name', 'abc') &#8658; [name: 'abc']
                                                                                                   Integer.toHexString(45054) &#8658; 'affe'</p></td>
 </tr>
 <tr>
@@ -2018,8 +2099,8 @@ Eine Zeichenkette kann mit <code>toUpperCase()</code> in Grossbuchstaben gewande
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird über diese iteriert								/<strong>was bedeutet iteriert</strong>/
-             und für jedes Element wird auf die Eigenschaft des rechten Operanden zugegriffen und
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collect-Operator. Wenn der linke Operand z.B. eine Liste ist, wird auf die Eigenschaft
+             des rechten Operanden für jedes Element zugegriffen und
              das Ergebnis in eine neue Liste geschrieben, die dann zurückgegeben wird.<br>
              Wenn also <code>[1, 'Test', 1.2]*.class</code> ausgeführt wird, wird für jedes Element der Liste
              die Eigenschaft <code>class</code> gelesen und in eine neue Liste geschrieben:
@@ -2036,7 +2117,7 @@ Eine Zeichenkette kann mit <code>toUpperCase()</code> in Grossbuchstaben gewande
 <div class="sect3">
 <h4 id="_präzedenz">3.5.6. Präzedenz</h4>
 <div class="paragraph">
-<p>Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist - es ein anderes Ergebnis gibt wenn zuerst			/<strong>evtl grammatik überarbeiten (-es ein&#8230;&#8203;)</strong>/
+<p>Aus der Mathematik weisst du, dass die Reihenfolge von Operatoren ausschlaggebend ist. So dass es z.B. ein anderes Ergebnis gibt wenn zuerst
 Plus und Minus oder Mal und Geteilt gerechnet wird. Diese Reihenfolge der Auswertung von Operatoren nennt man <strong>Präzedenz</strong>.
 Du musst dir dies jetzt nicht merken aber es ist hilfreich diese Reihenfolge zu kennen und gegebenenfalls nachzusehen.<br>
 Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschrieben wurden - also nicht wundern.</p>
@@ -2120,32 +2201,6 @@ Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschriebe
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><a id="GroovyTruth"></a>																												/<strong>ich würde das Thema weiter nach oben setzen</strong>/
-=== Groovy Truth</p>
-</div>
-<div class="paragraph">
-<p>Bedingungen können zur zwei Ergebnisse haben: wahr (<code>true</code>) oder falsch (<code>false</code>). +										/<strong>Grammatik, Satzbau nicht verständlich</strong>/
-Variablen vom Typ <code>boolean</code> stellen extakt diese zwei Werte dar. Andere Variablen stellen andere und vor allem mehr
-Werte dar. Um zu prüfen ob z.B. in einer Integervariable <code>a</code> ein anderer Wert als 0 steht, gibt man in einer Verzweigungsanweisung
-<code>if(a != 0)</code> an. Da eine Prüfung auf 0 häufig benötigt wird kann man in Groovy auch nur <code>if(a)</code> verwenden.<br>
-Hier hängt es vom Variablentyp von <code>a</code> ab wie ein Bedingungsergebnis berechnet wird.<br></p>
-</div>
-<div class="paragraph">
-<p>Für alle Typen gilt, dass der Wert <code>null</code> als falsch (<code>false</code>) gewertet wird.</p>
-</div>
-<div class="paragraph">
-<p>Für alle Zahlen gilt, dass der Wert <code>0</code> als falsch (<code>false</code>) gewertet wird.</p>
-</div>
-<div class="paragraph">
-<p>Für Zeichenketten (Strings) gilt, dass eine leere Zeichenkette als falsch (<code>false</code>) gewertet wird.</p>
-</div>
-<div class="paragraph">
-<p>Für alle Sammlungen (<code>List</code>, <code>Array</code> usw.) gilt, dass eine leere Sammlung als falsch (<code>false</code>) gewertet wird.</p>
-</div>
-<div class="paragraph">
-<p>Wenn eine Klasse eine Methode <code>asBoolean()</code> besitzt, wird diese aufgerufen und dessen Ergebnis (<code>true</code> oder <code>false</code>) wird genutzt.</p>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -2187,7 +2242,7 @@ Hier hängt es vom Variablentyp von <code>a</code> ab wie ein Bedingungsergebnis
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-18 17:48:06 +02:00
+Last updated 2017-04-21 16:44:46 +02:00
 </div>
 </div>
 </body>
