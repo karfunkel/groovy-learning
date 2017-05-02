@@ -546,9 +546,27 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_präzedenz">3.5.6. Präzedenz</a></li>
 </ul>
 </li>
-<li><a href="#_methoden">3.6. Methoden</a></li>
-<li><a href="#_closures">3.7. Closures</a></li>
-<li><a href="#_ordnung_im_system">3.8. Ordnung im System</a></li>
+<li><a href="#_methoden">3.6. Methoden</a>
+<ul class="sectlevel3">
+<li><a href="#_optionales">3.6.1. Optionales</a></li>
+<li><a href="#_default_argumente">3.6.2. Default Argumente</a></li>
+<li><a href="#_benannte_argumente">3.6.3. Benannte Argumente</a></li>
+</ul>
+</li>
+<li><a href="#_klassen">3.7. Klassen</a>
+<ul class="sectlevel3">
+<li><a href="#_klassen_erstellen">3.7.1. Klassen erstellen</a></li>
+<li><a href="#_konstruktor">3.7.2. Konstruktor</a></li>
+<li><a href="#_eine_instanz_erzeugen">3.7.3. Eine Instanz erzeugen</a></li>
+<li><a href="#_spezielle_verweise_in_klassen">3.7.4. Spezielle Verweise in Klassen</a></li>
+</ul>
+</li>
+<li><a href="#_closure">3.8. Closure</a>
+<ul class="sectlevel3">
+<li><a href="#_closures_als_argumente">3.8.1. Closures als Argumente</a></li>
+</ul>
+</li>
+<li><a href="#_ordnung_im_system">3.9. Ordnung im System</a></li>
 </ul>
 </li>
 <li><a href="#_kreis_im_quadrat">4. Kreis im Quadrat</a>
@@ -1095,7 +1113,7 @@ Ergebnis <code>affe</code> als String zurückliefert.</p>
 </td>
 <td class="content">
 Das hexadezimale Zahlensystem hat als Basis 16, also die Ziffern 0-9 und a-f. Beim Programmieren ist zudem noch das
-Binäre Zahlensystem mit den Ziffern 0 und 1 und das Oktale Sysem mit den Ziffern 0-8 gebräuchlich.<br>
+Binäre Zahlensystem mit den Ziffern 0 und 1 und das Oktale System mit den Ziffern 0-8 gebräuchlich.<br>
 Muss Dich hier aber nicht weiter stören.
 </td>
 </tr>
@@ -1421,12 +1439,12 @@ Auch hier gilt wie bei der <code>if</code>-Anweisung: Wenn es nur eine Anweisung
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>In Groovy besitzen Zahlen die Methode <code>times</code>, welche als Parameter eine <a href="#Closure">[Closure]</a> bekommt.</td>
+<td>In Groovy besitzen Zahlen die Methode <code>times</code>, welche als Parameter eine <a href="#_closure">Closure</a> bekommt.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Was eine <a href="#Closure">[Closure]</a> ist sehen wir später, aber grundsätzlich entspricht sie einem Anweisungsblock. Zusätzlich kann
-auch eine <a href="#Closure">[Closure]</a> Parameter bekommen, was in diesem Fall genau ein Parameter ist, der angibt in der wievielten Wiederholung
+<td>Was eine <a href="#_closure">Closure</a> ist sehen wir später, aber grundsätzlich entspricht sie einem Anweisungsblock. Zusätzlich kann
+auch eine <a href="#_closure">Closure</a> Parameter bekommen, was in diesem Fall genau ein Parameter ist, der angibt in der wievielten Wiederholung
 man sich befindet. Diesen benennt man innerhalb der Klammer und beendet die Liste der Parameter mit einem Pfeil <code>-&gt;</code>.<br>
 Wenn man diesen nicht benennt bekommt er automatisch den Namen <code>it</code>. + Die geschweiften Klammern sind hier immer notwendig.</td>
 </tr>
@@ -1496,7 +1514,7 @@ die Liste angegeben werden über die iteriert werden soll.</td>
 <div class="sect4">
 <h5 id="_each">3.4.2.5. each</h5>
 <div class="paragraph">
-<p>Auch hierfür gibt es eine Möglichkeit mit <a href="#Closure">[Closure]</a>s:</p>
+<p>Auch hierfür gibt es eine Möglichkeit mit <a href="#_closure">Closure</a>s:</p>
 </div>
 <div class="listingblock">
 <div class="title">Beispiel for each mit Closure</div>
@@ -1511,7 +1529,7 @@ list.each { <span class="keyword">def</span> element -&gt; <i class="conum" data
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Jede Sammlung besitzt eine Methode <code>each</code> welche die übergebene <a href="#Closure">[Closure]</a> für jedes Element ausführt.</td>
+<td>Jede Sammlung besitzt eine Methode <code>each</code> welche die übergebene <a href="#_closure">Closure</a> für jedes Element ausführt.</td>
 </tr>
 </table>
 </div>
@@ -1687,7 +1705,8 @@ Hierüber können einfache Abfragen realisiert werden:</p>
 <div class="listingblock">
 <div class="title">Beispiel showInputDialog</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> name = javax.swing.JOptionPane.showInputDialog(<span class="string"><span class="delimiter">'</span><span class="content">Wie lautet Dein Name?</span><span class="delimiter">'</span></span>)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">javax.swing.*</span>
+<span class="keyword">def</span> name = <span class="predefined-type">JOptionPane</span>.showInputDialog(<span class="string"><span class="delimiter">'</span><span class="content">Wie lautet Dein Name?</span><span class="delimiter">'</span></span>)</code></pre>
 </div>
 </div>
 </td>
@@ -1987,8 +2006,8 @@ Was der *. Operator macht findet ihr unter <a href="#_sonstige_operatoren">Sonst
              Funktion gestartet. An Funktionen können Parameter (auch Argumente genannt)
              übergeben werden. Diese werden zwischend die Klammern geschrieben:
              <code>obj.doIt("Hallo vom Objekt")</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">obj.doIt()
-                                                                                                  obj.doIt("Blah Blah")
+<td class="tableblock halign-left valign-top"><p class="tableblock">obj.doIt()<br>
+                                                                                                  obj.doIt("Blah Blah")<br>
                                                                                                   println("Hallo Welt!")</p></td>
 </tr>
 <tr>
@@ -2005,16 +2024,16 @@ Was der *. Operator macht findet ihr unter <a href="#_sonstige_operatoren">Sonst
                                                                                                   [1,2,3,4][1,3] &#8658; [2, 4]<br>
                                                                                                   'Hallo'[1..3] &#8658; 'all'<br>
                                                                                                   [1,2,3,4][2..3] &#8658; [3, 4]<br>
-                                                                                                  [key: 'ab']['key'] &#8658; 'abc'</p></td>
+                                                                                                  [key: 'abc']['key'] &#8658; 'abc'</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Zugriff auf Werte mit Hilfe eines Namens.<br>
              Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden.<br>
              Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<a href="#_methoden">Methoden</a> und Eigenschaften) zugegriffen werden.<br></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[name: 'abc'].name &#8658; 'abc'
-                                                                                                  10.MAX_VALUE &#8658; 2147483647
-                                                                                                  [:].put('name', 'abc') &#8658; [name: 'abc']
+<td class="tableblock halign-left valign-top"><p class="tableblock">[name: 'abc'].name &#8658; 'abc'<br>
+                                                                                                  10.MAX_VALUE &#8658; 2147483647<br>
+                                                                                                  [:].put('name', 'abc') &#8658; [name: 'abc']<br>
                                                                                                   Integer.toHexString(45054) &#8658; 'affe'</p></td>
 </tr>
 <tr>
@@ -2205,15 +2224,476 @@ Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschriebe
 </div>
 <div class="sect2">
 <h3 id="_methoden">3.6. Methoden</h3>
+<div class="paragraph">
+<p>Wie oben unter <a href="#_eigene_typen">Eigene Typen</a> beschrieben sind Methoden die Funktionen eines Objekts. Also das was diese Objekt tun kann.<br>
+Also wieder eine Folge von Anweisungen die beschreibt was passieren soll. Quasi ein Programm in einem Programm - ober besser gesagt ein
+Teil-Programm.</p>
+</div>
+<div class="paragraph">
+<p>Eine Methode besteht aus einer Signatur - also der Kopf einer Methode - und einem Block an Anweisungen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Methode</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">int</span> addiere(<span class="type">int</span> zahl1, <span class="type">int</span> zahl2) { <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="keyword">return</span> zahl1 + zahl2 <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Die Signatur der Methode besteht aus:<br>
+<strong>Rückgabetyp</strong> <strong>Methodenname</strong> <strong>(</strong> <strong>Argumentliste</strong> <strong>)</strong><br>
+Der <strong>Rückgabetyp</strong> kann jeder <a href="#_variablentypen">Variablentyp</a> sein.<br>
+Für den <strong>Methodennamen</strong> gelten die selben <a href="#_namensregeln">Namensregeln</a> wie für Variablen.<br>
+Die <strong>Argumentliste</strong> ist eine Komma-getrennte Liste aus <strong>Argumenten</strong>.<br>
+Ein <strong>Argument</strong> besteht aus einem <a href="#_variablentypen">Variablentyp</a> und einem Variablennamen.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die Anweisungen stehen zwischen geschweiften Klammern.<br>
+Mit dem Befehl <code>return</code> wird der Ablauf der Methode beendet und der gegebene Wert zurückgegeben.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Sowohl die Variablen welche in der Signatur als Argumente definiert werden, als auch alle Variablen,
+die im Anweisungsblock definiert werden, gelten nur innerhalb der geschweiften Klammern.<br>
+Variablen, welche ausserhalb der Methode definiert wurden sind <strong>auch innerhalb</strong> der Methode verfügbar.</p>
+</div>
+<div class="paragraph">
+<p>Wenn mal eine Methode ausführen (aufrufen genannt) möchte geht das so:</p>
+</div>
+<div class="listingblock">
+<div class="title">Aufruf einer Methode</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">addiere(<span class="integer">5</span>, <span class="integer">7</span>) <i class="conum" data-value="1"></i><b>(1)</b>
 
+instance.addiere(<span class="integer">5</span>, <span class="integer">7</span>) <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Wenn man eine Methode der selben Klasse aufrufen möchte genügt es die Argumente in Klammern hinter den Namen zu setzen.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wenn man eine Methode einer anderen Klasse aufrufen möchte muss man diese mit dem <code>.</code>-Operator ansprechen.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Auf den Wert, den eine Methode zurückgibt, kann man wie auf eine Variable zugreifen:</p>
+</div>
+<div class="listingblock">
+<div class="title">Verwendung des Rückgabewerts einer Methode</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> wert = addiere(<span class="integer">5</span>, <span class="integer">7</span>)
+println addiere(<span class="integer">5</span>, <span class="integer">7</span>) * <span class="integer">3</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Es gibt auf Methoden die keinen Wert zurückliefern. Diese werden Void-Methode oder in manchen Sprachen auch Prozeduren genannt.<br>
+Wenn man eine solche erstellen möchte benutzt man das Schlüsselwort <code>void</code> anstelle des Rückgabetyps in der Signatur.<br>
+Wenn man den Ablauf einer solchen Methode beenden möchte, kann ebenfalls der Befehl <code>return</code> verwendet werden. Allerdings
+git man dann keinen Rückgabewert an.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Methode ohne Rückgabewert</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">void</span> wasTuIchWohl(<span class="type">int</span> von, <span class="type">int</span> bis, <span class="type">int</span> max) {
+    <span class="keyword">for</span>(<span class="type">int</span> z = von; z &lt;= bis; z++) {
+        <span class="keyword">if</span>(z &gt; max)
+            <span class="keyword">return</span>
+        println z
+    }
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Es ist hilfreich Teile des Programmcodes in Methoden auszulagern um ihn leserlich zu halten.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Es ist wichtig Methoden, ebenso wie Variablen und Argumente, sinnvoll zu benennen damit man sofort versteht was gemeint ist.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_optionales">3.6.1. Optionales</h4>
+<div class="paragraph">
+<p>Die runden Klammern beim Aufruf können in vielen Fällen weg gelassen werden.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel optionale Klammern</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> <span class="function">print</span>(<span class="keyword">def</span> arg) {
+    println arg
+}
+
+print(<span class="string"><span class="delimiter">'</span><span class="content">Hallo</span><span class="delimiter">'</span></span>) <span class="comment">// Hallo</span>
+print <span class="string"><span class="delimiter">'</span><span class="content">Hallo</span><span class="delimiter">'</span></span>  <span class="comment">// Hallo</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In der Argumentliste kann der Variablentyp weggelassen werden. Dies ist gleichbedeutend wie wenn man <code>def</code> als Variablentyp angibt -
+es kann also alles übergeben werden.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel optionaler Variablentyp</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> <span class="function">print</span>(arg) {
+    println arg
+}
+
+print(<span class="string"><span class="delimiter">'</span><span class="content">Hallo</span><span class="delimiter">'</span></span>) <span class="comment">// Hallo</span>
+print <span class="string"><span class="delimiter">'</span><span class="content">Hallo</span><span class="delimiter">'</span></span>  <span class="comment">// Hallo</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ausserdem muss kein <code>return</code> in einer Methode angegeben werden. Eine Methode wird automatisch beendet wenn man "an&#8217;s Ende" gelangt ist.<br>
+Falls die Methode einen Wert zurückgibt wird dann der Wert der zuletzt ausgeführten Anweisung zurückgegeben.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_default_argumente">3.6.2. Default Argumente</h4>
+<div class="paragraph">
+<p>In Groovy ist es möglich Standardwerte für Argumente anzugeben welche verwendet werden wenn das Argument nicht übergeben wurde.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel Default Argumente</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> <span class="function">power</span>(<span class="type">int</span> base, <span class="type">int</span> exponent = <span class="integer">2</span>) {
+    <span class="keyword">return</span> base ** exponent
+}
+
+println power(<span class="integer">2</span>,<span class="integer">3</span>) <span class="comment">// prints 8</span>
+println power(<span class="integer">2</span>)   <span class="comment">// prints 4</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_benannte_argumente">3.6.3. Benannte Argumente</h4>
+<div class="paragraph">
+<p>Wenn das erste Argument einer Closure vom Typ <code>Map</code> ist kann man Argumente benennen.
+Diese landen dann als Schlüssel-Wert-Paare in der <code>Map</code>.-</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel Benannte Argumente</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">void</span> print(<span class="predefined-type">Map</span> map) {
+    println map
+}
+
+print(<span class="key">prename</span>: <span class="string"><span class="delimiter">'</span><span class="content">Hans</span><span class="delimiter">'</span></span>, <span class="key">name</span>: <span class="string"><span class="delimiter">'</span><span class="content">Dampf</span><span class="delimiter">'</span></span>, <span class="key">age</span>: <span class="integer">200</span>)
+<span class="comment">// prints [prename:Hans, name:Dampf, age:200]</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_closures">3.7. Closures</h3>
+<h3 id="_klassen">3.7. Klassen</h3>
+<div class="paragraph">
+<p>Bisher habe ich dir verschwiegen wie man eine <a href="#_eigene_typen">Klasse</a> erstellt. Dies will ich nun nachholen.</p>
+</div>
+<div class="sect3">
+<h4 id="_klassen_erstellen">3.7.1. Klassen erstellen</h4>
+<div class="paragraph">
+<p>Um eine zu Klasse erstellen benutzt man das Schlüsselwort <code>class</code>, gefolgt vom Namen der Klasse und danach geschweifte Klammern.<br>
+In den Klammern können nun Variablen und <a href="#_methoden">Methoden</a> geschrieben werden die nun zu dieser Klasse gehören.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Klasse</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">MeineKlasse</span> {
+    <span class="predefined-type">String</span> name
+
+    <span class="type">void</span> hallo() {
+        println <span class="string"><span class="delimiter">&quot;</span><span class="content">Hallo </span><span class="inline"><span class="inline-delimiter">$</span>name</span><span class="delimiter">&quot;</span></span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_konstruktor">3.7.2. Konstruktor</h4>
+<div class="paragraph">
+<p>Es gibt eine spezielle Methode in einer Klasse, diese wird <strong>Konstruktor</strong> genannt, welche immer aufgerufen wird wenn
+eine neue Instanz einer Klasse erstellt wird.<br>
+Dieser Konstruktor hat den selben Namen wie die Klasse und keinen Rückgabetyp.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Klasse</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">MeineKlasse</span> {
+    <span class="predefined-type">String</span> name
+
+    MeineKlasse() {
+        name = <span class="string"><span class="delimiter">&quot;</span><span class="content">Nobody</span><span class="delimiter">&quot;</span></span>
+    }
+
+    MeineKlasse(<span class="predefined-type">String</span> name) {
+       <span class="local-variable">this</span>.name = name
+    }
+
+    <span class="type">void</span> hallo() {
+        println <span class="string"><span class="delimiter">&quot;</span><span class="content">Hallo </span><span class="inline"><span class="inline-delimiter">$</span>name</span><span class="delimiter">&quot;</span></span>
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_eine_instanz_erzeugen">3.7.3. Eine Instanz erzeugen</h4>
+<div class="paragraph">
+<p>Um aus dieser Klasse nun eine Instanz zu erzeugen wird der <a href="#_operatoren">Operator</a> <code>new</code> verwendet und danach ein Konstruktor angegeben.<br>
+Danach kann über den <code>.</code>-Operator auf die Eigenschaften und Methoden der Klasse zugegriffen werden.</p>
+</div>
+<div class="listingblock">
+<div class="title">Erzeugung einer neuen Instanz</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">MeineKlasse instanz = <span class="keyword">new</span> MeineKlasse()
+println instanz.hallo() <span class="comment">// Hallo Nobody</span>
+
+MeineKlasse instanz2 = <span class="keyword">new</span> MeineKlasse(<span class="string"><span class="delimiter">'</span><span class="content">Hans</span><span class="delimiter">'</span></span>)
+println instanz2.hallo() <span class="comment">// Hallo Hans</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_spezielle_verweise_in_klassen">3.7.4. Spezielle Verweise in Klassen</h4>
 
 </div>
+</div>
 <div class="sect2">
-<h3 id="_ordnung_im_system">3.8. Ordnung im System</h3>
+<h3 id="_closure">3.8. Closure</h3>
+<div class="paragraph">
+<p>Closures sind sehr ähnlich zu <a href="#_methoden">Methoden</a> und fast alles was ich zu <a href="#_methoden">Methoden</a> sagte gilt auch für Closures.<br>
+Nur sind Closures <strong>nicht</strong> Bestandteil einer Klasse sondern können alleine für sich stehen.
+Man kann sie auch als Wert in einer Variable speichern. Sie sind vom Variablentyp <code>groovy.lang.Closure</code>.</p>
+</div>
+<div class="paragraph">
+<p>Eine Closure sieht so aus:</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Closure</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> addiere = { <span class="type">int</span> zahl1, <span class="type">int</span> zahl2 -&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="keyword">return</span> zahl1 + zahl2 <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eine Closure wird vollständig von geschweiften Klammern umschlossen.<br>
+Ein <strong>Rückgabetyp</strong> kann man <strong>nicht</strong> angeben. Hier habe ich die Closure gleich in die Variable <code>addiere</code> gespeichert - was
+aber nicht zwingend nötig ist. Einen <strong>Namen</strong> hat eine Closure also nicht.<br>
+Die <strong>Argumentliste</strong> steht bei einer Closure innerhalb der Klammern, getrennt durch einen Pfeil <code>-&gt;</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Die Anweisungen stehen auch bei der Closure zwischen den geschweiften Klammern, aber nach dem Pfeil.<br>
+Mit dem Befehl <code>return</code> wird auch der Ablauf der Closure beendet und der gegebene Wert zurückgegeben.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Es <strong>muss</strong> keine Argumentliste angeben werden, dann wird auch kein Pfeil notiert.<br>
+In diesem besonderen Fall kann die Closure mit <strong>einem oder keinem</strong> Argument aufgerufen werden. Der Name für dieses
+(optionale) Argument lautet <code>it</code> - also das englische <strong>es</strong>. Wenn eine solche Closure ohne Argument aufgerufen wird ist <code>it == null</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Closure ohne definierte Argumente</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> print = {
+    println <span class="local-variable">it</span>
+}
 
+print(<span class="string"><span class="delimiter">'</span><span class="content">Hallo</span><span class="delimiter">'</span></span>) <span class="comment">// Hallo</span>
+print() <span class="comment">// null</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Falls aber ein Pfeil angegeben wird, wird die Argumentliste festgelegt und <code>it</code> existiert nicht.<br>
+Das bedeutet auch, dass die Closure auch nur mit genau dieser Argumentliste aufgerufen werden kann.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Closure ohne Argumente (Achtung! funktioniert nicht)</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> print = { -&gt;
+    println <span class="local-variable">it</span>
+}
+
+print(<span class="string"><span class="delimiter">'</span><span class="content">Hallo</span><span class="delimiter">'</span></span>) <span class="comment">// groovy.lang.MissingMethodException: No signature of method: ConsoleScript3$_run_closure1.call() is applicable for argument types: (java.lang.String) values: [Hallo]</span>
+print() <span class="comment">// groovy.lang.MissingPropertyException: No such property: it for class: ConsoleScript</span></code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_closures_als_argumente">3.8.1. Closures als Argumente</h4>
+<div class="paragraph">
+<p>Weil Closures alleine stehen können und auch Variablen zugewiesen werden können kann man sie natürlich auch als Argumente
+an <a href="#_methoden">Methoden</a> und andere Closures übergeben.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Closure als Argument</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> forEachInList = { <span class="predefined-type">List</span> list, Closure action -&gt;
+    <span class="keyword">for</span>(<span class="keyword">def</span> <span class="key">element</span>: list) {
+        action(element)
+    }
+}
+
+<span class="predefined-type">List</span> l = [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>]
+forEachInList(l, {
+    println <span class="local-variable">it</span>
+})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hier gilt, wenn das letzte Argument eine Closure ist, kann die Closure <strong>hinter</strong> den runden Klammern der Argumentliste stehen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Closure als Argument (2)</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="predefined-type">List</span> l = [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>]
+forEachInList(l) {
+    println <span class="local-variable">it</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn die Closure das einzige Argument ist werden keine runden Klammern benötigt.</p>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel einer Closure als Argument (3)</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> logCall = { Closure action -&gt;
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Start</span><span class="delimiter">&quot;</span></span>
+    action()
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">End</span><span class="delimiter">&quot;</span></span>
+}
+
+logCall {
+    println <span class="string"><span class="delimiter">&quot;</span><span class="content">Action</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ordnung_im_system">3.9. Ordnung im System</h3>
+<div class="paragraph">
+<p>Groovy hat sehr viele Klassen und Java, auf dem Groovy aufsetzt, hat noch viel, viel mehr davon.
+Damit man den Überblick bewahren kann werden Klassen in sogenannten <code>packages</code>, also Paketen organisiert.</p>
+</div>
+<div class="paragraph">
+<p>Dazu gibt man am Anfang einer Datei an in welchem Paket sich die Klassen dieser Datei befinden sollen.<br>
+Häufig werden sie wie eine Internetadresse angegeben - nur umgekeht. Dies ist aber nicht zwingend.</p>
+</div>
+<div class="listingblock">
+<div class="title">Packagedefinition</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">package</span> de.heidehofgymnasium.groovy.learning
+
+<span class="type">class</span> <span class="class">KlasseA</span> {
+    ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wenn man auf eine Klasse zugreifgen möchte muss immer das <code>package</code> mit angegeben werden:</p>
+</div>
+<div class="listingblock">
+<div class="title">Explizites package</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> a = <span class="keyword">new</span> de.heidehofgymnasium.groovy.learning.KlasseA()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Da dies aber sehr umständlich ist muss man dies nur tun wenn man nicht gerade in einer Klasse ist, welche sich im selben
+<code>package</code> befindet.<br>
+Wenn man aber in einer Klasse in einem anderen <code>package</code> ist gibt es die Möglichkeit sich mit <code>import</code> eine Klasse zu
+importieren und so das Paket nicht mehr angeben zu müssen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Import einer Klasse</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">de.heidehofgymnasium.groovy.learning.KlasseA</span>
+
+<span class="keyword">def</span> a = <span class="keyword">new</span> KlasseA()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Man kann auch gleich ein ganzes Paket importieren indem man als Klassenname einen <code>*</code> angibt.</p>
+</div>
+<div class="listingblock">
+<div class="title">Import eines Pakets</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">de.heidehofgymnasium.groovy.learning.*</span>
+
+<span class="keyword">def</span> a = <span class="keyword">new</span> KlasseA()</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2242,7 +2722,7 @@ Es sind hier alle Operatoren aufgelistet - auch welche die hier nicht beschriebe
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-04-21 16:44:46 +02:00
+Last updated 2017-05-02 20:40:23 +02:00
 </div>
 </div>
 </body>
