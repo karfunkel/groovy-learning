@@ -277,7 +277,7 @@ Ein Beispiel für eine statische Funktion ist z.b. `Integer.toHexString(45054)` 
 Ergebnis `affe` als String zurückliefert.
 
 NOTE: Das hexadezimale Zahlensystem hat als Basis 16, also die Ziffern 0-9 und a-f. Beim Programmieren ist zudem noch das
-Binäre Zahlensystem mit den Ziffern 0 und 1 und das Oktale Sysem mit den Ziffern 0-8 gebräuchlich. +
+Binäre Zahlensystem mit den Ziffern 0 und 1 und das Oktale System mit den Ziffern 0-8 gebräuchlich. +
 Muss Dich hier aber nicht weiter stören.
 
 ===== Null und Autoboxing
@@ -663,7 +663,8 @@ Hierüber können einfache Abfragen realisiert werden:
 [source, groovy]
 .Beispiel showInputDialog
 ----
-def name = javax.swing.JOptionPane.showInputDialog('Wie lautet Dein Name?')
+import javax.swing.*
+def name = JOptionPane.showInputDialog('Wie lautet Dein Name?')
 ----
 ====
 
@@ -787,7 +788,7 @@ Was der *. Operator macht findet ihr unter <<Sonstige Operatoren>>.
 ====
 
 ==== Zugriffsoperatoren
-
+// TODO: doIt in was praktischeres wandeln
 [cols="1,4,3"]
 .Zugriffsoperatoren
 |===
@@ -797,8 +798,8 @@ Was der *. Operator macht findet ihr unter <<Sonstige Operatoren>>.
              Wenn z.B. ein Objekt `obj` die Funktion `doIt` besitzt, wird mit `obj.doIt()` diese
              Funktion gestartet. An Funktionen können Parameter (auch Argumente genannt)
              übergeben werden. Diese werden zwischend die Klammern geschrieben:
-             `obj.doIt("Hallo vom Objekt")`                                                     | obj.doIt()
-                                                                                                  obj.doIt("Blah Blah")
+             `obj.doIt("Hallo vom Objekt")`                                                     | obj.doIt() +
+                                                                                                  obj.doIt("Blah Blah") +
                                                                                                   println("Hallo Welt!")
 | []       | Zugriff auf Werte mit Hilfe eines Index (also einer Position). +
              Indices beginnen immer mit 0. +
@@ -811,13 +812,13 @@ Was der *. Operator macht findet ihr unter <<Sonstige Operatoren>>.
                                                                                                   [1,2,3,4][1,3] => [2, 4] +
                                                                                                   'Hallo'[1..3] => 'all' +
                                                                                                   [1,2,3,4][2..3] => [3, 4] +
-                                                                                                  [key: 'ab']['key'] => 'abc'
+                                                                                                  [key: 'abc']['key'] => 'abc'
 | .        | Zugriff auf Werte mit Hilfe eines Namens. +
              Bei Maps kann hier direkt mit Hilfe des Schlüssels zugegriffen werden. +
              Bei Objekten und Klassen kann mit dem Punkt auf deren Elemente (<<Methoden>> und Eigenschaften) zugegriffen werden. +
-                                                                                                | [name: 'abc'].name => 'abc'
-                                                                                                  10.MAX_VALUE => 2147483647
-                                                                                                  [:].put('name', 'abc') => [name: 'abc']
+                                                                                                | [name: 'abc'].name => 'abc' +
+                                                                                                  10.MAX_VALUE => 2147483647 +
+                                                                                                  [:].put('name', 'abc') => [name: 'abc'] +
                                                                                                   Integer.toHexString(45054) => 'affe'
 | ?.       | Null-Sichere Navigation. Wenn in einer Variable `null` steht oder eine Funktion `null`
              zurückliefert und man nun hierauf versucht auf ein Element zuzugreifen kann der Computer
@@ -910,11 +911,370 @@ Hier die Präzedenz in Groovy: +
 
 === Methoden
 
-=== Closures
+Wie oben unter <<Eigene Typen>> beschrieben sind Methoden die Funktionen eines Objekts. Also das was diese Objekt tun kann. +
+Also wieder eine Folge von Anweisungen die beschreibt was passieren soll. Quasi ein Programm in einem Programm - ober besser gesagt ein
+Teil-Programm.
+
+Eine Methode besteht aus einer Signatur - also der Kopf einer Methode - und einem Block an Anweisungen.
+
+[source,groovy]
+.Beispiel einer Methode
+----
+int addiere(int zahl1, int zahl2) { <1>
+    return zahl1 + zahl2 <2>
+}
+----
+
+<1> Die Signatur der Methode besteht aus: +
+*Rückgabetyp* *Methodenname* *(* *Argumentliste* *)* +
+Der *Rückgabetyp* kann jeder <<Variablentypen,Variablentyp>> sein. +
+Für den *Methodennamen* gelten die selben <<Namensregeln>> wie für Variablen. +
+Die *Argumentliste* ist eine Komma-getrennte Liste aus *Argumenten*. +
+Ein *Argument* besteht aus einem <<Variablentypen,Variablentyp>> und einem Variablennamen.
+
+<2> Die Anweisungen stehen zwischen geschweiften Klammern. +
+Mit dem Befehl `return` wird der Ablauf der Methode beendet und der gegebene Wert zurückgegeben.
+
+Sowohl die Variablen welche in der Signatur als Argumente definiert werden, als auch alle Variablen,
+die im Anweisungsblock definiert werden, gelten nur innerhalb der geschweiften Klammern. +
+Variablen, welche ausserhalb der Methode definiert wurden sind *auch innerhalb* der Methode verfügbar.
+
+Wenn mal eine Methode ausführen (aufrufen genannt) möchte geht das so:
+
+[source,groovy]
+.Aufruf einer Methode
+----
+addiere(5, 7) <1>
+
+instance.addiere(5, 7) <2>
+----
+
+<1> Wenn man eine Methode der selben Klasse aufrufen möchte genügt es die Argumente in Klammern hinter den Namen zu setzen.
+
+<2> Wenn man eine Methode einer anderen Klasse aufrufen möchte muss man diese mit dem `.`-Operator ansprechen.
+
+Auf den Wert, den eine Methode zurückgibt, kann man wie auf eine Variable zugreifen:
+
+[source,groovy]
+.Verwendung des Rückgabewerts einer Methode
+----
+def wert = addiere(5, 7)
+println addiere(5, 7) * 3
+----
+
+[NOTE]
+====
+Es gibt auf Methoden die keinen Wert zurückliefern. Diese werden Void-Methode oder in manchen Sprachen auch Prozeduren genannt. +
+Wenn man eine solche erstellen möchte benutzt man das Schlüsselwort `void` anstelle des Rückgabetyps in der Signatur. +
+Wenn man den Ablauf einer solchen Methode beenden möchte, kann ebenfalls der Befehl `return` verwendet werden. Allerdings
+git man dann keinen Rückgabewert an.
+
+[source,groovy]
+.Beispiel einer Methode ohne Rückgabewert
+----
+void wasTuIchWohl(int von, int bis, int max) {
+    for(int z = von; z <= bis; z++) {
+        if(z > max)
+            return
+        println z
+    }
+}
+----
+====
+
+NOTE: Es ist hilfreich Teile des Programmcodes in Methoden auszulagern um ihn leserlich zu halten.
+
+IMPORTANT: Es ist wichtig Methoden, ebenso wie Variablen und Argumente, sinnvoll zu benennen damit man sofort versteht was gemeint ist.
+
+[TIP]
+====
+*Übung*
+====
+
+==== Optionales
+
+Die runden Klammern beim Aufruf können in vielen Fällen weg gelassen werden.
+
+[source,groovy]
+.Beispiel optionale Klammern
+----
+def print(def arg) {
+    println arg
+}
+
+print('Hallo') // Hallo
+print 'Hallo'  // Hallo
+----
+
+In der Argumentliste kann der Variablentyp weggelassen werden. Dies ist gleichbedeutend wie wenn man `def` als Variablentyp angibt -
+es kann also alles übergeben werden.
+
+[source,groovy]
+.Beispiel optionaler Variablentyp
+----
+def print(arg) {
+    println arg
+}
+
+print('Hallo') // Hallo
+print 'Hallo'  // Hallo
+----
+
+Ausserdem muss kein `return` in einer Methode angegeben werden. Eine Methode wird automatisch beendet wenn man "an's Ende" gelangt ist. +
+Falls die Methode einen Wert zurückgibt wird dann der Wert der zuletzt ausgeführten Anweisung zurückgegeben.
+
+==== Default Argumente
+
+In Groovy ist es möglich Standardwerte für Argumente anzugeben welche verwendet werden wenn das Argument nicht übergeben wurde.
+
+[source,groovy]
+.Beispiel Default Argumente
+----
+def power(int base, int exponent = 2) {
+    return base ** exponent
+}
+
+println power(2,3) // prints 8
+println power(2)   // prints 4
+----
+
+==== Benannte Argumente
+
+Wenn das erste Argument einer Closure vom Typ `Map` ist kann man Argumente benennen.
+Diese landen dann als Schlüssel-Wert-Paare in der `Map`.-
+
+[source,groovy]
+.Beispiel Benannte Argumente
+----
+void print(Map map) {
+    println map
+}
+
+print(prename: 'Hans', name: 'Dampf', age: 200)
+// prints [prename:Hans, name:Dampf, age:200]
+----
+
+[TIP]
+====
+*Übung*
+====
+
+=== Klassen
+
+Bisher habe ich dir verschwiegen wie man eine <<Eigene Typen,Klasse>> erstellt. Dies will ich nun nachholen.
+
+==== Klassen erstellen
+
+Um eine zu Klasse erstellen benutzt man das Schlüsselwort `class`, gefolgt vom Namen der Klasse und danach geschweifte Klammern. +
+In den Klammern können nun Variablen und <<Methoden>> geschrieben werden die nun zu dieser Klasse gehören.
+
+[source,groovy]
+.Beispiel einer Klasse
+----
+class MeineKlasse {
+    String name
+
+    void hallo() {
+        println "Hallo $name"
+    }
+}
+----
+
+==== Konstruktor
+
+Es gibt eine spezielle Methode in einer Klasse, diese wird *Konstruktor* genannt, welche immer aufgerufen wird wenn
+eine neue Instanz einer Klasse erstellt wird. +
+Dieser Konstruktor hat den selben Namen wie die Klasse und keinen Rückgabetyp.
+
+[source,groovy]
+.Beispiel einer Klasse
+----
+class MeineKlasse {
+    String name
+
+    MeineKlasse() {
+        name = "Nobody"
+    }
+
+    MeineKlasse(String name) {
+       this.name = name
+    }
+
+    void hallo() {
+        println "Hallo $name"
+    }
+}
+----
+
+==== Eine Instanz erzeugen
+
+Um aus dieser Klasse nun eine Instanz zu erzeugen wird der <<Operatoren,Operator>> `new` verwendet und danach ein Konstruktor angegeben. +
+Danach kann über den `.`-Operator auf die Eigenschaften und Methoden der Klasse zugegriffen werden.
+
+[source,groovy]
+.Erzeugung einer neuen Instanz
+----
+MeineKlasse instanz = new MeineKlasse()
+println instanz.hallo() // Hallo Nobody
+
+MeineKlasse instanz2 = new MeineKlasse('Hans')
+println instanz2.hallo() // Hallo Hans
+----
+
+==== Spezielle Verweise in Klassen
+
+// TODO: this, super, this(), super(), Vererbung?
+
+=== Closure
+
+Closures sind sehr ähnlich zu <<Methoden>> und fast alles was ich zu <<Methoden>> sagte gilt auch für Closures. +
+Nur sind Closures *nicht* Bestandteil einer Klasse sondern können alleine für sich stehen.
+Man kann sie auch als Wert in einer Variable speichern. Sie sind vom Variablentyp `groovy.lang.Closure`.
+
+Eine Closure sieht so aus:
+
+[source,groovy]
+.Beispiel einer Closure
+----
+def addiere = { int zahl1, int zahl2 -> <1>
+    return zahl1 + zahl2 <2>
+}
+----
+
+<1> Eine Closure wird vollständig von geschweiften Klammern umschlossen. +
+Ein *Rückgabetyp* kann man *nicht* angeben. Hier habe ich die Closure gleich in die Variable `addiere` gespeichert - was
+aber nicht zwingend nötig ist. Einen *Namen* hat eine Closure also nicht. +
+Die *Argumentliste* steht bei einer Closure innerhalb der Klammern, getrennt durch einen Pfeil `\->`.
+
+<2> Die Anweisungen stehen auch bei der Closure zwischen den geschweiften Klammern, aber nach dem Pfeil. +
+Mit dem Befehl `return` wird auch der Ablauf der Closure beendet und der gegebene Wert zurückgegeben.
+
+Es *muss* keine Argumentliste angeben werden, dann wird auch kein Pfeil notiert. +
+In diesem besonderen Fall kann die Closure mit *einem oder keinem* Argument aufgerufen werden. Der Name für dieses
+(optionale) Argument lautet `it` - also das englische *es*. Wenn eine solche Closure ohne Argument aufgerufen wird ist `it == null`.
+
+[source,groovy]
+.Beispiel einer Closure ohne definierte Argumente
+----
+def print = {
+    println it
+}
+
+print('Hallo') // Hallo
+print() // null
+----
+
+Falls aber ein Pfeil angegeben wird, wird die Argumentliste festgelegt und `it` existiert nicht. +
+Das bedeutet auch, dass die Closure auch nur mit genau dieser Argumentliste aufgerufen werden kann.
+
+[source,groovy]
+.Beispiel einer Closure ohne Argumente (Achtung! funktioniert nicht)
+----
+def print = { ->
+    println it
+}
+
+print('Hallo') // groovy.lang.MissingMethodException: No signature of method: ConsoleScript3$_run_closure1.call() is applicable for argument types: (java.lang.String) values: [Hallo]
+print() // groovy.lang.MissingPropertyException: No such property: it for class: ConsoleScript
+----
+
+==== Closures als Argumente
+
+Weil Closures alleine stehen können und auch Variablen zugewiesen werden können kann man sie natürlich auch als Argumente
+an <<Methoden>> und andere Closures übergeben.
+
+[source,groovy]
+.Beispiel einer Closure als Argument
+----
+def forEachInList = { List list, Closure action ->
+    for(def element: list) {
+        action(element)
+    }
+}
+
+List l = [1,2,3]
+forEachInList(l, {
+    println it
+})
+----
+
+Hier gilt, wenn das letzte Argument eine Closure ist, kann die Closure *hinter* den runden Klammern der Argumentliste stehen.
+
+[source,groovy]
+.Beispiel einer Closure als Argument (2)
+----
+List l = [1,2,3]
+forEachInList(l) {
+    println it
+}
+----
+
+Wenn die Closure das einzige Argument ist werden keine runden Klammern benötigt.
+
+[source,groovy]
+.Beispiel einer Closure als Argument (3)
+----
+def logCall = { Closure action ->
+    println "Start"
+    action()
+    println "End"
+}
+
+logCall {
+    println "Action"
+}
+----
 
 === Ordnung im System
 
-// packages und imports
+Groovy hat sehr viele Klassen und Java, auf dem Groovy aufsetzt, hat noch viel, viel mehr davon.
+Damit man den Überblick bewahren kann werden Klassen in sogenannten `packages`, also Paketen organisiert.
+
+Dazu gibt man am Anfang einer Datei an in welchem Paket sich die Klassen dieser Datei befinden sollen. +
+Häufig werden sie wie eine Internetadresse angegeben - nur umgekeht. Dies ist aber nicht zwingend.
+
+[source,groovy]
+.Packagedefinition
+----
+package de.heidehofgymnasium.groovy.learning
+
+class KlasseA {
+    ...
+}
+----
+
+Wenn man auf eine Klasse zugreifgen möchte muss immer das `package` mit angegeben werden:
+
+[source,groovy]
+.Explizites package
+----
+def a = new de.heidehofgymnasium.groovy.learning.KlasseA()
+----
+
+Da dies aber sehr umständlich ist muss man dies nur tun wenn man nicht gerade in einer Klasse ist, welche sich im selben
+`package` befindet. +
+Wenn man aber in einer Klasse in einem anderen `package` ist gibt es die Möglichkeit sich mit `import` eine Klasse zu
+importieren und so das Paket nicht mehr angeben zu müssen.
+
+[source,groovy]
+.Import einer Klasse
+----
+import de.heidehofgymnasium.groovy.learning.KlasseA
+
+def a = new KlasseA()
+----
+
+Man kann auch gleich ein ganzes Paket importieren indem man als Klassenname einen `*` angibt.
+
+[source,groovy]
+.Import eines Pakets
+----
+import de.heidehofgymnasium.groovy.learning.*
+
+def a = new KlasseA()
+----
+
+// static imports absichtlich weggelassen
 
 == Kreis im Quadrat
 
