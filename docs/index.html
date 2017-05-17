@@ -1258,6 +1258,19 @@ Programm weiterläuft wenn die Bedingung nicht zutrifft.</td>
 </table>
 </div>
 <div class="paragraph">
+<p>Eine Bedingung kann nur entweder wahr (<code>true</code>) oder falsch (<code>false</code>) sein. Ihr kennt das aus dem Mathematikunterricht bei
+Gleichungen bzw. Ungleichungen. <code>20 &gt; 10</code> ist wahr, <code>30 &lt; 50</code> ist falsch. Beim Programmieren besteht eine Bedingung aus
+zwei Dingen, die miteinander verglichen werden. Dies können Werte oder auch Variablen sein.<br>
+Mehrere Bedingungen können logisch miteinander verknüpft werden. Wenn <code>a</code> zwischen 10 und zwanzig liegen soll sähe das so aus:
+<code>a &gt; 10 &amp;&amp; a &lt;= 20</code><br>
+Mehr zu Vergleichen und Bedingungen findet ihr unter <a href="#GroovyTruth">Groovy Truth</a> und <a href="#_vergleichsoperatoren">Vergleichsoperatoren</a>.</p>
+</div>
+<div class="paragraph">
+<p>Ein Anweisungsblock wird von geschweiften Klammern umschlossen.<br>
+Variablen, die in solch einem Block definiert werden, sind auch nur in ihm verfügbar. Im Kapitel <a href="#_closure">Closure</a> bekommen die
+geschweiften Klammern noch eine leicht andere Bedeutung, aber auch dort wird ein Block von Anweisungen umschlossen.</p>
+</div>
+<div class="paragraph">
 <p>Wenn in den Anweisungsblöcken für <code>if</code> oder <code>else</code> nur eine einzelne Anweisung steht wie im obigen Beispiel, dann kann man die
 geschweiften Klammern weglassen:</p>
 </div>
@@ -1332,8 +1345,7 @@ geschweiften Klammern weglassen:</p>
 <div class="sect4">
 <h5 id="GroovyTruth">3.4.1.1. Groovy Truth</h5>
 <div class="paragraph">
-<p>Eine Bedingungen kann nur entweder wahr (<code>true</code>) oder falsch (<code>false</code>) sein.<br>
-Variablen vom Typ <code>boolean</code> stellen extakt diese zwei Werte dar. Andere Variablen stellen andere und vor allem mehr
+<p>Variablen vom Typ <code>boolean</code> stellen extakt die Werte wahr (<code>true</code>) oder falsch (<code>false</code>) dar. Andere Variablen stellen andere und vor allem mehr
 Werte dar. Um zu prüfen ob z.B. in einer Integervariable <code>a</code> ein anderer Wert als 0 steht, gibt man in einer Verzweigungsanweisung
 <code>if(a != 0)</code> an. Da eine Prüfung auf 0 häufig benötigt wird kann man in Groovy auch nur <code>if(a)</code> verwenden.<br>
 Hier hängt es vom Variablentyp von <code>a</code> ab wie ein Bedingungsergebnis berechnet wird.<br></p>
@@ -1352,6 +1364,49 @@ Hier hängt es vom Variablentyp von <code>a</code> ab wie ein Bedingungsergebnis
 </div>
 <div class="paragraph">
 <p>Wenn eine Klasse eine Methode <code>asBoolean()</code> besitzt, wird diese aufgerufen und dessen Ergebnis (<code>true</code> oder <code>false</code>) wird genutzt.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+<div class="paragraph">
+<p>Schreibe folgendes Programm:<br>
+Nach Vorgabe dreier Seitenlängen (z.B. def a = 3, b=4, c= 5) soll mit Hilfe der Dreiecksungleichung geprüft werden,
+ob es sich tatsächlich um ein Dreieck handeln kann.<br>
+In einer nächsten Stufe soll weiterhin geprüft werden, ob es sich um ein rechtwinkliges (Pythagoras!),
+gleichschenkliges oder sogar gleichseitiges Dreieck handelt.</p>
+</div>
+<div class="paragraph">
+<p>Variiere die Seitenlängen!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+<div class="paragraph">
+<p>Schreibe ein Programm, das nach Vorgabe der Koeffizienten a, b, c einer quadratischen Gleichung der Form ax2+bx+c=0 prüft,
+ob die Gleichung Lösungen besitzt.<br>
+Ist dies der Fall sollen diese ausgegeben werden, wenn nicht kommt die Meldung 'keine Lösung'.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1533,6 +1588,23 @@ list.each { <span class="keyword">def</span> element -&gt; <i class="conum" data
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+<div class="paragraph">
+<p>Schreibe ein Programm, das alle Quadratzahlen von 1 bis 100^2 ausgibt.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_break_und_continue">3.4.2.6. break und continue</h5>
@@ -1593,6 +1665,44 @@ list.each { <span class="keyword">def</span> element -&gt; <i class="conum" data
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Überspringe den Rest des Anweisungsblocks und beginne die nächste Wiederholung, auch Iteration genannt, der Schleife.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+<div class="paragraph">
+<p>Schreibe ein Programm, das eine vorgegebene Zahl a darauf überprüft, ob sie Primzahl ist.<br>
+Dividiere dazu durch alle Zahlen kleiner a und prüfe, ob dabei der Rest 0 vorkommt.</p>
+</div>
+<div class="paragraph">
+<p>(Den Rest bei der Division von a durch b erhält man mit a % b. Siehe &#8594; <a href="#_nummerische_operatoren">Nummerische Operatoren</a>)</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Übung</strong></p>
+</div>
+<div class="paragraph">
+<p>Erweitere das vorige Programm so, dass alle Primzahlen zwischen 2 und 1000 ausgegeben werden.</p>
+</div>
+</td>
 </tr>
 </table>
 </div>
@@ -2722,7 +2832,7 @@ importieren und so das Paket nicht mehr angeben zu müssen.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-05-02 20:40:23 +02:00
+Last updated 2017-05-17 17:27:23 +02:00
 </div>
 </div>
 </body>
