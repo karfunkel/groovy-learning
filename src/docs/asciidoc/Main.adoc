@@ -7,11 +7,133 @@
 
 == Einleitung
 
-// TODO
+Dieses Skript bietet Quereinsteigern die Moeglichkeit sich selber in die weite Welt des Programmierens einzuarbeiten.
+
+Es ziehlt auf die Vermittlung der fundamentalen Kenntnisse der Programmiersprache Groovy ab, die erlernten Faehigkeiten lassen sich aber muehelos auf andere Sprachen uebertragen.
+Dies wird erreicht durch praezise Erklaerungen, gestuetzt auf Uebungen, die zum Anwenden und Verinnerlichen des Lernstoffes konzipiert sind.
+Selbstverstaendlich kann man auch eigene Programmideen verwirklichen.
+
+Nach erfolgreichem Abschluss werden sie folgende Faehigkeiten beherrschen:
+
+- Ausgabe von Text und Zahlen in der Konsole
+- Richtigen Umgang mit Variablen
+- Variablen vergleichen und verrechnen
+- Schleifen richtig anwenden
+- Programmcode in Methoden oder Closure auslagern
+- Klassen erstellen
+
 
 == Wie geht's los?
+Bevor sie damit loslegen koennen ihr erstes Programm zu schreiben muessen sie erst vier Anwendungen installieren.
+Aber keine Sorge deren Installation und Zweck ist jeweils verstaendlich erklaert.
 
-// TODO
+=== Installation des SDKMAN Tools
+Als erstes benoetigen wir das Tool SDKMAN (Software Development Kit Manager).
+Dieses ist fuer MacOS und Linux verfuegbar.
+Es ermoegtlicht uns die einfache Installation und Verwaltung der nachfolgenden Programme.
+
+Um es zu installierne oeffnen sie bitte das Terminal und geben sie folgendes ein mit anschliessendem Bestaetigung mittels Druecken der Enter Taste.
+
+----
+$ curl -s "https://get.sdkman.io" | bash
+----
+Folgen sie den in der Konsole erscheinenden Anweisungen um die Installation abzuschliessen.
+
+Falls sie ueberpruefen wollen, ob die Installation erfolgreich war geben sie bitte folgendes in einem neuen Terminal Fenster ein:
+----
+$ sdk version
+----
+Wenn alles gut gegangen ist sollte etwa folgendes zurueckgegeben werden:
+----
+ sdkman 5.0.0+51
+----
+
+
+[NOTE]
+Die Versionsnummer kann aufgrund der Weiterentwicklung abweichen. Der Zewck dahinter ist nur die Ueberpruefung, dass das Programm exestiert.
+Sollte ihnen keine Versionsnummer zurueckgegeben werden ist bei der Installation etwas schief gegangen.
+
+CAUTION: Sie muessen das SDKMAN istalliert haben, bevor sie mit dem Skript fortfahren, da alle folgenden Programme ueber den SDKMAN installiert werden.
+
+
+=== Installation von Java
+Um Java zu installieren geben sie bitte folgendes in das Terminal ein mit anschliessendem Druecken der Entertaste:
+----
+ $ sdk install java
+----
+Sie sollten dass etwa folgendes als Output:
+----
+ Downloading: java 8u111
+
+ In progress...
+
+ ######################################################################## 100.0%
+
+ Installing: java 8u111
+ Done installing!
+----
+Nun werden sie gefragt ob sie die entsprechende Java Version als Standartversion einstellen wollen.
+----
+ Do you want java 8u111 to be set as default? (Y/n):
+----
+[NOTE]
+Die Versionsnummer kann abweichen.
+
+Antworten sie mit 'Y' und druecken sie Enter.
+
+[NOTE]
+Nun verwenden alle Terminals die selbe Java-Version, dies verhindert eventuellen Konflikten/Kompatibilitaetsproblemen.
+
+=== Installation von Groovy
+Die Groovy Installation laeuft genauso ab, wie die Java Installation.
+
+Geben sie folgendes in das Terminal ein mit anschliessendem Druecken der Entertaste:
+
+----
+ $ sdk install groovy
+----
+=== Installation von Gradle
+Die Gradle Installation gleicht den zwei anderen Installation.
+
+Geben sie folgendes in das Terminal ein mit anschliessendem Druecken der Entertaste:
+
+----
+ $ sdk install gradle 4.6
+----
+=== Ueberpruefen der Installationen
+Um zu ueberpruefen ob sie alles richtig installiert haben, geben sie bitte folgendes in das Terminal ein.
+----
+ $ sdk current
+----
+[NOTE]
+Dieser Befehl listet alle installierten Pakete auf, mit dazugefoeriger Versionsnummer.
+
+Sie sollten mindestens folgendes zurueckbekommen:
+----
+ $ sdk current
+   Using:
+   gradle: 4.6
+   groovy: 2.4.7
+   java: 8u111
+----
+[NOTE]
+Wenn ein Paket nicht in der Liste auftaucht, ist dieses nicht richtig installiert.
+
+Herrzlichen Glueckwunsch, wenn bei ihnen mindestens diese drei Pakete angezeigt werden haben sie die Einrichtungsphase erfolgreich absolviert.
+
+=== Starten der Groovy Console
+Um die Console zu oeffnen, in der sie den Code schreiben geben sie folgendes in das Terminal ein:
+----
+ $ groovyConsole
+----
+Nach dem Druecken der Enter Taste sollte sich ein Texteditor aehnliches Fenster oeffnen. Dessen Bedienung ist groesstenteils selbsterklaerend.
+
+
+[NOTE]
+Sie fuehren ihren Code aus, indem sie in der Menuebar den zweiten Button von Rechts aus druecken (Ein Zettel mit einem gruenen Pfeil).
+Der Output wird in einem gelb hinterlegtem Fenster ausgegenen.
+
+Nun erfahren sie im naechsten Kapitel, wie sie ihr erstes Programm schreiben.
 
 == Dein erstes Programm
 
@@ -113,7 +235,7 @@ Bezeichner können aus folgenden Zeichen bestehen:
 - Unterstrich
 - Währungssymbole (z.B. €, $ usw.)
 
-Das erste Zeichen darf keine Ziffer sein.
+Das erste Zeichen darf keine Ziffer oder Sonderzeichen sein.
 
 Zudem gibt es reservierte Worte wie z.B. `as`, `return` oder `in` die nicht benutzt werden dürfen.
 So kann eine Variable nicht `new` heissen - `newValue` hingegen ist wieder in Ordnung.
@@ -160,16 +282,28 @@ Wenn eine Variable einmal existiert können ihr immer wieder Werte zugewiesen un
 [source, groovy]
 .Beispiele von Variablenbenutzung
 ----
+// Variante 1:
 def name
 name = 'Hans Wurst'
+
+int alter
+alter = 498
+
+println name
+println alter
+
+// Variante 2:
+def name = 'Hans Wurst'
 int alter = 498
 
-println alter
 println name
-
-alter = 15
 println alter
 ----
+
+
+[NOTE]
+Beide Varianten erzeugen den gleichen Output. Variante zwei fasst lediglich die Dekleration und Zuweisung in eine Zeile zusammen
+
 
 ===== Welche Typen gibt es?
 
@@ -929,7 +1063,7 @@ int addiere(int zahl1, int zahl2) { <1>
 *Rückgabetyp* *Methodenname* *(* *Argumentliste* *)* +
 Der *Rückgabetyp* kann jeder <<Variablentypen,Variablentyp>> sein. +
 Für den *Methodennamen* gelten die selben <<Namensregeln>> wie für Variablen. +
-Die *Argumentliste* ist eine Komma-getrennte Liste aus *Argumenten*. +
+Die *Argumentliste* ist eine Komma-getrennte Liste aus *Argumenten*, die man beim Methodenaufruf uebergibt. +
 Ein *Argument* besteht aus einem <<Variablentypen,Variablentyp>> und einem Variablennamen.
 
 <2> Die Anweisungen stehen zwischen geschweiften Klammern. +
@@ -1275,6 +1409,30 @@ def a = new KlasseA()
 ----
 
 // static imports absichtlich weggelassen
+
+=== Aufgabe
+Du hast nun erfolgreich die Basics von Groovy kennengelernt.
+Um deine erlernten Faehigkeiten in der Praxis zu nutzen und zu kontrollieren, dass du sie auch richtig erlernt hast, bitte ich dich ein kleines Kopfrechenspiel zu programmieren.
+
+Es sollte folgende Features beinhalten:
+
+- Vom Benutzer einstellbarer Zahlenraum
+- Mindestens die Unterstuetzung der vier Grundrechenarten
+- Automatische Erstellung einer Aufgabe anhand der zwei Kriterien
+- Ueberpruefen der Aufgabe nach Kopfrechenbarkeit
+- Ausgabe der Aufgabe an den Benutzer
+- Eingabe sowie Ueberpruefung des Benutzerergebnisses
+- Rueckmeldung an den User
+
+
+Wichtig: Mit dem folgendem Code erzeugen sie eine Zufallszahl zwischen 1 und 400
+----
+zufallsZahl = (Math.floor((400-0)*Math.random()) + 1) as Integer
+print(zufallsZahl)
+----
+[NOTE]
+Tipp: Die Zahlen zur Begrenzung der Zufallszahlen lassen sich durch Variablen ersetzen.
+
 
 == Kreis im Quadrat
 
