@@ -1,6 +1,5 @@
 import javax.swing.*
 
-
 def rechenzeichen = JOptionPane.showInputDialog('Geben sie die gewuenschte Rechenart ein')
 def zahlenbereich = JOptionPane.showInputDialog('Geben sie die hoechste erwuenschte Zahl ein')
 
@@ -38,12 +37,10 @@ void aufgabe(def rechenart, def hoechsteZahl){
         check(result, num01, num02, rechenart)
         return
     }
-   
-    
 }
 
 int zufallszahl(def num){
-    int max = num.toInteger()
+    int max = num.toInteger() - 1
     return ((Math.floor(max)*Math.random()) + 1) as Integer
 }
 
