@@ -85,14 +85,14 @@ Antworten sie mit 'Y' und drücken sie Enter.
 Nun verwenden alle Terminals die selbe Java-Version, dies verhindert eventuellen Konflikten/Kompatibilitätsproblemen.
 
 
-Wir benötigen Java aus dem Grund, dass der Groovy Code spáter zu Javabitecode compiled wird, dazu aber spáter mehr.
+Wir benötigen Java aus dem Grund, dass der Groovy Code später zu Javabitecode compiled wird, dazu aber später mehr.
 
 === Installation von Groovy
 Groovy ist die eigentliche Programmiersprache in der wir später programmieren werden. Damit der Computer ihre Syntax verarbeiten kann muss sie bzw ihr Compiler erst installiert werden.
 
 Die Groovy Installation läuft genauso ab, wie die Java Installation.
 
-Geben sie folgendes in das Terminal ein mit anschliessendem Drücken der Entertaste:
+Geben sie folgendes in das Terminal ein mit anschließendem Drücken der Entertaste:
 
 ----
  $ sdk install groovy
@@ -100,7 +100,7 @@ Geben sie folgendes in das Terminal ein mit anschliessendem Drücken der Enterta
 === Installation von Gradle
 Die Gradle Installation gleicht den zwei anderen Installation.
 
-Geben sie folgendes in das Terminal ein mit anschliessendem Drücken der Entertaste:
+Geben sie folgendes in das Terminal ein mit anschließendem Drücken der Entertaste:
 
 ----
  $ sdk install gradle 4.6
