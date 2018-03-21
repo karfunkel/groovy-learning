@@ -7,13 +7,13 @@
 
 == Einleitung
 
-Dieses Skript bietet Quereinsteigern die Moeglichkeit sich selber in die weite Welt des Programmierens einzuarbeiten.
+Dieses Skript bietet Quereinsteigern die Möglichkeit sich selber in die weite Welt des Programmierens einzuarbeiten.
 
-Es ziehlt auf die Vermittlung der fundamentalen Kenntnisse der Programmiersprache Groovy ab, die erlernten Faehigkeiten lassen sich aber muehelos auf andere Sprachen uebertragen.
-Dies wird erreicht durch praezise Erklaerungen, gestuetzt auf Uebungen, die zum Anwenden und Verinnerlichen des Lernstoffes konzipiert sind.
-Selbstverstaendlich kann man auch eigene Programmideen verwirklichen.
+Es ziehlt auf die Vermittlung der fundamentalen Kenntnisse der Programmiersprache Groovy ab, die erlernten Fähigkeiten lassen sich aber mühelos auf andere Sprachen übertragen.
+Dies wird erreicht durch präzise Erklärungen, gestützt auf Übungen, die zum Anwenden und Verinnerlichen des Lernstoffes konzipiert sind.
+Selbstverständlich kann man auch eigene Programmideen verwirklichen.
 
-Nach erfolgreichem Abschluss werden sie folgende Faehigkeiten beherrschen:
+Nach erfolgreichem Abschluss werden sie folgende Fähigkeiten beherrschen:
 
 - Ausgabe von Text und Zahlen in der Konsole
 - Richtigen Umgang mit Variablen
@@ -24,40 +24,40 @@ Nach erfolgreichem Abschluss werden sie folgende Faehigkeiten beherrschen:
 
 
 == Wie geht's los?
-Bevor sie damit loslegen koennen ihr erstes Programm zu schreiben muessen sie erst vier Anwendungen installieren.
-Aber keine Sorge deren Installation und Zweck ist jeweils verstaendlich erklaert.
+Bevor sie damit loslegen können ihr erstes Programm zu schreiben müssen sie erst drei Anwendungen installieren.
+Aber keine Sorge deren Installation und Zweck ist jeweils verständlich erklärt.
 
 === Installation des SDKMAN Tools
 Als erstes benoetigen wir das Tool SDKMAN (Software Development Kit Manager).
-Dieses ist fuer MacOS und Linux verfuegbar.
-Es ermoegtlicht uns die einfache Installation und Verwaltung der nachfolgenden Programme.
+Dieses ist für MacOS und Linux verfügbar.
+Es ermögtlicht uns die einfache Installation und Verwaltung der nachfolgenden Programme.
 
-Um es zu installierne oeffnen sie bitte das Terminal und geben sie folgendes ein mit anschliessendem Bestaetigung mittels Druecken der Enter Taste.
+Um es zu installierne öffnen sie bitte das Terminal und geben sie folgendes ein mit anschliessendem Bestätigung mittels Drücken der Enter Taste.
 
 ----
 $ curl -s "https://get.sdkman.io" | bash
 ----
 Folgen sie den in der Konsole erscheinenden Anweisungen um die Installation abzuschliessen.
 
-Falls sie ueberpruefen wollen, ob die Installation erfolgreich war geben sie bitte folgendes in einem neuen Terminal Fenster ein:
+Falls sie überpruefen wollen, ob die Installation erfolgreich war geben sie bitte folgendes in einem neuen Terminal Fenster ein:
 ----
 $ sdk version
 ----
-Wenn alles gut gegangen ist sollte etwa folgendes zurueckgegeben werden:
+Wenn alles gut gegangen ist sollte etwa folgendes zurückgegeben werden:
 ----
  sdkman 5.0.0+51
 ----
 
 
 [NOTE]
-Die Versionsnummer kann aufgrund der Weiterentwicklung abweichen. Der Zewck dahinter ist nur die Ueberpruefung, dass das Programm exestiert.
-Sollte ihnen keine Versionsnummer zurueckgegeben werden ist bei der Installation etwas schief gegangen.
+Die Versionsnummer kann aufgrund der Weiterentwicklung abweichen. Der Zewck dahinter ist nur die Überpruefung, dass das Programm exestiert.
+Sollte ihnen keine Versionsnummer zurückgegeben werden ist bei der Installation etwas schief gegangen.
 
-CAUTION: Sie muessen das SDKMAN istalliert haben, bevor sie mit dem Skript fortfahren, da alle folgenden Programme ueber den SDKMAN installiert werden.
+CAUTION: Sie müssen das SDKMAN istalliert haben, bevor sie mit dem Skript fortfahren, da alle folgenden Programme über den SDKMAN installiert werden.
 
 
 === Installation von Java
-Um Java zu installieren geben sie bitte folgendes in das Terminal ein mit anschliessendem Druecken der Entertaste:
+Um Java zu installieren geben sie bitte folgendes in das Terminal ein mit anschließendem Drücken der Entertaste:
 ----
  $ sdk install java
 ----
@@ -79,15 +79,15 @@ Nun werden sie gefragt ob sie die entsprechende Java Version als Standartversion
 [NOTE]
 Die Versionsnummer kann abweichen.
 
-Antworten sie mit 'Y' und druecken sie Enter.
+Antworten sie mit 'Y' und drücken sie Enter.
 
 [NOTE]
-Nun verwenden alle Terminals die selbe Java-Version, dies verhindert eventuellen Konflikten/Kompatibilitaetsproblemen.
+Nun verwenden alle Terminals die selbe Java-Version, dies verhindert eventuellen Konflikten/Kompatibilitätsproblemen.
 
 === Installation von Groovy
 Die Groovy Installation laeuft genauso ab, wie die Java Installation.
 
-Geben sie folgendes in das Terminal ein mit anschliessendem Druecken der Entertaste:
+Geben sie folgendes in das Terminal ein mit anschliessendem Drücken der Entertaste:
 
 ----
  $ sdk install groovy
@@ -95,45 +95,44 @@ Geben sie folgendes in das Terminal ein mit anschliessendem Druecken der Enterta
 === Installation von Gradle
 Die Gradle Installation gleicht den zwei anderen Installation.
 
-Geben sie folgendes in das Terminal ein mit anschliessendem Druecken der Entertaste:
+Geben sie folgendes in das Terminal ein mit anschliessendem Drücken der Entertaste:
 
 ----
  $ sdk install gradle 4.6
 ----
-=== Ueberpruefen der Installationen
-Um zu ueberpruefen ob sie alles richtig installiert haben, geben sie bitte folgendes in das Terminal ein.
+=== Überpruefen der Installationen
+Um zu überpruefen ob sie alles richtig installiert haben, geben sie bitte folgendes in das Terminal ein.
 ----
  $ sdk current
 ----
 [NOTE]
-Dieser Befehl listet alle installierten Pakete auf, mit dazugefoeriger Versionsnummer.
+Dieser Befehl listet alle installierten Pakete auf, mit dazugehöriger Versionsnummer.
 
-Sie sollten mindestens folgendes zurueckbekommen:
+Sie sollten mindestens folgendes zurückbekommen:
 ----
  $ sdk current
    Using:
-   gradle: 4.6
    groovy: 2.4.7
    java: 8u111
 ----
 [NOTE]
 Wenn ein Paket nicht in der Liste auftaucht, ist dieses nicht richtig installiert.
 
-Herrzlichen Glueckwunsch, wenn bei ihnen mindestens diese drei Pakete angezeigt werden haben sie die Einrichtungsphase erfolgreich absolviert.
+Herrzlichen Glückwunsch, wenn bei ihnen mindestens diese zwei Pakete angezeigt werden haben sie die Einrichtungsphase erfolgreich absolviert.
 
 === Starten der Groovy Console
-Um die Console zu oeffnen, in der sie den Code schreiben geben sie folgendes in das Terminal ein:
+Um die Console zu öffnen, in der sie den Code schreiben geben sie folgendes in das Terminal ein:
 ----
  $ groovyConsole
 ----
-Nach dem Druecken der Enter Taste sollte sich ein Texteditor aehnliches Fenster oeffnen. Dessen Bedienung ist groesstenteils selbsterklaerend.
+Nach dem Drücken der Enter Taste sollte sich ein Texteditor ähnliches Fenster öffnen. Dessen Bedienung ist größtenteils selbsterklärend.
 
 
 [NOTE]
-Sie fuehren ihren Code aus, indem sie in der Menuebar den zweiten Button von Rechts aus druecken (Ein Zettel mit einem gruenen Pfeil).
+Sie führen ihren Code aus, indem sie in der Menübar den zweiten Button von Rechts aus drücken (Ein Zettel mit einem grünen Pfeil).
 Der Output wird in einem gelb hinterlegtem Fenster ausgegenen.
 
-Nun erfahren sie im naechsten Kapitel, wie sie ihr erstes Programm schreiben.
+Nun erfahren sie im nächsten Kapitel, wie sie ihr erstes Programm schreiben.
 
 == Dein erstes Programm
 
@@ -1412,26 +1411,26 @@ def a = new KlasseA()
 
 === Aufgabe
 Du hast nun erfolgreich die Basics von Groovy kennengelernt.
-Um deine erlernten Faehigkeiten in der Praxis zu nutzen und zu kontrollieren, dass du sie auch richtig erlernt hast, bitte ich dich ein kleines Kopfrechenspiel zu programmieren.
+Um deine erlernten Fähigkeiten in der Praxis zu nutzen und zu kontrollieren, dass du sie auch richtig erlernt hast, bitte ich dich ein kleines Kopfrechenspiel zu programmieren.
 
 Es sollte folgende Features beinhalten:
 
 - Vom Benutzer einstellbarer Zahlenraum
-- Mindestens die Unterstuetzung der vier Grundrechenarten
+- Mindestens die Unterstützung der vier Grundrechenarten
 - Automatische Erstellung einer Aufgabe anhand der zwei Kriterien
-- Ueberpruefen der Aufgabe nach Kopfrechenbarkeit
+- Überprüfen der Aufgabe nach Kopfrechenbarkeit
 - Ausgabe der Aufgabe an den Benutzer
-- Eingabe sowie Ueberpruefung des Benutzerergebnisses
-- Rueckmeldung an den User
+- Eingabe sowie Überprüfung des Benutzerergebnisses
+- Rückmeldung an den User
 
 
 Wichtig: Mit dem folgendem Code erzeugen sie eine Zufallszahl zwischen 1 und 400
 ----
-zufallsZahl = (Math.floor((400-0)*Math.random()) + 1) as Integer
-print(zufallsZahl)
+zufallsZahl = (Math.floor((400)*Math.random()) + 1) as Integer
+println(zufallsZahl)
 ----
 [NOTE]
-Tipp: Die Zahlen zur Begrenzung der Zufallszahlen lassen sich durch Variablen ersetzen.
+Tipp: Die Zahl zur Begrenzung des Zahlenraumes, in unserem Beispiel die 400, lässt sich ohne Probleme durch eine vom Benutzer eingegebene Variable ersetzen.
 
 
 == Kreis im Quadrat
