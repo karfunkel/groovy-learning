@@ -84,8 +84,13 @@ Antworten sie mit 'Y' und drücken sie Enter.
 [NOTE]
 Nun verwenden alle Terminals die selbe Java-Version, dies verhindert eventuellen Konflikten/Kompatibilitätsproblemen.
 
+
+Wir benötigen Java aus dem Grund, dass der Groovy Code spáter zu Javabitecode compiled wird, dazu aber spáter mehr.
+
 === Installation von Groovy
-Die Groovy Installation laeuft genauso ab, wie die Java Installation.
+Groovy ist die eigentliche Programmiersprache in der wir später programmieren werden. Damit der Computer ihre Syntax verarbeiten kann muss sie bzw ihr Compiler erst installiert werden.
+
+Die Groovy Installation läuft genauso ab, wie die Java Installation.
 
 Geben sie folgendes in das Terminal ein mit anschliessendem Drücken der Entertaste:
 
