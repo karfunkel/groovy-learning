@@ -1437,6 +1437,8 @@ println(zufallsZahl)
 [NOTE]
 Tipp: Die Zahl zur Begrenzung des Zahlenraumes, in unserem Beispiel die 400, lässt sich ohne Probleme durch eine vom Benutzer eingegebene Variable ersetzen.
 
+[NOTE]
+Eine Lösung finden sie hier. Sie ist sehr simpel gehalten, und soll dazu anregen sie weiterzuentwickeln.
 
 == Kreis im Quadrat
 
